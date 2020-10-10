@@ -3,5 +3,10 @@ import React from 'react';
 import './Logo.scss';
 
 export const Logo = () => {
-	return <nav>LOGO</nav>;
+	return (
+		<div id='logo'>
+			<h1>CoinRef.org</h1>
+			<img src='./favicon.ico' />
+		</div>
+	);
 };
