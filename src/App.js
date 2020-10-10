@@ -27,6 +27,16 @@ function App() {
 			<footer>
 				<Logo />
 				<FooterLinks />
+				<div id='disclaimer'>
+					All content on this site is intended to be educational and should not
+					be perceived as financial advice. Data from
+					<span>
+						<a href='https://messari.io' target='blank'>
+							{' '}
+							messari.io.
+						</a>
+					</span>
+				</div>
 			</footer>
 		</div>
 	);

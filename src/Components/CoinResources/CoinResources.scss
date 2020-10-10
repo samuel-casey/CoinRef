@@ -1,7 +1,20 @@
+.coin-resources {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	background: #f5f5f5;
+	font-size: 1rem;
+}
+
 ul {
 	border: none;
+	list-style: none;
+	margin: 0;
+	padding: 0 1rem;
 }
 
 li {
 	border: none;
+	text-align: left;
 }

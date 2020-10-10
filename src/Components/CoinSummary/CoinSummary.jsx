@@ -5,7 +5,7 @@ import './CoinSummary.scss';
 export const CoinSummary = (props) => {
 	return (
 		<div className='coin-summary'>
-			<h5>bitcoin</h5>
+			<h4>bitcoin</h4>
 			<div className='coin-summary-data'>
 				<div className='coin-price'>
 					<span>Price: $12,000</span>

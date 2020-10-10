@@ -3,7 +3,8 @@ import './CoinResources.scss';
 
 export const CoinResources = (props) => {
 	return (
-		<div>
+		<div className='coin-resources'>
+			<h6>Additional Resources</h6>
 			<ul>
 				<li>Resource A</li>
 				<li>Resource B</li>

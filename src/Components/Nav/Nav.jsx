@@ -6,15 +6,15 @@ export const Nav = () => {
 	return (
 		<nav>
 			<Link to='/'>
-				<h4>Learn</h4>
+				<h6>Learn</h6>
 			</Link>
 
 			<Link to='/news'>
-				<h4>News</h4>
+				<h6>News</h6>
 			</Link>
 
 			<Link to='/about'>
-				<h4>About</h4>
+				<h6>About</h6>
 			</Link>
 		</nav>
 	);

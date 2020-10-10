@@ -1,11 +1,12 @@
-$logo-primary: #256b98;
-
 .App {
 	text-align: center;
 	line-height: 2;
 	font-size: 2rem;
 	color: red;
 	padding: 0 0.25rem;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
 }
 
 header {
@@ -14,12 +15,32 @@ header {
 	justify-content: space-between;
 	padding: 0 1rem;
 	align-items: center;
+	width: 100vw;
+}
+
+main {
+	justify-self: center;
+	width: 95vw;
 }
 
 footer {
 	color: green;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	padding: 0 1rem;
 	align-items: center;
+	width: 100vw;
+
+	#logo {
+		width: fit-content;
+	}
+
+	#disclaimer {
+		font-size: 0.5rem;
+	}
+}
+
+p {
+	font-size: 1rem;
 }

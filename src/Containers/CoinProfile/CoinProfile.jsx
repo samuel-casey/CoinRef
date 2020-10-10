@@ -9,8 +9,8 @@ export const CoinProfile = (props) => {
 	return (
 		<div className='coin-profile'>
 			<div className='coin-summary-cont'>
-				<CoinImg />
-				<CoinSummary />
+				<CoinImg className='coin-img-comp' />
+				<CoinSummary className='coin-summary-comp' />
 			</div>
 			<CoinDescription />
 			<CoinResources />
