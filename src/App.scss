@@ -1,5 +1,9 @@
 @import './variables.scss';
 
+* {
+	box-sizing: border-box;
+}
+
 .App {
 	text-align: center;
 	line-height: 2;
@@ -20,28 +24,36 @@ h6 {
 	color: $logo-secondary;
 }
 
+header,
+footer {
+	background: $logo-primary-light;
+}
+
 header {
-	color: blue;
 	display: flex;
 	justify-content: space-between;
 	padding: 0 1rem;
 	align-items: center;
 	width: 100vw;
+	height: 3.5rem;
 }
 
 main {
 	justify-self: center;
+	align-self: center;
 	width: 95vw;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 footer {
-	color: green;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	padding: 0 1rem;
 	align-items: center;
 	width: 100vw;
+	padding: 0.5rem;
 
 	#logo {
 		width: fit-content;
