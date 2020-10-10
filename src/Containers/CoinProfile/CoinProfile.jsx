@@ -12,6 +12,8 @@ export const CoinProfile = (props) => {
 				<CoinImg />
 				<CoinSummary />
 			</div>
+			<CoinDescription />
+			<CoinResources />
 		</div>
 	);
 };
