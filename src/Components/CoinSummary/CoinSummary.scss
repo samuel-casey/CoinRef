@@ -1,0 +1,48 @@
+.coin-summary {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.coin-price {
+	font-size: 1.25rem;
+	display: flex;
+	justify-content: center;
+}
+
+span {
+	padding: 0 0.1rem;
+	justify-self: center;
+}
+
+.pct-chg {
+	display: flex;
+	flex-direction: column;
+}
+
+.pct-chg-label {
+	font-size: 0.75rem;
+}
+
+.detail-list {
+	position: relative;
+	overflow: hidden;
+	font-size: 1rem;
+}
+
+ul {
+	display: flex;
+	width: fit-content;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-left: -1px;
+}
+li {
+	flex-grow: 1;
+	flex-basis: auto;
+	margin: 0.1rem 0;
+	padding: 0 0.5rem;
+	text-align: left;
+	border-left: 1px solid #ccc;
+	background-color: #fff;
+}
