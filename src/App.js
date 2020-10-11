@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
 import { Nav } from './Components/Nav/Nav';
@@ -9,7 +9,10 @@ import { Search } from './Containers/Search/Search';
 import { News } from './Containers/News/News';
 import { CoinProfile } from './Containers/CoinProfile/CoinProfile';
 
+export const CoinContext = React.createContext('uni');
+
 function App() {
+	const [currentCoin, setCurrentCoin] = useState('btc');
 	return (
 		<div className='App'>
 			<header>
@@ -19,7 +22,11 @@ function App() {
 			<main>
 				<Switch>
 					<Route exact path='/' component={Search} />
-					<Route path='/coin-profile' component={CoinProfile} />
+					<Route path='/coin-profile'>
+						<>
+							<CoinProfile />
+						</>
+					</Route>
 					<Route path='/news' component={News} />
 					<Route path='/about' component={About} />
 				</Switch>
