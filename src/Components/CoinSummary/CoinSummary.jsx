@@ -16,8 +16,6 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {
 		<Spinner animation='border' variant='info' />
 	);
 
-	console.log(coinProfileData);
-
 	if (coinMetricsData) {
 		usdPrice = coinMetricsData.market_data.price_usd;
 		usdPrice = usdPrice

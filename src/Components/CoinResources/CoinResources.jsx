@@ -17,7 +17,6 @@ export const CoinResources = ({ coinProfileData }) => {
 			}
 		);
 	}
-	console.log('res ', coinProfileData);
 
 	return (
 		<div className='coin-resources'>
