@@ -7,7 +7,7 @@ export const Nav = () => {
 	return (
 		<nav>
 			<Dropdown>
-				<Dropdown.Toggle variant='primary' id='dropdown-basic'>
+				<Dropdown.Toggle variant='primary' id='menu'>
 					Menu
 				</Dropdown.Toggle>
 
