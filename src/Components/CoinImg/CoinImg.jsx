@@ -4,8 +4,6 @@ import './CoinImg.scss';
 
 export const CoinImg = () => {
 	const currentCoin = React.useContext(CoinContext);
-	// const symbol =
-	const imgOrSymbol = 'symbol';
-	// const imgOrSymbole = props.img ? props.img : props.symbol
+	const imgOrSymbol = currentCoin ? currentCoin.toUpperCase() : 'loading...';
 	return <div className='coin-img'>{imgOrSymbol}</div>;
 };
