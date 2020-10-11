@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 import './CoinSummary.scss';
 
 export const CoinSummary = (props) => {
@@ -9,7 +10,11 @@ export const CoinSummary = (props) => {
 	let sector;
 	let category;
 	let dateEst;
-	let name = props.coinProfileData ? props.coinProfileData.name : `loading...`;
+	let name = props.coinProfileData ? (
+		props.coinProfileData.name
+	) : (
+		<Spinner animation='border' variant='info' />
+	);
 
 	console.log(props.coinProfileData);
 
@@ -42,7 +47,7 @@ export const CoinSummary = (props) => {
 			<span>24hr)</span>
 		</>
 	) : (
-		'loading price data...'
+		'loading...'
 	);
 
 	if (props.coinProfileData) {
