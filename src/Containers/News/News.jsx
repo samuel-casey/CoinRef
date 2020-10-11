@@ -7,8 +7,8 @@ import './News.scss';
 export const News = () => {
 	return (
 		<div className='news-container'>
-			<NewsProviderList />
 			<ArticleList />
+			<NewsProviderList />
 		</div>
 	);
 };

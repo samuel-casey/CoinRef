@@ -1,6 +1,10 @@
 @import '../../variables.scss';
 
 .news-provider {
+	h6 {
+		color: $text-primary;
+	}
+
 	img {
 		width: 5rem;
 		height: 5rem;
@@ -18,5 +22,9 @@
 	img[alt='Coin Journal-img'] {
 		background: black;
 		padding: 2px;
+	}
+
+	a {
+		display: inline;
 	}
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { newsProviders } from '../../newsProviders';
 import { NewsProvider } from '../NewsProvider/NewsProvider';
+import './NewsProviderList.scss';
 
 export const NewsProviderList = () => {
 	const providers = newsProviders.map((provider, index) => {
@@ -13,5 +14,10 @@ export const NewsProviderList = () => {
 			/>
 		);
 	});
-	return <div className='news-providers'>{providers}</div>;
+	return (
+		<>
+			<h5>Popular News Outlets:</h5>
+			<div className='news-list'>{providers}</div>
+		</>
+	);
 };
