@@ -1,8 +1,22 @@
 @import '../../variables.scss';
-img {
-	width: 5rem;
-	height: 5rem;
-	object-fit: scale-down;
-	object-position: 50% 50%;
-	box-shadow: 2px 2px $logo-primary;
+
+.news-provider {
+	img {
+		width: 5rem;
+		height: 5rem;
+		object-fit: scale-down;
+		object-position: 50% 50%;
+		box-shadow: 1px 1px 1px 1px $logo-secondary;
+		margin-bottom: 0.25rem;
+	}
+
+	img[alt='The Block-img'] {
+		background: black;
+		padding: 2px;
+	}
+
+	img[alt='Coin Journal-img'] {
+		background: black;
+		padding: 2px;
+	}
 }
