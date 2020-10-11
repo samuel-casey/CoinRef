@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './CoinProfile.scss';
 import { CoinSummary } from '../../Components/CoinSummary/CoinSummary';
 import { CoinImg } from '../../Components/CoinImg/CoinImg';

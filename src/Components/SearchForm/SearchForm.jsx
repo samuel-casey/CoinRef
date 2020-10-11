@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Form.scss';
 
-export const SearchForm = () => {
+export const SearchForm = (props) => {
 	return (
 		<Form>
 			<Form.Group controlId='formBasicEmail'>

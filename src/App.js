@@ -13,6 +13,7 @@ export const CoinContext = React.createContext('uni');
 
 function App() {
 	const [currentCoin, setCurrentCoin] = useState('btc');
+
 	return (
 		<div className='App'>
 			<header>
@@ -24,7 +25,9 @@ function App() {
 					<Route exact path='/' component={Search} />
 					<Route path='/coin-profile'>
 						<>
-							<CoinProfile />
+							<CoinContext.Provider value={currentCoin}>
+								<CoinProfile />
+							</CoinContext.Provider>
 						</>
 					</Route>
 					<Route path='/news' component={News} />
