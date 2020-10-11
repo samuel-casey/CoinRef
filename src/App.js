@@ -14,9 +14,8 @@ export const CoinContext = React.createContext();
 function App() {
 	const [currentCoin, setCurrentCoin] = useState('btc');
 
-	function handleSubmit(coin) {
+	function handleLearnSubmit(coin) {
 		setCurrentCoin(coin);
-		console.log(coin);
 	}
 
 	return (
@@ -25,22 +24,22 @@ function App() {
 				<Logo />
 				<Nav />
 			</header>
-			<main>
-				{/* <Switch> */}
-				<Route path='/'>
-					<Search handleSubmit={handleSubmit} />
-				</Route>
-				<Route path='/coin-profile'>
-					<>
-						<CoinContext.Provider value={currentCoin}>
+			<CoinContext.Provider value={currentCoin}>
+				<main>
+					{/* <Switch> */}
+					<Route path='/'>
+						<Search handleSubmit={handleLearnSubmit} />
+					</Route>
+					<Route path='/coin-profile'>
+						<>
 							<CoinProfile />
-						</CoinContext.Provider>
-					</>
-				</Route>
-				<Route path='/news' component={News} />
-				<Route path='/about' component={About} />
-				{/* </Switch> */}
-			</main>
+						</>
+					</Route>
+					<Route path='/news' component={News} />
+					<Route path='/about' component={About} />
+					{/* </Switch> */}
+				</main>
+			</CoinContext.Provider>
 			<footer>
 				<Logo />
 				<FooterLinks />

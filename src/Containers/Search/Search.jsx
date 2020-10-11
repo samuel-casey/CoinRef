@@ -6,10 +6,10 @@ import { CoinContext } from '../../App';
 export const Search = ({ handleSubmit }) => {
 	return (
 		<div className='search-container'>
-			<h3>
+			<p>
 				Enter the name of a cryptocurrency or select from the dropdown to Search
 				for an overview.
-			</h3>
+			</p>
 			<SearchForm handleSubmit={handleSubmit} />
 		</div>
 	);

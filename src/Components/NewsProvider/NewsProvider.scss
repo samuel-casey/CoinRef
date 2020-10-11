@@ -1,0 +1,8 @@
+@import '../../variables.scss';
+img {
+	width: 5rem;
+	height: 5rem;
+	object-fit: scale-down;
+	object-position: 50% 50%;
+	box-shadow: 2px 2px $logo-primary;
+}

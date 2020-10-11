@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+// import Dropdown from 'react-bootstrap/DropdownMenu';
 import './Form.scss';
 
 export const SearchForm = (props) => {
@@ -21,13 +22,14 @@ export const SearchForm = (props) => {
 				<Form.Control
 					type='text'
 					name='searchBar'
-					placeholder='Enter cryptocurrency'
+					placeholder='Enter name of a cryptocurrency...'
 					value={searchVal}
 					onChange={handleChange}
 				/>
 				<Button variant='primary' type='submit'>
 					Search
 				</Button>
+				{/* DROPDOWN GOES HERE */}
 			</Form.Group>
 		</Form>
 	);

@@ -14,44 +14,54 @@ export const CoinProfile = () => {
 	const [coinProfileData, setCoinProfileData] = useState(null);
 	const [coinMetricsData, setCoinMetricsData] = useState(null);
 
-	function fetchAssetData(coin) {
-		Promise.all([
-			fetch(`https://data.messari.io/api/v2/assets/${coin}/profile`, {
-				headers: {
-					method: 'GET',
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-					'x-messari-api-key': MESSARI_API_KEY,
-				},
-			}),
-			fetch(`https://data.messari.io/api/v1/assets/${coin}/metrics`, {
-				headers: {
-					method: 'GET',
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-					'x-messari-api-key': MESSARI_API_KEY,
-				},
-			}),
-		])
+	const promiseArray = [
+		fetch(`https://data.messari.io/api/v2/assets/${currentCoin}/profile`, {
+			headers: {
+				method: 'GET',
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+				'x-messari-api-key': MESSARI_API_KEY,
+			},
+		}),
+		fetch(`https://data.messari.io/api/v1/assets/${currentCoin}/metrics`, {
+			headers: {
+				method: 'GET',
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+				'x-messari-api-key': MESSARI_API_KEY,
+			},
+		}),
+	];
+
+	function fetchAssetData() {
+		Promise.all(promiseArray)
 			.then((responses) => {
 				return Promise.all(
 					responses.map((response) => {
-						return response.json();
+						if (response.status === 404) {
+							alert(
+								`No data found for ${currentCoin}, please check your input or select an option from the list.`
+							);
+							document.location.reload();
+						} else {
+							return response.json();
+						}
 					})
 				);
 			})
 			.then((dataObjects) => {
-				setCoinProfileData(dataObjects[0].data);
-				setCoinMetricsData(dataObjects[1].data);
+				return (
+					setCoinProfileData(dataObjects[0].data),
+					setCoinMetricsData(dataObjects[1].data)
+				);
 			})
 			.catch((error) => {
-				console.log('error: ', error);
-				alert('Ahh!', error);
+				console.log(error);
 			});
 	}
 
 	useEffect(() => {
-		fetchAssetData(currentCoin);
+		fetchAssetData();
 	}, [currentCoin]);
 
 	return (

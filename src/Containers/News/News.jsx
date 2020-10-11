@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import { CoinContext } from '../../App';
+import { NewsProviderList } from '../../Components/NewsProviderList/NewsProviderList';
+import { ArticleList } from '../../Components/ArticleList/ArticleList';
 import './News.scss';
 
 export const News = () => {
-	return <div>News</div>;
+	return (
+		<div className='news-container'>
+			<NewsProviderList />
+			<ArticleList />
+		</div>
+	);
 };
