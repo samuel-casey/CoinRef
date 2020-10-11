@@ -2,9 +2,9 @@ import React from 'react';
 import { CoinContext } from '../../App';
 import './CoinImg.scss';
 
-export const CoinImg = () => {
+export const CoinImg = ({ coinProfileData }) => {
 	const currentCoin = React.useContext(CoinContext);
-	const imgOrSymbol = currentCoin ? currentCoin.toUpperCase() : 'loading...';
+	let imgOrSymbol = coinProfileData ? coinProfileData.symbol : '';
 	return (
 		<div className='coin-img' alt='currentCoin-img'>
 			{imgOrSymbol}

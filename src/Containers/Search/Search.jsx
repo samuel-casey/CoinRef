@@ -7,8 +7,8 @@ export const Search = ({ handleSubmit }) => {
 	return (
 		<div className='search-container'>
 			<h3>
-				Enter the name of a cryptocurrency or select from the dropdown list and
-				press submit to learn about it.
+				Enter the name of a cryptocurrency or select from the dropdown to Search
+				for an overview.
 			</h3>
 			<SearchForm handleSubmit={handleSubmit} />
 		</div>

@@ -45,7 +45,8 @@ export const CoinProfile = () => {
 				setCoinMetricsData(dataObjects[1].data);
 			})
 			.catch((error) => {
-				console.log(error);
+				console.log('error: ', error);
+				alert('Ahh!', error);
 			});
 	}
 
@@ -56,7 +57,7 @@ export const CoinProfile = () => {
 	return (
 		<div className='coin-profile'>
 			<div className='coin-summary-cont'>
-				<CoinImg className='coin-img-comp' />
+				<CoinImg className='coin-img-comp' coinProfileData={coinProfileData} />
 				<CoinSummary
 					className='coin-summary-comp'
 					coinMetricsData={coinMetricsData}
