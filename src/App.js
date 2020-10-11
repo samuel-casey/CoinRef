@@ -9,7 +9,7 @@ import { Search } from './Containers/Search/Search';
 import { News } from './Containers/News/News';
 import { CoinProfile } from './Containers/CoinProfile/CoinProfile';
 
-export const CoinContext = React.createContext('uni');
+export const CoinContext = React.createContext();
 
 function App() {
 	const [currentCoin, setCurrentCoin] = useState('btc');
