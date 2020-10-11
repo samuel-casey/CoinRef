@@ -1,5 +1,4 @@
 import React from 'react';
-// import {} from 'react-bootstrap';
 import './CoinSummary.scss';
 
 export const CoinSummary = (props) => {
@@ -9,7 +8,10 @@ export const CoinSummary = (props) => {
 	let pctChgColor;
 	let sector;
 	let category;
-	let protocol;
+	let dateEst;
+	let name = props.coinProfileData ? props.coinProfileData.name : `loading...`;
+
+	console.log(props.coinProfileData);
 
 	if (props.coinMetricsData) {
 		usdPrice = props.coinMetricsData.market_data.price_usd;
@@ -44,22 +46,62 @@ export const CoinSummary = (props) => {
 	);
 
 	if (props.coinProfileData) {
-		sector = props.coinProfileData.sector;
+		sector = props.coinProfileData.profile.general.overview.sector;
+		category = props.coinProfileData.profile.general.overview.category;
+		dateEst = '2009';
+		let yearEst = new Date(
+			props.coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
+		).getFullYear();
+		let monthEst = new Date(
+			props.coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
+		).getMonth();
+		let monthEstAbbreviation = monthEstToAbbr(monthEst);
+		dateEst = `${monthEstAbbreviation}, ${yearEst}`;
 	}
 
 	return (
 		<div className='coin-summary'>
-			<h4>bitcoin</h4>
+			<h4>{name}</h4>
 			<div className='coin-summary-data'>
 				<div className='coin-price'>{price}</div>
 				<div className='detail-list'>
 					<ul>
-						<li>sector: {sector}</li>
-						<li>category: {category}</li>
-						<li>protocol: {protocol}</li>
+						<li>Sector: {sector}</li>
+						<li>Category: {category}</li>
+						<li>Est date: {dateEst}</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	);
 };
+
+// HELPER FUNCTION TO TURN MONTH AS NO. TO MONTH AS ABBR.
+function monthEstToAbbr(monthEst) {
+	switch (monthEst) {
+		case 0:
+			return 'Jan';
+		case 1:
+			return 'Feb';
+		case 2:
+			return 'Mar';
+		case 3:
+			return 'Apr';
+		case 4:
+			return 'May';
+		case 5:
+			return 'Jun';
+		case 6:
+			return 'Jul';
+		case 7:
+			return 'Aug';
+		case 8:
+			return 'Sep';
+		case 9:
+			return 'Oct';
+		case 10:
+			return 'Nov';
+		case 11:
+			return 'Dec';
+	}
+}
