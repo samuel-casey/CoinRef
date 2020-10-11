@@ -2,18 +2,18 @@ import React, { useContext } from 'react';
 import { CoinContext } from '../../App';
 import './CoinDescription.scss';
 
-export const CoinDescription = (props) => {
+export const CoinDescription = ({ coinProfileData }) => {
 	let currentCoin = useContext(CoinContext);
 	let description;
 	let name;
 
 	function cleanseDescription() {
-		if (props.coinProfileData) {
-			description = props.coinProfileData.profile.general.overview.project_details.replace(
+		if (coinProfileData) {
+			description = coinProfileData.profile.general.overview.project_details.replace(
 				/<([^>]+)>/g,
 				''
 			);
-			name = props.coinProfileData.name;
+			name = coinProfileData.name;
 		} else {
 			description = `Loading data for ${currentCoin}`;
 			name = currentCoin;

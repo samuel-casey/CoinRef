@@ -64,7 +64,7 @@ export const CoinProfile = () => {
 				/>
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
-			<CoinResources />
+			<CoinResources coinProfileData={coinProfileData} />
 		</div>
 	);
 };

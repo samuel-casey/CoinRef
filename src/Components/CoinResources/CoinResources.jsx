@@ -1,15 +1,28 @@
 import React from 'react';
 import './CoinResources.scss';
 
-export const CoinResources = (props) => {
+export const CoinResources = ({ coinProfileData }) => {
+	let resources;
+
+	if (coinProfileData) {
+		resources = coinProfileData.profile.general.overview.official_links.map(
+			(resource, index) => {
+				return (
+					<li key={index} className='coin-resource'>
+						<a href={resource.link} target='blank'>
+							{resource.name}
+						</a>
+					</li>
+				);
+			}
+		);
+	}
+	console.log('res ', coinProfileData);
+
 	return (
 		<div className='coin-resources'>
 			<h6>Additional Resources</h6>
-			<ul>
-				<li>Resource A</li>
-				<li>Resource B</li>
-				<li>Resource C</li>
-			</ul>
+			<ul>{resources}</ul>
 		</div>
 	);
 };

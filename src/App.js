@@ -12,7 +12,7 @@ import { CoinProfile } from './Containers/CoinProfile/CoinProfile';
 export const CoinContext = React.createContext();
 
 function App() {
-	const [currentCoin, setCurrentCoin] = useState('eth');
+	const [currentCoin, setCurrentCoin] = useState('btc');
 
 	return (
 		<div className='App'>

@@ -2,7 +2,7 @@ import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import './CoinSummary.scss';
 
-export const CoinSummary = (props) => {
+export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {
 	let usdPrice;
 	let pctChg;
 	let posNeg;
@@ -10,34 +10,34 @@ export const CoinSummary = (props) => {
 	let sector;
 	let category;
 	let dateEst;
-	let name = props.coinProfileData ? (
-		props.coinProfileData.name
+	let name = coinProfileData ? (
+		coinProfileData.name
 	) : (
 		<Spinner animation='border' variant='info' />
 	);
 
-	console.log(props.coinProfileData);
+	console.log(coinProfileData);
 
-	if (props.coinMetricsData) {
-		usdPrice = props.coinMetricsData.market_data.price_usd;
+	if (coinMetricsData) {
+		usdPrice = coinMetricsData.market_data.price_usd;
 		usdPrice = usdPrice
 			.toFixed(2)
 			//convert to string and add thousands comma separators
 			.toString()
 			.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		pctChg = props.coinMetricsData.market_data.percent_change_usd_last_24_hours;
+		pctChg = coinMetricsData.market_data.percent_change_usd_last_24_hours;
 		pctChg = pctChg.toFixed(2);
 
 		if (pctChg > 0) {
 			posNeg = '+';
 			pctChgColor = 'green';
 		} else {
-			posNeg = '-';
+			posNeg = '';
 			pctChgColor = 'red';
 		}
 	}
 
-	const price = props.coinMetricsData ? (
+	const price = coinMetricsData ? (
 		<>
 			<span>Price: {usdPrice} USD</span>(
 			<span style={{ color: pctChgColor }}>
@@ -50,18 +50,31 @@ export const CoinSummary = (props) => {
 		'loading...'
 	);
 
-	if (props.coinProfileData) {
-		sector = props.coinProfileData.profile.general.overview.sector;
-		category = props.coinProfileData.profile.general.overview.category;
-		dateEst = '2009';
-		let yearEst = new Date(
-			props.coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
-		).getFullYear();
-		let monthEst = new Date(
-			props.coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
-		).getMonth();
+	if (coinProfileData) {
+		// CHECK THAT THE COIN HAS A SECTOR, IF NOT, SET TO 'N/A'
+		sector = coinProfileData.profile.general.overview.sector
+			? coinProfileData.profile.general.overview.sector
+			: 'N/A';
+		// CHECK THAT THE COIN HAS A CATEGORY, IF NOT, SET TO 'N/A'
+		category = coinProfileData.profile.general.overview.category
+			? coinProfileData.profile.general.overview.category
+			: 'N/A';
+		// CHECK THAT THE COIN HAS AN INITIAL DISTRIBUTION DATE AND GET YEAR
+		let yearEst = coinProfileData.profile.economics.launch.initial_distribution
+			.genesis_block_date
+			? new Date(
+					coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
+			  ).getFullYear()
+			: '';
+		// CHECK THAT THE COIN HAS AN INITIAL DISTRIBUTION DATE AND GET MONTH
+		let monthEst = coinProfileData.profile.economics.launch.initial_distribution
+			.genesis_block_date
+			? new Date(
+					coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
+			  ).getMonth()
+			: '';
 		let monthEstAbbreviation = monthEstToAbbr(monthEst);
-		dateEst = `${monthEstAbbreviation}, ${yearEst}`;
+		dateEst = `${monthEstAbbreviation} ${yearEst}`;
 	}
 
 	return (
@@ -85,28 +98,30 @@ export const CoinSummary = (props) => {
 function monthEstToAbbr(monthEst) {
 	switch (monthEst) {
 		case 0:
-			return 'Jan';
+			return 'Jan,';
 		case 1:
-			return 'Feb';
+			return 'Feb,';
 		case 2:
-			return 'Mar';
+			return 'Mar,';
 		case 3:
-			return 'Apr';
+			return 'Apr,';
 		case 4:
-			return 'May';
+			return 'May,';
 		case 5:
-			return 'Jun';
+			return 'Jun,';
 		case 6:
-			return 'Jul';
+			return 'Jul,';
 		case 7:
-			return 'Aug';
+			return 'Aug,';
 		case 8:
-			return 'Sep';
+			return 'Sep,';
 		case 9:
-			return 'Oct';
+			return 'Oct,';
 		case 10:
-			return 'Nov';
+			return 'Nov,';
 		case 11:
-			return 'Dec';
+			return 'Dec,';
+		default:
+			return 'N/A';
 	}
 }
