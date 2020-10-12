@@ -6,7 +6,7 @@ export const Search = ({ handleSubmit, type }) => {
 	const typeOfData =
 		type === 'news' ? (
 			<>
-				recent news articles from{' '}
+				articles from{' '}
 				<a href='https://messari.io' id='messari-news-link' target='blank'>
 					Messari
 				</a>

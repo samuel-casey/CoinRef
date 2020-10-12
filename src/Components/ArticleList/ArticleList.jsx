@@ -48,7 +48,7 @@ export const ArticleList = () => {
 
 	const articles = newsArticles.map((article, index) => {
 		return (
-			<li className='article' key={`article-${index}`}>
+			<div className='article' key={`article-${index}`}>
 				<a href={article.url} target='blank'>
 					<p className='article-title'>{article.title}</p>
 					<p className='article-author'>By: {article.author.name}</p>
@@ -62,13 +62,13 @@ export const ArticleList = () => {
 						})}
 					</p>
 				</a>
-			</li>
+			</div>
 		);
 	});
 	return (
 		<div>
 			{currentCoin.toUpperCase()} News
-			<ul>{articles}</ul>
+			<div id='article-list'>{articles}</div>
 		</div>
 	);
 };
