@@ -61,7 +61,7 @@ export const CoinProfile = () => {
 				});
 		}
 		fetchAssetData();
-	}, [currentCoin, promiseArray]);
+	}, [currentCoin]);
 
 	return (
 		<div className='coin-profile'>

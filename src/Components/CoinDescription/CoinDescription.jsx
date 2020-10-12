@@ -23,7 +23,7 @@ export const CoinDescription = ({ coinProfileData }) => {
 	cleanseDescription();
 	return (
 		<div className='coin-description'>
-			<h5>{name}</h5>
+			<h5>{name} overview</h5>
 			<p>{description}</p>
 		</div>
 	);
