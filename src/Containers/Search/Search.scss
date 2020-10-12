@@ -11,3 +11,15 @@ p:first-child {
 	font-size: 1.5rem;
 	line-height: 1;
 }
+
+#messari-news-link {
+	color: inherit;
+}
+
+#messari-news-link:hover {
+	color: $text-primary !important;
+}
+
+#messari-news-link:visited {
+	color: inherit;
+}

@@ -1,14 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { SearchForm } from '../../Components/SearchForm/SearchForm';
 import './Search.scss';
-import { CoinContext } from '../../App';
 
-export const Search = ({ handleSubmit }) => {
+export const Search = ({ handleSubmit, type }) => {
+	const typeOfData =
+		type === 'news' ? (
+			<>
+				recent news articles from{' '}
+				<a href='https://messari.io' id='messari-news-link' target='blank'>
+					Messari
+				</a>
+			</>
+		) : (
+			'an asset overview'
+		);
 	return (
 		<div className='search-container'>
 			<p>
-				Enter the name of a cryptocurrency or select from the dropdown to Search
-				for an overview.
+				Enter the name of a cryptocurrency or select from the dropdown to search
+				for {typeOfData}.
 			</p>
 			<SearchForm handleSubmit={handleSubmit} />
 		</div>

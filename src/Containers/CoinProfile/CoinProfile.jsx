@@ -33,36 +33,35 @@ export const CoinProfile = () => {
 		}),
 	];
 
-	function fetchAssetData() {
-		Promise.all(promiseArray)
-			.then((responses) => {
-				return Promise.all(
-					responses.map((response) => {
-						if (response.status === 404) {
-							alert(
-								`No data found for ${currentCoin}, please check your input or select an option from the list.`
-							);
-							document.location.reload();
-						} else {
-							return response.json();
-						}
-					})
-				);
-			})
-			.then((dataObjects) => {
-				return (
-					setCoinProfileData(dataObjects[0].data),
-					setCoinMetricsData(dataObjects[1].data)
-				);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
-
 	useEffect(() => {
+		function fetchAssetData() {
+			Promise.all(promiseArray)
+				.then((responses) => {
+					return Promise.all(
+						responses.map((response) => {
+							if (response.status === 404) {
+								alert(
+									`No data found for ${currentCoin}, please check your input or select an option from the list.`
+								);
+								return document.location.reload();
+							} else {
+								return response.json();
+							}
+						})
+					);
+				})
+				.then((dataObjects) => {
+					return (
+						setCoinProfileData(dataObjects[0].data),
+						setCoinMetricsData(dataObjects[1].data)
+					);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 		fetchAssetData();
-	}, [currentCoin]);
+	}, [currentCoin, promiseArray]);
 
 	return (
 		<div className='coin-profile'>

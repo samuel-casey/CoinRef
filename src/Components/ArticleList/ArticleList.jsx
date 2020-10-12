@@ -8,45 +8,42 @@ export const ArticleList = () => {
 	const currentCoin = useContext(CoinContext);
 	const [newsArticles, setNewsArticles] = useState([]);
 
-	function fetchNewsArticles() {
-		fetch(`https://data.messari.io/api/v1/news/${currentCoin}`, {
-			headers: {
-				method: 'GET',
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-				'x-messari-api-key': MESSARI_API_KEY,
-			},
-		})
-			.then((response) => {
-				console.log(response);
-				if (response.status === 404) {
-					alert(
-						`No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`
-					);
-					document.location.reload();
-				} else {
-					const body = response.json();
-					return body;
-				}
-			})
-			.then((body) => {
-				if (body.data === null) {
-					alert(
-						`No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`
-					);
-					document.location.reload();
-				}
-				setNewsArticles(body.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
-
 	useEffect(() => {
-		console.log('News');
+		function fetchNewsArticles() {
+			fetch(`https://data.messari.io/api/v1/news/${currentCoin}`, {
+				headers: {
+					method: 'GET',
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					'x-messari-api-key': MESSARI_API_KEY,
+				},
+			})
+				.then((response) => {
+					if (response.status === 404) {
+						alert(
+							`No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`
+						);
+						document.location.reload();
+					} else {
+						const body = response.json();
+						return body;
+					}
+				})
+				.then((body) => {
+					if (body.data === null) {
+						alert(
+							`No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`
+						);
+						document.location.reload();
+					}
+					setNewsArticles(body.data);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+
 		fetchNewsArticles();
-		console.log();
 	}, [currentCoin]);
 
 	const articles = newsArticles.map((article, index) => {

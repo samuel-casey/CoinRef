@@ -26,18 +26,21 @@ function App() {
 			</header>
 			<CoinContext.Provider value={currentCoin}>
 				<main>
-					{/* <Switch> */}
-					<Route path='/'>
-						<Search handleSubmit={handleLearnSubmit} />
-					</Route>
-					<Route path='/coin-profile'>
-						<>
-							<CoinProfile />
-						</>
-					</Route>
-					<Route path='/news' component={News} />
-					<Route path='/about' component={About} />
-					{/* </Switch> */}
+					<Switch>
+						<Route exact path='/'>
+							<>
+								<Search handleSubmit={handleLearnSubmit} type='coinProfile' />
+								<CoinProfile />
+							</>
+						</Route>
+						<Route path='/news'>
+							<>
+								<Search handleSubmit={handleLearnSubmit} type='news' />
+								<News />
+							</>
+						</Route>
+						<Route path='/about' component={About} />
+					</Switch>
 				</main>
 			</CoinContext.Provider>
 			<footer>
