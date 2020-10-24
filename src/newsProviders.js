@@ -14,13 +14,13 @@ export const newsProviders = [
 		name: 'The Block',
 		url: 'https://www.theblockcrypto.com/',
 		image:
-			'https://www.theblockcrypto.com/dist/img/tb-logo-2020-w.7a1aae0d.svg',
+			'https://res.cloudinary.com/scimgcloud/image/upload/v1603557713/CoinRef/theBlock.png',
 	},
 	{
 		name: 'Coin Journal',
 		url: 'https://coinjournal.net/',
 		image:
-			'https://res.cloudinary.com/scimgcloud/image/upload/v1602450297/CoinRef/Screen_Shot_2020-10-11_at_5.04.38_PM_wwdt6b.png',
+			'https://res.cloudinary.com/scimgcloud/image/upload/v1602450297/CoinRef/coinjournal.png',
 	},
 	{
 		name: 'Coin Telegraph',
