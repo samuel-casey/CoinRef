@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .coin-profile {
 	display: grid;
 	grid-template-rows: 2fr auto 4fr;
@@ -15,4 +17,8 @@
 .coin-summary,
 .coin-description {
 	width: 100%;
+}
+
+a {
+	color: $text-secondary;
 }

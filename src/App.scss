@@ -9,10 +9,18 @@
 	line-height: 2;
 	font-size: 2rem;
 	color: $text-primary;
-	padding: 0 0.25rem;
+	padding: 0;
+	margin: 0;
 	width: 100vw;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
+
+	button {
+		background: $text-primary;
+		border: 1px solid $text-secondary;
+	}
+
 }
 
 h1,
@@ -26,7 +34,7 @@ h6 {
 
 header,
 footer {
-	background: $logo-primary-light;
+	background: $text-primary;
 }
 
 header {
@@ -53,7 +61,10 @@ footer {
 	padding: 0 1rem;
 	align-items: center;
 	width: 100vw;
-	padding: 0.5rem;
+	padding: 1rem 1.5rem;
+	position: relative;
+	bottom: 0;
+	color: white;
 
 	#logo {
 		width: fit-content;
@@ -62,8 +73,16 @@ footer {
 	#disclaimer {
 		font-size: 0.5rem;
 	}
+
+	a {
+		color: white;
+	}
 }
 
 p {
 	font-size: 1rem;
 }
+
+i {
+	color: $logo-secondary;
+} 

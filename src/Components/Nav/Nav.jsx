@@ -7,8 +7,8 @@ export const Nav = () => {
 	return (
 		<nav>
 			<Dropdown>
-				<Dropdown.Toggle variant='primary' id='menu'>
-					Menu
+				<Dropdown.Toggle variant='secondary' id='menu'>
+					<i className="fas fa-bars"></i>
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>

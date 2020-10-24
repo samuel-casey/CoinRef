@@ -15,3 +15,7 @@ h6 {
 	background: $text-primary;
 	color: $logo-primary-light;
 }
+
+.dropdown-toggle::after {
+    content: none;
+}

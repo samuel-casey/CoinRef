@@ -4,7 +4,6 @@
 	display: flex;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
-	background: $logo-primary-light;
 	margin-bottom: 1rem;
 	padding: 1rem;
 	border-radius: 10px;
@@ -14,7 +13,7 @@
 	padding: 0.5rem;
 	border: 1px solid $text-secondary;
 	border-radius: 5px;
-	box-shadow: 1px 1px 1px 1px $text-secondary;
+	box-shadow: 1px 1px 1px 1px $logo-secondary;
 	margin: 1rem;
 	background: #f5f5f5;
 	text-align: left;
@@ -25,11 +24,15 @@
 	}
 
 	.article-title {
-		color: $text-secondary;
+		color: $text-primary;
 	}
 
 	.article-timestamp {
 		color: $text-primary-light;
+	}
+
+	.article-author {
+		color: $logo-secondary;
 	}
 }
 
