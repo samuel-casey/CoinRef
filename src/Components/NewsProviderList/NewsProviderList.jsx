@@ -16,7 +16,7 @@ export const NewsProviderList = () => {
 	});
 	return (
 		<>
-			<h5>Popular News Outlets:</h5>
+			<h5 id="#news-outlets">Other News Outlets:</h5>
 			<div className='news-list'>{providers}</div>
 		</>
 	);

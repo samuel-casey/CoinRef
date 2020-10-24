@@ -67,7 +67,7 @@ export const ArticleList = () => {
 	});
 	return (
 		<div>
-			{currentCoin.toUpperCase()} News
+			{currentCoin.toUpperCase()} News & Research
 			<div id='article-list'>{articles}</div>
 		</div>
 	);

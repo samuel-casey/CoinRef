@@ -14,9 +14,9 @@ export const About = () => {
 			<p>
 				There is a lot of bad data in the crypto space. In order to provide reputable, objective and free data, CoinRef is powered by the <a href="https://messari.io/api">Messari OnChainFX API</a>. The Messari team is widely considered one of the best data sources in the space for their commitment to maintaining the highest level of data integrity as possible.
 			</p>
-			<h2>News Articles</h2>
+			<h2>News & Research Articles</h2>
 			<p>
-				The news articles listed on the News page are also from Messari, and are 
+				The news articles listed on the News page are from Messari's research analysts and other selected news sources. For the most up-to-date, general crypto news, visit one of the additional news sources listed under the <a href="/news#news-outlets">other news sources</a> section at the bottom of the page.
 			</p>
 			<h2>Additional News Sources</h2>
 			<p>
