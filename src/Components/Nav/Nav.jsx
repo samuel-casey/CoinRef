@@ -19,7 +19,7 @@ export const Nav = () => {
 					</Dropdown.Item>
 					<Dropdown.Item>
 						<Link to='/news'>
-							<h6>News</h6>
+							<h6>News & Research</h6>
 						</Link>
 					</Dropdown.Item>
 					<Dropdown.Item>
