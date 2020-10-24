@@ -1,0 +1,11 @@
+@import "../../variables.scss";
+
+#chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    height: 90%;
+}

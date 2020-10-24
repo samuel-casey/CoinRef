@@ -17,29 +17,6 @@ export const CoinProfile = () => {
 	const [coinMetricsData, setCoinMetricsData] = useState(null);
 	const [chartData, setChartData] = useState();
 
-	// calculate 1 year of chart data to show
-	function setChartDataInterval() {
-		let now = new Date()
-		let todayDate = now.getUTCDate()
-		let todayMonth = now.getUTCMonth() + 1
-		let thisYear = now.getUTCFullYear()
-		let lastYear = now.getUTCFullYear() - 1
-		
-		if (todayDate < 10) {
-			todayDate = "0" + todayDate.toString()
-		}
-
-		if (todayMonth < 10) {
-			todayMonth = "0" + todayMonth.toString()
-		}
-
-		let today = `${thisYear}-${todayMonth}-${todayDate}` 
-		let todayLastYear = `${lastYear}-${todayMonth}-${todayDate}` 
-		
-
-		return [today, todayLastYear]
-	}
-
 	const today = setChartDataInterval()[0]
 	const todayLastYear = setChartDataInterval()[1]
 
@@ -150,3 +127,25 @@ export const CoinProfile = () => {
 		</div>
 	);
 };
+
+// calculate 1 today's date and 1 year ago today, return them as strings
+function setChartDataInterval() {
+	let now = new Date()
+	let todayDate = now.getUTCDate()
+	let todayMonth = now.getUTCMonth() + 1
+	let thisYear = now.getUTCFullYear()
+	let lastYear = now.getUTCFullYear() - 1
+		
+	if (todayDate < 10) {
+		todayDate = "0" + todayDate.toString()
+	}
+
+	if (todayMonth < 10) {
+		todayMonth = "0" + todayMonth.toString()
+	}
+
+	let today = `${thisYear}-${todayMonth}-${todayDate}` 
+	let todayLastYear = `${lastYear}-${todayMonth}-${todayDate}` 
+
+	return [today, todayLastYear]
+	}
