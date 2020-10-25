@@ -123,7 +123,6 @@ export const CoinProfile = () => {
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
-			<CoinMarketData chartData={chartData}/>
 		</div>
 	);
 };
