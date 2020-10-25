@@ -1,11 +1,28 @@
 @import "../../variables.scss";
 
+#chart-title {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #chart {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid $chart-border;
+    box-shadow: 2px 2px 2px 2px $chart-background;
+    justify-self: center;
+    width: 90%;
+    margin: 0 auto;
 }
 
 svg {
-    height: 90%;
+    height: fit-content;
+    overflow: visible;
+
+    .y-axis {
+        color: $logo-secondary;
+    }
 }

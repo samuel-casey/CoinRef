@@ -130,12 +130,20 @@ export const CoinProfile = () => {
 
 // calculate 1 today's date and 1 year ago today, return them as strings
 function setChartDataInterval() {
+	// get todays date and format as API-friendly string
 	let now = new Date()
 	let todayDate = now.getUTCDate()
 	let todayMonth = now.getUTCMonth() + 1
 	let thisYear = now.getUTCFullYear()
-	let lastYear = now.getUTCFullYear() - 1
-		
+
+	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
+	const past = new Date()
+	const maxDaysAgo = past.setDate((now.getDate()-258))
+	const maxDaysAgoDate = past.getDate()
+	const maxDaysAgoMonth = past.getMonth()
+	const maxDaysAgoYear = past.getUTCFullYear()
+	
+
 	if (todayDate < 10) {
 		todayDate = "0" + todayDate.toString()
 	}
@@ -144,8 +152,16 @@ function setChartDataInterval() {
 		todayMonth = "0" + todayMonth.toString()
 	}
 
-	let today = `${thisYear}-${todayMonth}-${todayDate}` 
-	let todayLastYear = `${lastYear}-${todayMonth}-${todayDate}` 
+	if (maxDaysAgoDate < 10) {
+		todayDate = "0" + todayDate.toString()
+	}
 
-	return [today, todayLastYear]
+	if (maxDaysAgoMonth < 10) {
+		todayMonth = "0" + todayMonth.toString()
+	}
+
+	let today = `${thisYear}-${todayMonth}-${todayDate}` 
+	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
+
+	return [today, maxDaysAgo]
 	}
