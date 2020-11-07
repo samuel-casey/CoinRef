@@ -34,7 +34,6 @@ export const CoinMarketData = ({chartData}) => {
         const xScale = scaleLinear()
         .domain([0,pricesOnly.length - 1])
         .range([yAxisWidth,pathWidth])
-        // .range([0, 200])
         
         const yScale = scaleLinear()
         .domain([min(pricesOnly), max(pricesOnly)])
@@ -42,6 +41,9 @@ export const CoinMarketData = ({chartData}) => {
 
         const yAxis = axisLeft(yScale)
         svg.select(".y-axis").call(yAxis).attr("transform", `translate(${yAxisWidth - 10},0)`)
+        const xAxis = axisBottom(xScale)
+        svg.select(".x-axis").call(xAxis).attr("transform", `translate(0,${chartHeight + 10})`)
+        console.log(datesOnly)
 
         const myLine = line()
         .x((value, index) => xScale(index))
@@ -69,6 +71,7 @@ export const CoinMarketData = ({chartData}) => {
                         <svg viewBox={`${chartHeight} ${chartWidth}`} width={chartWidth} height={chartHeight} ref={svgRef}>
                             <path></path>
                             <g className="y-axis" />
+                            <g className="x-axis" />
                         </svg>
                 </div>
             </div>    
