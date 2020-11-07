@@ -2,23 +2,32 @@
 
 .coin-profile {
 	display: grid;
-	grid-template-rows: 2fr auto 2fr 4fr;
+	grid-template-rows: auto auto auto auto;
 	grid-gap: 0.75rem;
 	padding: 0.25rem;
 	width: 97%;
+	
+	.coin-resources,
+	.coin-summary-cont,
+	.coin-description,
+	.price-chart {
+		width: 100%;
+	}
+
+	
+	.price-chart {
+		padding: 3rem 1rem;
+	}
+	
+	a {
+		color: $text-secondary;
+	}
 }
 
-.coin-summary-cont {
-	display: grid;
-	grid-template-columns: 1fr 6fr;
-}
-
-.coin-resources,
-.coin-summary,
-.coin-description {
-	width: 100%;
-}
-
-a {
-	color: $text-secondary;
+@media screen and (min-width: 400px) {
+	
+	.coin-summary-cont {
+		display: grid;
+		grid-template-columns: auto 1fr;
+	}
 }

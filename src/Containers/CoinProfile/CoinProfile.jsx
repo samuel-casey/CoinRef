@@ -116,7 +116,6 @@ export const CoinProfile = () => {
 			<div className='coin-summary-cont'>
 				<CoinImg className='coin-img-comp' coinProfileData={coinProfileData} />
 				<CoinSummary
-					className='coin-summary-comp'
 					coinMetricsData={coinMetricsData}
 					coinProfileData={coinProfileData}
 				/>

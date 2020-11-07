@@ -9,11 +9,13 @@ export const CoinMarketData = ({chartData}) => {
     const svgRef = useRef();
     const currentCoin = useContext(CoinContext)
 
-    // const chartWidth = window.innerWidth * 0.85
-    // const chartHeight = chartWidth * 0.9
+    const chartWidth = window.innerWidth * 0.8
+    const pathWidth = chartWidth * 0.9
+    const yAxisWidth = chartWidth - pathWidth
+    const chartHeight = chartWidth * 0.85
 
-    const chartWidth = 300
-    const chartHeight = 150
+    // const chartWidth = 300
+    // const chartHeight = 150
 
     const pricesOnly = chartData ? chartData.map((day, index) => {
         return parseInt(day.closePrice)
@@ -31,14 +33,15 @@ export const CoinMarketData = ({chartData}) => {
         if (pricesOnly) {
         const xScale = scaleLinear()
         .domain([0,pricesOnly.length - 1])
-        .range([0,chartWidth])
+        .range([yAxisWidth,pathWidth])
+        // .range([0, 200])
         
         const yScale = scaleLinear()
         .domain([min(pricesOnly), max(pricesOnly)])
         .range([chartHeight, 0])
 
         const yAxis = axisLeft(yScale)
-        svg.select(".y-axis").call(yAxis).style("transform", "translateX(100,0)")
+        svg.select(".y-axis").call(yAxis).attr("transform", `translate(${yAxisWidth - 10},0)`)
 
         const myLine = line()
         .x((value, index) => xScale(index))
@@ -60,10 +63,10 @@ export const CoinMarketData = ({chartData}) => {
 
     if (chartData && currentCoin) {
         return (
-            <div id="chart-title">
-                <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price Chart</h4>
+            <div className="price-chart">
+                <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price Chart (USD)</h4>
                 <div id="chart">
-                        <svg ref={svgRef}>
+                        <svg viewBox={`${chartHeight} ${chartWidth}`} width={chartWidth} height={chartHeight} ref={svgRef}>
                             <path></path>
                             <g className="y-axis" />
                         </svg>
