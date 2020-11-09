@@ -18,10 +18,10 @@ export const CoinProfile = () => {
 	const [chartData, setChartData] = useState();
 
 	const today = setChartDataInterval()[0]
-	const todayLastYear = setChartDataInterval()[1]
+	const maxDaysAgo = setChartDataInterval()[1]
 
-	// console.log('today: ', today)
-	// console.log('last year: ', lastYear)
+	console.log('today: ', today)
+	console.log('last year: ', maxDaysAgo)
 
 	const promiseArray = [
 		fetch(`https://data.messari.io/api/v2/assets/${currentCoin}/profile`, {
@@ -74,7 +74,7 @@ export const CoinProfile = () => {
 		function fetchPriceData() {
 		fetch(
 			// NEED TO CHANGE THIS URL TO TAKE DYNAMIC INPUT FOR START AND END (and maybe interval?)
-			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${todayLastYear}&${today}}&interval=1d`,
+			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxDaysAgo}&${today}}&interval=1d`,
 			{
 			headers: {
 				method: "GET",
@@ -116,26 +116,33 @@ export const CoinProfile = () => {
 			<div className='coin-summary-cont'>
 				<CoinImg className='coin-img-comp' coinProfileData={coinProfileData} />
 				<CoinSummary
-					className='coin-summary-comp'
 					coinMetricsData={coinMetricsData}
 					coinProfileData={coinProfileData}
 				/>
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
-			<CoinMarketData chartData={chartData}/>
+			<CoinMarketData chartData={chartData} today={today} maxDaysAgo={maxDaysAgo}/>
 		</div>
 	);
 };
 
 // calculate 1 today's date and 1 year ago today, return them as strings
 function setChartDataInterval() {
+	// get todays date and format as API-friendly string
 	let now = new Date()
 	let todayDate = now.getUTCDate()
 	let todayMonth = now.getUTCMonth() + 1
 	let thisYear = now.getUTCFullYear()
-	let lastYear = now.getUTCFullYear() - 1
-		
+
+	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
+	const past = new Date()
+	let maxDaysAgo = past.setDate((now.getDate()-258))
+	let maxDaysAgoDate = past.getDate()
+	let maxDaysAgoMonth = past.getMonth()
+	let maxDaysAgoYear = past.getUTCFullYear()
+	
+
 	if (todayDate < 10) {
 		todayDate = "0" + todayDate.toString()
 	}
@@ -144,8 +151,16 @@ function setChartDataInterval() {
 		todayMonth = "0" + todayMonth.toString()
 	}
 
-	let today = `${thisYear}-${todayMonth}-${todayDate}` 
-	let todayLastYear = `${lastYear}-${todayMonth}-${todayDate}` 
+	if (maxDaysAgoDate < 10) {
+		maxDaysAgoDate = "0" + maxDaysAgoDate.toString()
+	} 
 
-	return [today, todayLastYear]
+	if (maxDaysAgoMonth < 10) {
+		maxDaysAgoMonth = "0" + maxDaysAgoMonth.toString()
+	} else {}
+
+	let today = `${thisYear}-${todayMonth}-${todayDate}` 
+	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
+
+	return [today, maxInterval]
 	}

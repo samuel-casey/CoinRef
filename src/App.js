@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
-import { Nav } from './Components/Nav/Nav';
+import { Header } from './Containers/Header/Header';
 import { Logo } from './Components/Logo/Logo';
 import { About } from './Containers/About/About';
 import { FooterLinks } from './Containers/FooterLinks/FooterLinks';
@@ -21,8 +21,7 @@ function App() {
 	return (
 		<div className='App'>
 			<header>
-				<Logo />
-				<Nav />
+				<Header />
 			</header>
 			<CoinContext.Provider value={currentCoin}>
 				<main>
