@@ -1,0 +1,72 @@
+@import '../../variables.scss';
+
+a {
+    color: $logo-primary !important;
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+nav {
+    #hamburger {
+        border: 1.5px solid $logo-secondary;
+        width: 55px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .nav-btn {
+        color: $text-primary-light;
+        font-weight: 700;
+        border: none;
+        border-radius: 5px;
+        background-color: $logo-primary;
+    }
+
+    #quotes-link {
+        .far.fa-heart {
+            color: $logo-secondary;
+        }
+    }
+
+    .welcome-msg {
+        color: $logo-secondary;
+    }
+
+    #nav-logo {
+        display: flex;
+        align-items: flex-end;
+        color: $logo-secondary;
+
+        i {
+            margin: 2px;
+            color: $text-primary-light;
+            background-color: $logo-primary;
+            border-radius: 100%;
+        }
+    }
+
+}
+
+
+@media screen and (min-width: 768px) {
+ 
+        #quotes-link {
+            display: flex;
+        }
+
+        #hamburger {
+            display: none !important;
+        }
+
+        nav {
+            .welcome-msg {
+                display: none;
+            }
+        }
+}

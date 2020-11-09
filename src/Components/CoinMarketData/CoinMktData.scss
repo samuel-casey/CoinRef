@@ -4,8 +4,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    justify-self: center;
+    width: 70%;
+    margin: 0 auto;
+    
+    svg {
+        height: fit-content;
+        overflow: visible;
+        justify-self: center;
+        padding: 10px;
 
-svg {
-    height: 90%;
+        path {
+            stroke-width: 1.5px;
+        }
+    
+        .y-axis {
+            .tick {
+                color: #bec5da;
+                stroke-dasharray: 3,4;
+
+                text {
+                    color: $logo-primary;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+
+        .x-axis {
+            .tick {
+                color: $logo-primary;
+            }
+        }
+    }
 }
