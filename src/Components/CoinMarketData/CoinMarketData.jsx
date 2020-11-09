@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useContext, useState } from "react";
-import { select, line, curveCardinal, axisBottom, axisLeft, scaleLinear, timeDay, timeMonth, scaleTime } from "d3";
+import React, { useRef, useEffect, useContext } from "react";
+import { select, line, curveCardinal, axisBottom, axisLeft, scaleLinear, format } from "d3";
 import "./CoinMktData.scss"
 import {min, max} from "d3"
 import {CoinContext} from '../../App'
@@ -40,9 +40,11 @@ export const CoinMarketData = ({chartData, maxDaysAgo, today}) => {
         .domain([min(pricesOnly), max(pricesOnly)])
         .range([chartHeight, 0])
 
+        const dollarFormat = function(d) { return '$' + format(',')(d) };
+
         const yAxis = axisLeft(yScale)
         .tickSize(-chartWidth + yAxisWidth + 20)
-
+        .tickFormat(dollarFormat)
 
         svg.select(".y-axis").call(yAxis).attr("transform", `translate(${yAxisWidth - 10},0)`)
         const xAxis = axisBottom(xScale)

@@ -20,11 +20,12 @@
     
         .y-axis {
             .tick {
-                color: $logo-primary-light;
-                stroke-dasharray: 2,4;
+                color: #bec5da;
+                stroke-dasharray: 3,4;
 
                 text {
                     color: $logo-primary;
+                    font-size: 0.8rem;
                 }
             }
         }
