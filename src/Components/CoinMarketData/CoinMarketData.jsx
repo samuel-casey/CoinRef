@@ -5,7 +5,7 @@ import {min, max} from "d3"
 import {CoinContext} from '../../App'
 import { isCompositeComponent } from "react-dom/test-utils";
 
-export const CoinMarketData = ({chartData}) => {
+export const CoinMarketData = ({chartData, maxDaysAgo, today}) => {
     const svgRef = useRef();
     const currentCoin = useContext(CoinContext)
 
@@ -46,10 +46,10 @@ export const CoinMarketData = ({chartData}) => {
 
         svg.select(".y-axis").call(yAxis).attr("transform", `translate(${yAxisWidth - 10},0)`)
         const xAxis = axisBottom(xScale)
-        .ticks() // this gets approx # of months 
-        .tickFormat((day, index) => uniqueMonths[index])
+        // .ticks() // this gets approx # of months 
+        // .tickFormat((day, index) => uniqueMonths[index])
 
-        svg.select(".x-axis").call(xAxis).attr("transform", `translate(0,${chartHeight + 10})`)
+        // svg.select(".x-axis").call(xAxis).attr("transform", `translate(0,${chartHeight + 10})`)
 
         const myLine = line()
         .x((value, index) => xScale(index))
@@ -73,6 +73,7 @@ export const CoinMarketData = ({chartData}) => {
         return (
             <div className="price-chart">
                 <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price Chart (USD)</h4>
+                    <p>from {maxDaysAgo} to {today}</p>
                 <div id="chart">
                         <svg width={chartWidth} height={chartHeight} ref={svgRef}>
                             <path></path>

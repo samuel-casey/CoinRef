@@ -18,10 +18,10 @@ export const CoinProfile = () => {
 	const [chartData, setChartData] = useState();
 
 	const today = setChartDataInterval()[0]
-	const todayLastYear = setChartDataInterval()[1]
+	const maxDaysAgo = setChartDataInterval()[1]
 
-	// console.log('today: ', today)
-	// console.log('last year: ', lastYear)
+	console.log('today: ', today)
+	console.log('last year: ', maxDaysAgo)
 
 	const promiseArray = [
 		fetch(`https://data.messari.io/api/v2/assets/${currentCoin}/profile`, {
@@ -74,7 +74,7 @@ export const CoinProfile = () => {
 		function fetchPriceData() {
 		fetch(
 			// NEED TO CHANGE THIS URL TO TAKE DYNAMIC INPUT FOR START AND END (and maybe interval?)
-			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${todayLastYear}&${today}}&interval=1d`,
+			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxDaysAgo}&${today}}&interval=1d`,
 			{
 			headers: {
 				method: "GET",
@@ -122,7 +122,7 @@ export const CoinProfile = () => {
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
-			<CoinMarketData chartData={chartData}/>
+			<CoinMarketData chartData={chartData} today={today} maxDaysAgo={maxDaysAgo}/>
 		</div>
 	);
 };
@@ -137,10 +137,10 @@ function setChartDataInterval() {
 
 	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
 	const past = new Date()
-	const maxDaysAgo = past.setDate((now.getDate()-258))
-	const maxDaysAgoDate = past.getDate()
-	const maxDaysAgoMonth = past.getMonth()
-	const maxDaysAgoYear = past.getUTCFullYear()
+	let maxDaysAgo = past.setDate((now.getDate()-258))
+	let maxDaysAgoDate = past.getDate()
+	let maxDaysAgoMonth = past.getMonth()
+	let maxDaysAgoYear = past.getUTCFullYear()
 	
 
 	if (todayDate < 10) {
@@ -152,15 +152,15 @@ function setChartDataInterval() {
 	}
 
 	if (maxDaysAgoDate < 10) {
-		todayDate = "0" + todayDate.toString()
-	}
+		maxDaysAgoDate = "0" + maxDaysAgoDate.toString()
+	} 
 
 	if (maxDaysAgoMonth < 10) {
-		todayMonth = "0" + todayMonth.toString()
-	}
+		maxDaysAgoMonth = "0" + maxDaysAgoMonth.toString()
+	} else {}
 
 	let today = `${thisYear}-${todayMonth}-${todayDate}` 
 	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
 
-	return [today, maxDaysAgo]
+	return [today, maxInterval]
 	}
