@@ -12,7 +12,7 @@ export const CoinMarketData = ({chartData}) => {
     const chartWidth = window.innerWidth * 0.8
     const pathWidth = chartWidth * 0.9
     const yAxisWidth = chartWidth - pathWidth
-    const chartHeight = chartWidth * 0.85
+    const chartHeight = chartWidth * 0.5
 
     // const chartWidth = 300
     // const chartHeight = 150
@@ -34,6 +34,10 @@ export const CoinMarketData = ({chartData}) => {
         const xScale = scaleLinear()
         .domain([0,pricesOnly.length - 1])
         .range([yAxisWidth,pathWidth])
+
+        // const xAxisScale = scaleLinear()
+        // .domain([0,pricesOnly])
+        // .range([yAxisWidth,pathWidth])
         
         const yScale = scaleLinear()
         .domain([min(pricesOnly), max(pricesOnly)])
@@ -68,7 +72,7 @@ export const CoinMarketData = ({chartData}) => {
             <div className="price-chart">
                 <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price Chart (USD)</h4>
                 <div id="chart">
-                        <svg viewBox={`${chartHeight} ${chartWidth}`} width={chartWidth} height={chartHeight} ref={svgRef}>
+                        <svg width={chartWidth} height={chartHeight} ref={svgRef}>
                             <path></path>
                             <g className="y-axis" />
                             <g className="x-axis" />
