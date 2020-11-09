@@ -13,9 +13,26 @@
         overflow: visible;
         justify-self: center;
         padding: 10px;
+
+        path {
+            stroke-width: 1.5px;
+        }
     
         .y-axis {
-            color: $logo-secondary;
+            .tick {
+                color: $logo-primary-light;
+                stroke-dasharray: 2,4;
+
+                text {
+                    color: $logo-primary;
+                }
+            }
+        }
+
+        .x-axis {
+            .tick {
+                color: $logo-primary;
+            }
         }
     }
 }

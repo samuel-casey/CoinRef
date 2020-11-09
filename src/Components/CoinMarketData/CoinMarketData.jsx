@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useContext, useState } from "react";
-import { select, line, curveCardinal, axisBottom, axisLeft, scaleLinear } from "d3";
+import { select, line, curveCardinal, axisBottom, axisLeft, scaleLinear, timeDay, timeMonth, scaleTime } from "d3";
 import "./CoinMktData.scss"
 import {min, max} from "d3"
 import {CoinContext} from '../../App'
@@ -14,19 +14,20 @@ export const CoinMarketData = ({chartData}) => {
     const yAxisWidth = chartWidth - pathWidth
     const chartHeight = chartWidth * 0.5
 
-    // const chartWidth = 300
-    // const chartHeight = 150
-
     const pricesOnly = chartData ? chartData.map((day, index) => {
         return parseInt(day.closePrice)
     }) : null;
 
-    const datesOnly = chartData ? chartData.map((day, index) => {
-        return new Date(day.timestamp).toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
+    let uniqueMonths = []
+    const monthsOnly = chartData ? chartData.forEach((day, index) => {
+        const month = new Date(day.timestamp).toLocaleString([], {year: 'numeric', month: 'numeric'})
+        if (!uniqueMonths.includes(month)) {
+            uniqueMonths.push(month)
+        }
+        return uniqueMonths
     }) : null;
             
     useEffect(() => {
-        // updateDimensions()
 
         const svg = select(svgRef.current);
 
@@ -35,19 +36,20 @@ export const CoinMarketData = ({chartData}) => {
         .domain([0,pricesOnly.length - 1])
         .range([yAxisWidth,pathWidth])
 
-        // const xAxisScale = scaleLinear()
-        // .domain([0,pricesOnly])
-        // .range([yAxisWidth,pathWidth])
-        
         const yScale = scaleLinear()
         .domain([min(pricesOnly), max(pricesOnly)])
         .range([chartHeight, 0])
 
         const yAxis = axisLeft(yScale)
+        .tickSize(-chartWidth + yAxisWidth + 20)
+
+
         svg.select(".y-axis").call(yAxis).attr("transform", `translate(${yAxisWidth - 10},0)`)
         const xAxis = axisBottom(xScale)
+        .ticks() // this gets approx # of months 
+        .tickFormat((day, index) => uniqueMonths[index])
+
         svg.select(".x-axis").call(xAxis).attr("transform", `translate(0,${chartHeight + 10})`)
-        console.log(datesOnly)
 
         const myLine = line()
         .x((value, index) => xScale(index))
