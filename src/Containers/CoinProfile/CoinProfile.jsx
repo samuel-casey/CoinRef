@@ -161,8 +161,5 @@ function setChartDataInterval() {
 	let today = `${thisYear}-${todayMonth}-${todayDate}` 
 	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
 
-	console.log(maxInterval)
-	console.log(today)
-
 	return [today, maxInterval]
 	}
