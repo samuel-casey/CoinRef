@@ -20,9 +20,6 @@ export const CoinProfile = () => {
 	const today = setChartDataInterval()[0]
 	const maxDaysAgo = setChartDataInterval()[1]
 
-	console.log('today: ', today)
-	console.log('last year: ', maxDaysAgo)
-
 	const promiseArray = [
 		fetch(`https://data.messari.io/api/v2/assets/${currentCoin}/profile`, {
 			headers: {
