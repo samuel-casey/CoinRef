@@ -18,10 +18,7 @@ export const CoinProfile = () => {
 	const [chartData, setChartData] = useState();
 
 	const today = setChartDataInterval()[0]
-	const maxDaysAgo = setChartDataInterval()[1]
-
-	console.log('today: ', today)
-	console.log('last year: ', maxDaysAgo)
+	const maxInterval= setChartDataInterval()[1]
 
 	const promiseArray = [
 		fetch(`https://data.messari.io/api/v2/assets/${currentCoin}/profile`, {
@@ -74,7 +71,8 @@ export const CoinProfile = () => {
 		function fetchPriceData() {
 		fetch(
 			// NEED TO CHANGE THIS URL TO TAKE DYNAMIC INPUT FOR START AND END (and maybe interval?)
-			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxDaysAgo}&${today}}&interval=1d`,
+			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxInterval}&${today}&interval=1d`,
+			// `https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxDaysAgo}&${today}}&interval=1d`,
 			{
 			headers: {
 				method: "GET",
@@ -122,7 +120,7 @@ export const CoinProfile = () => {
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
-			<CoinMarketData chartData={chartData} today={today} maxDaysAgo={maxDaysAgo}/>
+			<CoinMarketData chartData={chartData} today={today} maxDaysAgo={maxInterval}/>
 		</div>
 	);
 };
@@ -137,9 +135,10 @@ function setChartDataInterval() {
 
 	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
 	const past = new Date()
-	let maxDaysAgo = past.setDate((now.getDate()-258))
+	console.log('past', past)
+	let maxDaysAgo = past.setDate((past.getDate() - 258))
 	let maxDaysAgoDate = past.getDate()
-	let maxDaysAgoMonth = past.getMonth()
+	let maxDaysAgoMonth = past.getMonth() + 1
 	let maxDaysAgoYear = past.getUTCFullYear()
 	
 
