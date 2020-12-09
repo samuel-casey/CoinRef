@@ -137,7 +137,7 @@ function setChartDataInterval() {
 
 	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
 	const past = new Date()
-	let maxDaysAgo = past.setDate((past.getDate() - 258))
+	let maxDaysAgo = past.setDate((past.getDate() - 256))
 	let maxDaysAgoDate = past.getDate()
 	let maxDaysAgoMonth = past.getMonth() + 1
 	let maxDaysAgoYear = past.getUTCFullYear()
@@ -161,6 +161,8 @@ function setChartDataInterval() {
 
 	let today = `${thisYear}-${todayMonth}-${todayDate}` 
 	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
+
+	console.log(today, maxInterval)
 
 	return [today, maxInterval]
 	}
