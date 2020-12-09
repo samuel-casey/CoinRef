@@ -22,7 +22,7 @@ export const CoinChart = ({chartData, maxDaysAgo, today}) => {
 			labels: [],
 			datasets: [
 				{
-					label: "Day's Avg. Price (USD)",
+					label: "USD/BTC as of 4PM EST",
 					data: [],
 					borderColor: '#FFB3B3',
 					backgroundColor: '#FFFFFF',
@@ -77,7 +77,7 @@ export const CoinChart = ({chartData, maxDaysAgo, today}) => {
     if (chartData && currentCoin) {
         return (
             <div className="price-chart">
-                <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price Chart (USD)</h4>
+                <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price in USD as of 4PM EST</h4>
                     <p>from {maxDaysAgo} to {today}</p>
                 <div id="chart">
                         <canvas id='lineChart' width='300' height='100'></canvas>
