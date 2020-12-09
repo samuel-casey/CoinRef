@@ -1,5 +1,21 @@
 @import '../../variables.scss';
 
+.interval-container {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+    box-shadow: 0px 0px 2px 1px $light-bg;
+    width: fit-content;
+    padding: 0.2rem;
+    border-radius: 5px;
+
+    .interval-label {
+        font-size: 0.9rem;
+        margin: 0.3rem
+    }
+}
+
 .chart-btn {
     margin: 0.5rem;
     border-radius: 5px;

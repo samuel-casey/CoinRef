@@ -25,8 +25,8 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
 				{
 					label: "USD/BTC as of 4PM EST",
 					data: [],
-					borderColor: '#FFB3B3',
-					backgroundColor: '#FFFFFF',
+					borderColor: '#de611a',
+					backgroundColor: '#FFFFFF00',
 				},
 			],
         };
@@ -40,12 +40,52 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
 	};
 
     const createLineChart = (data) => {
-		const canvas = document.querySelector('#lineChart');
-		const priceChart = new Chart(canvas, {
-			type: 'line',
-			data: data,
-		});
-	};
+        const canvas = document.querySelector('#lineChart');
+        let priceChart
+        console.log(priceChart)
+        if (window.priceChart != undefined) {
+            console.log('yes chart')
+            window.priceChart.destroy();
+            window.priceChart = new Chart(canvas, {
+                type: 'line',
+                data: data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return '$' + value.toFixed(2);
+                                }
+                            }
+                        }]
+                    }
+                }
+                
+            }); 
+        } else {
+            console.log('no chart yet')
+            window.priceChart = new Chart(canvas, {
+                type: 'line',
+                data: data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return '$' + value.toFixed(2);
+                                }
+                            }
+                        }]
+                    }
+                }
+            })
+        }
+        return priceChart
+}
+
+		
 
     // let uniqueMonths = []
     // const monthsOnly = chartData ? chartData.forEach((day, index) => {
@@ -62,6 +102,7 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
             try {
                 const formattedData = await prepareLineData(chartData)
                 createLineChart(formattedData)
+                console.log()
             } catch (err) {
                 console.log(err)
             }
@@ -87,12 +128,14 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
     if (chartData && currentCoin) {
         return (
             <div className="price-chart">
-                <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price in USD as of 4PM EST</h4>
-                <h3>Time interval</h3>
+                <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price in $ as of 4PM EST</h4>
+                <div className='interval-container'>
+                <span className='interval-label'>Time period</span>
                     <button className={`chart-btn ${selectedOption === '30' ? 'selected' : 'not-selected'}`} name='30' onClick={handleChange} value='30'>1 mo</button>
                     <button className={`chart-btn ${selectedOption === '90' ? 'selected' : 'not-selected'}`} name='90' onClick={handleChange} value='90'>3 mos</button>
                     <button className={`chart-btn ${selectedOption === '180' ? 'selected' : 'not-selected'}`} name='180'onClick={handleChange} value='180'>6 mos</button>
                     <button className={`chart-btn ${selectedOption === '256' ? 'selected' : 'not-selected'}`} name='256' onClick={handleChange} value='256'>Max</button>
+        </div>
         <p className='past-days'>past {numDaysPriceData} days</p>
         <p className='max-days-note'>{numDaysPriceData === 256 ? "CoinRef's current data source only provides a maximum of 256 days of data" : null}</p>
                 <div id="chart">
