@@ -47,10 +47,13 @@ export const CoinMarketData = ({chartData, maxDaysAgo, today}) => {
         .tickFormat(dollarFormat)
 
         svg.select(".y-axis").call(yAxis).attr("transform", `translate(${yAxisWidth - 10},0)`)
+        
+        // define x-axis and ticks
         const xAxis = axisBottom(xScale)
-        // .ticks() // this gets approx # of months 
+        // .ticks(10) // this gets approx # of months 
         // .tickFormat((day, index) => uniqueMonths[index])
 
+        // append x-axis to chart
         // svg.select(".x-axis").call(xAxis).attr("transform", `translate(0,${chartHeight + 10})`)
 
         const myLine = line()

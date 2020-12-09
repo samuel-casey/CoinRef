@@ -4,9 +4,10 @@ import { CoinSummary } from '../../Components/CoinSummary/CoinSummary';
 import { CoinImg } from '../../Components/CoinImg/CoinImg';
 import { CoinDescription } from '../../Components/CoinDescription/CoinDescription';
 import { CoinResources } from '../../Components/CoinResources/CoinResources';
-import { CoinMarketData } from '../../Components/CoinMarketData/CoinMarketData'
+// import { CoinMarketData } from '../../Components/CoinMarketData/CoinMarketData'
 import { CoinContext } from '../../App';
 import PriceLinePoint from '../../PriceLinePoint';
+import { CoinChart } from '../../Components/CoinChart/CoinChart';
 
 ///////// need to hide this with netlify functions ////////////
 const MESSARI_API_KEY = '9ada99d9-1714-4298-b5b8-3c5330af5498';
@@ -120,7 +121,8 @@ export const CoinProfile = () => {
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
-			<CoinMarketData chartData={chartData} today={today} maxDaysAgo={maxInterval}/>
+			{/* <CoinMarketData chartData={chartData} today={today} maxDaysAgo={maxInterval}/> */}
+			<CoinChart chartData={chartData} today={today} maxDaysAgo={maxInterval}/>
 		</div>
 	);
 };
@@ -135,7 +137,6 @@ function setChartDataInterval() {
 
 	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
 	const past = new Date()
-	console.log('past', past)
 	let maxDaysAgo = past.setDate((past.getDate() - 258))
 	let maxDaysAgoDate = past.getDate()
 	let maxDaysAgoMonth = past.getMonth() + 1
