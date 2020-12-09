@@ -54,8 +54,10 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
                         yAxes: [{
                             ticks: {
                                 // Include a dollar sign in the ticks
-                                callback: function(value, index, values) {
-                                    return '$' + value.toFixed(2);
+                                 callback: function(value, index, values) {
+                                    value = value > 100 ? value.toFixed(0) : value.toFixed(2)
+                                    value = value.toString();
+                                    return '$' + value;
                                 }
                             }
                         }]
@@ -74,7 +76,9 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
                             ticks: {
                                 // Include a dollar sign in the ticks
                                 callback: function(value, index, values) {
-                                    return '$' + value.toFixed(2);
+                                    value = value > 100 ? value.toFixed(0) : value.toFixed(2)
+                                    value = value.toString();
+                                    return '$' + value;
                                 }
                             }
                         }]
