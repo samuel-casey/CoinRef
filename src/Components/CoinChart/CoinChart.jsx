@@ -16,7 +16,7 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
         return parseInt(day.closePrice)
     }) : null;
 
-    const [selectedOption, setSelectedOption] = useState('180')
+    const [selectedOption, setSelectedOption] = useState('30')
 
     const prepareLineData = (data) => {
 		const lineChartData = {

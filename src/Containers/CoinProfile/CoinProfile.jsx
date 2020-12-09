@@ -17,7 +17,7 @@ export const CoinProfile = () => {
 	const [coinProfileData, setCoinProfileData] = useState(null);
 	const [coinMetricsData, setCoinMetricsData] = useState(null);
 	const [chartData, setChartData] = useState();
-	const [numDaysPriceData, setNumDaysPriceData] = useState(180)
+	const [numDaysPriceData, setNumDaysPriceData] = useState(30)
 
 	// calculate 1 today's date and 1 year ago today, return them as strings
 	const setChartDataInterval = () => {
