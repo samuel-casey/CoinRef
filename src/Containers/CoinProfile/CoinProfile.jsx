@@ -17,7 +17,46 @@ export const CoinProfile = () => {
 	const [coinProfileData, setCoinProfileData] = useState(null);
 	const [coinMetricsData, setCoinMetricsData] = useState(null);
 	const [chartData, setChartData] = useState();
+	const [numDaysPriceData, setNumDaysPriceData] = useState(180)
 
+	// calculate 1 today's date and 1 year ago today, return them as strings
+	const setChartDataInterval = () => {
+	// get todays date and format as API-friendly string
+	let now = new Date()
+	let todayDate = now.getUTCDate()
+	let todayMonth = now.getUTCMonth() + 1
+	let thisYear = now.getUTCFullYear()
+
+	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
+	const past = new Date()
+	let maxDaysAgo = past.setDate((past.getDate() - numDaysPriceData))
+	let maxDaysAgoDate = past.getDate()
+	let maxDaysAgoMonth = past.getMonth() + 1
+	let maxDaysAgoYear = past.getUTCFullYear()
+	
+
+	if (todayDate < 10) {
+		todayDate = "0" + todayDate.toString()
+	}
+
+	if (todayMonth < 10) {
+		todayMonth = "0" + todayMonth.toString()
+	}
+
+	if (maxDaysAgoDate < 10) {
+		maxDaysAgoDate = "0" + maxDaysAgoDate.toString()
+	} 
+
+	if (maxDaysAgoMonth < 10) {
+		maxDaysAgoMonth = "0" + maxDaysAgoMonth.toString()
+	} else {}
+
+	let today = `${thisYear}-${todayMonth}-${todayDate}` 
+	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
+
+	return [today, maxInterval]
+	}
+	
 	const today = setChartDataInterval()[0]
 	const maxInterval= setChartDataInterval()[1]
 
@@ -41,7 +80,7 @@ export const CoinProfile = () => {
 	];
 
 	useEffect(() => {
-		function fetchAssetData() {
+		const fetchAssetData = () => {
 			Promise.all(promiseArray)
 				.then((responses) => {
 					return Promise.all(
@@ -69,11 +108,11 @@ export const CoinProfile = () => {
 		}
 		fetchAssetData();
 
-		function fetchPriceData() {
+		const fetchPriceData = () => {
 		fetch(
 			// NEED TO CHANGE THIS URL TO TAKE DYNAMIC INPUT FOR START AND END (and maybe interval?)
 			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxInterval}&${today}&interval=1d`,
-			// `https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxDaysAgo}&${today}}&interval=1d`,
+
 			{
 			headers: {
 				method: "GET",
@@ -108,7 +147,7 @@ export const CoinProfile = () => {
 			});
 		}
 			fetchPriceData();
-	}, [currentCoin]);
+	}, [currentCoin, maxInterval]);
 
 	return (
 		<div className='coin-profile'>
@@ -121,48 +160,7 @@ export const CoinProfile = () => {
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
-			{/* <CoinMarketData chartData={chartData} today={today} maxDaysAgo={maxInterval}/> */}
-			<CoinChart chartData={chartData} today={today} maxDaysAgo={maxInterval}/>
+			<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData}/>
 		</div>
 	);
 };
-
-// calculate 1 today's date and 1 year ago today, return them as strings
-function setChartDataInterval() {
-	// get todays date and format as API-friendly string
-	let now = new Date()
-	let todayDate = now.getUTCDate()
-	let todayMonth = now.getUTCMonth() + 1
-	let thisYear = now.getUTCFullYear()
-
-	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
-	const past = new Date()
-	let maxDaysAgo = past.setDate((past.getDate() - 256))
-	let maxDaysAgoDate = past.getDate()
-	let maxDaysAgoMonth = past.getMonth() + 1
-	let maxDaysAgoYear = past.getUTCFullYear()
-	
-
-	if (todayDate < 10) {
-		todayDate = "0" + todayDate.toString()
-	}
-
-	if (todayMonth < 10) {
-		todayMonth = "0" + todayMonth.toString()
-	}
-
-	if (maxDaysAgoDate < 10) {
-		maxDaysAgoDate = "0" + maxDaysAgoDate.toString()
-	} 
-
-	if (maxDaysAgoMonth < 10) {
-		maxDaysAgoMonth = "0" + maxDaysAgoMonth.toString()
-	} else {}
-
-	let today = `${thisYear}-${todayMonth}-${todayDate}` 
-	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
-
-	console.log(today, maxInterval)
-
-	return [today, maxInterval]
-	}

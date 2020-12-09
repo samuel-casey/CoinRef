@@ -1,11 +1,10 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {CoinContext} from '../../App'
 import Chart from 'chart.js'
 import "./CoinChart.scss"
 
 
-export const CoinChart = ({chartData, maxDaysAgo, today}) => {
-    const svgRef = useRef();
+export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, today}) => {
     const currentCoin = useContext(CoinContext)
 
     const chartWidth = window.innerWidth * 0.8
@@ -16,6 +15,8 @@ export const CoinChart = ({chartData, maxDaysAgo, today}) => {
     const pricesOnly = chartData ? chartData.map((day, index) => {
         return parseInt(day.closePrice)
     }) : null;
+
+    const [selectedOption, setSelectedOption] = useState('180')
 
     const prepareLineData = (data) => {
 		const lineChartData = {
@@ -61,7 +62,6 @@ export const CoinChart = ({chartData, maxDaysAgo, today}) => {
             try {
                 const formattedData = await prepareLineData(chartData)
                 createLineChart(formattedData)
-                console.log(chartData)
             } catch (err) {
                 console.log(err)
             }
@@ -69,16 +69,32 @@ export const CoinChart = ({chartData, maxDaysAgo, today}) => {
 
         drawChart()   
 
-    }, [chartData, today, maxDaysAgo])
+    }, [chartData])
 
     const loading = "Loading price data..."
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setSelectedOption(e.target.name)
+        
+        // coerce e.target.name's type to number
+        const newNumDays = e.target.name * 1
+        
+        setNumDaysPriceData(newNumDays)
+    }
     
 
     if (chartData && currentCoin) {
         return (
             <div className="price-chart">
                 <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price in USD as of 4PM EST</h4>
-                    <p>from {maxDaysAgo} to {today}</p>
+                <h3>Time interval</h3>
+                    <button className={`chart-btn ${selectedOption === '30' ? 'selected' : 'not-selected'}`} name='30' onClick={handleChange} value='30'>1 mo</button>
+                    <button className={`chart-btn ${selectedOption === '90' ? 'selected' : 'not-selected'}`} name='90' onClick={handleChange} value='90'>3 mos</button>
+                    <button className={`chart-btn ${selectedOption === '180' ? 'selected' : 'not-selected'}`} name='180'onClick={handleChange} value='180'>6 mos</button>
+                    <button className={`chart-btn ${selectedOption === '256' ? 'selected' : 'not-selected'}`} name='256' onClick={handleChange} value='256'>Max</button>
+        <p className='past-days'>past {numDaysPriceData} days</p>
+        <p className='max-days-note'>{numDaysPriceData === 256 ? "CoinRef's current data source only provides a maximum of 256 days of data" : null}</p>
                 <div id="chart">
                         <canvas id='lineChart' width='300' height='100'></canvas>
                 </div>

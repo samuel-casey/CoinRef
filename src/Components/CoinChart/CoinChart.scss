@@ -1,0 +1,29 @@
+@import '../../variables.scss';
+
+.chart-btn {
+    margin: 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border: none !important;
+    background-color: white !important;
+    box-shadow: 0px 0px 2px 2px $logo-primary-light;
+}
+
+.selected {
+    box-shadow: 0px 0px 2px 2px $logo-primary;
+    background-color: $logo-primary-light !important;
+}
+
+.not-selected {
+    color: $text-primary;
+}
+
+.max-days-note {
+    font-style: italic;
+    margin: 0;
+    padding-top: 0;
+}
+
+.past-days {
+    margin: 0;
+}
