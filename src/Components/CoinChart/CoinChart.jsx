@@ -44,7 +44,6 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
         let priceChart
         console.log(priceChart)
         if (window.priceChart != undefined) {
-            console.log('yes chart')
             window.priceChart.destroy();
             window.priceChart = new Chart(canvas, {
                 type: 'line',
@@ -66,7 +65,6 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
                 
             }); 
         } else {
-            console.log('no chart yet')
             window.priceChart = new Chart(canvas, {
                 type: 'line',
                 data: data,
