@@ -35,6 +35,7 @@ export const SearchForm = (props) => {
 				<Form.Control as='select' name='coinsList' className='coins-list' value={searchVal} onChange={handleChange}>
 					{options}
 				</Form.Control>
+				<i className="fas fa-list" id='custom-drop'></i>
 				</div>
 			</Form.Group>
 		</Form>
