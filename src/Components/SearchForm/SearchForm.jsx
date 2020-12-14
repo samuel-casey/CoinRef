@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import Dropdown from 'react-bootstrap/DropdownMenu';
+import {allCoins} from '../../allCoinsList';
 import './Form.scss';
 
 export const SearchForm = (props) => {
@@ -15,6 +15,8 @@ export const SearchForm = (props) => {
 		e.preventDefault();
 		props.handleSubmit(searchVal);
 	}
+
+	console.log(allCoins)
 
 	return (
 		<Form onSubmit={handleSubmit}>

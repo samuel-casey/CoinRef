@@ -7,15 +7,6 @@ import "./CoinChart.scss"
 export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, today}) => {
     const currentCoin = useContext(CoinContext)
 
-    const chartWidth = window.innerWidth * 0.8
-    const pathWidth = chartWidth * 0.9
-    const yAxisWidth = chartWidth - pathWidth
-    const chartHeight = chartWidth * 0.5
-
-    const pricesOnly = chartData ? chartData.map((day, index) => {
-        return parseInt(day.closePrice)
-    }) : null;
-
     const [selectedOption, setSelectedOption] = useState('30')
 
     const prepareLineData = (data) => {
@@ -86,16 +77,6 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
         return priceChart
 }
 
-		
-
-    // let uniqueMonths = []
-    // const monthsOnly = chartData ? chartData.forEach((day, index) => {
-    //     const month = new Date(day.timestamp).toLocaleString([], {year: 'numeric', month: 'numeric'})
-    //     if (!uniqueMonths.includes(month)) {
-    //         uniqueMonths.push(month)
-    //     }
-    //     return uniqueMonths
-    // }) : null;
             
     useEffect(() => {
 
