@@ -150,6 +150,7 @@ export const CoinProfile = () => {
 	}, [currentCoin, maxInterval]);
 
 	return (
+		<>
 		<div className='coin-profile'>
 			<div className='coin-summary-cont'>
 				<CoinImg className='coin-img-comp' coinProfileData={coinProfileData} />
@@ -160,7 +161,8 @@ export const CoinProfile = () => {
 			</div>
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
-			<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData}/>
 		</div>
+			<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData}/>
+		</>
 	);
 };

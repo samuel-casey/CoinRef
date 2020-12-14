@@ -25,7 +25,7 @@ export const About = () => {
 				CoinRef is independent and does not have an association with Messari or any of the other resources listed on this site. CoinRef does not endorse any of the news articles or authors listed on this site.</p>
 			<h2>Feedback</h2>
 			<p>
-				CoinRef is built and maintained by <a href="https://twitter.com/_samcasey" target="blank">Sam Casey</a> as a passion project. Please reach out to him via Twitter Direct Message if you have any recommendations on how to improve the site or any other feedback. Happy learning!
+				CoinRef is built and maintained by <a href="https://twitter.com/_samcasey" target="blank">Sam Casey</a> as a passion project. Please reach out to him via Twitter Direct Message if you have any recommendations on how to improve the site or any other feedback.
 			</p>
 		</div>
 	);

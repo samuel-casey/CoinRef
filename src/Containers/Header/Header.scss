@@ -1,12 +1,19 @@
 @import '../../variables.scss';
 
 a {
-    color: $logo-primary !important;
+    color: $text-primary-light !important;
     text-decoration: none;
 }
 
+
 a:visited {
     color: inherit;
+}
+
+.active-link {
+    background-color: $text-primary-light;
+    border-radius: 5px;
+    color: $text-primary !important;
 }
 
 nav {
