@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import Dropdown from 'react-bootstrap/DropdownMenu';
-import './Form.scss';
+import {allCoins} from '../../allCoinsList';
+import './SearchForm.scss';
 
 export const SearchForm = (props) => {
-	const [searchVal, setSearchVal] = useState('');
+	const [searchVal, setSearchVal] = useState('BTC');
 
 	function handleChange(e) {
 		setSearchVal(e.target.value);
@@ -16,20 +16,27 @@ export const SearchForm = (props) => {
 		props.handleSubmit(searchVal);
 	}
 
+	const options = allCoins.map((coin, idx) => <option value={coin.symbol} key={idx + "-"+ coin.symbol}>{coin.name}</option>)
+
 	return (
 		<Form onSubmit={handleSubmit}>
 			<Form.Group controlId='formBasic'>
 				<Form.Control
 					type='text'
 					name='searchBar'
-					placeholder='Enter name of a cryptocurrency...'
+					placeholder='Enter name of a cryptocurrency or select from dropdown'
 					value={searchVal}
 					onChange={handleChange}
 				/>
+				<div id='search-and-list'>
 				<Button variant='primary' type='submit'>
-					Search
+					<i className="fas fa-search"></i>
 				</Button>
-				{/* DROPDOWN GOES HERE */}
+				<Form.Control as='select' name='coinsList' className='coins-list' value={searchVal} onChange={handleChange}>
+					{options}
+				</Form.Control>
+				<i className="fas fa-angle-double-down" id='custom-drop'></i>
+				</div>
 			</Form.Group>
 		</Form>
 	);

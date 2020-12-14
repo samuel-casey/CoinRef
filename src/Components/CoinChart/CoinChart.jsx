@@ -7,15 +7,6 @@ import "./CoinChart.scss"
 export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, today}) => {
     const currentCoin = useContext(CoinContext)
 
-    const chartWidth = window.innerWidth * 0.8
-    const pathWidth = chartWidth * 0.9
-    const yAxisWidth = chartWidth - pathWidth
-    const chartHeight = chartWidth * 0.5
-
-    const pricesOnly = chartData ? chartData.map((day, index) => {
-        return parseInt(day.closePrice)
-    }) : null;
-
     const [selectedOption, setSelectedOption] = useState('30')
 
     const prepareLineData = (data) => {
@@ -31,10 +22,10 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
 			],
         };
 
-		data.forEach((point) => {
-			lineChartData.labels.push(point.date);
-			lineChartData.datasets[0].data.push(point.closePrice);
-		});
+		if (data) data.forEach((point) => {
+                lineChartData.labels.push(point.date);
+                lineChartData.datasets[0].data.push(point.closePrice);
+            });
 
 		return lineChartData;
 	};
@@ -42,7 +33,7 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
     const createLineChart = (data) => {
         const canvas = document.querySelector('#lineChart');
         let priceChart
-        if (window.priceChart != undefined) {
+        if (window.priceChart !== undefined) {
             window.priceChart.destroy();
             window.priceChart = new Chart(canvas, {
                 type: 'line',
@@ -86,16 +77,6 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
         return priceChart
 }
 
-		
-
-    // let uniqueMonths = []
-    // const monthsOnly = chartData ? chartData.forEach((day, index) => {
-    //     const month = new Date(day.timestamp).toLocaleString([], {year: 'numeric', month: 'numeric'})
-    //     if (!uniqueMonths.includes(month)) {
-    //         uniqueMonths.push(month)
-    //     }
-    //     return uniqueMonths
-    // }) : null;
             
     useEffect(() => {
 
@@ -103,13 +84,12 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
             try {
                 const formattedData = await prepareLineData(chartData)
                 createLineChart(formattedData)
-                console.log()
             } catch (err) {
                 console.log(err)
             }
         }
 
-        drawChart()   
+        if (chartData) drawChart();
 
     }, [chartData])
 

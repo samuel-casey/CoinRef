@@ -4,7 +4,6 @@ import { CoinSummary } from '../../Components/CoinSummary/CoinSummary';
 import { CoinImg } from '../../Components/CoinImg/CoinImg';
 import { CoinDescription } from '../../Components/CoinDescription/CoinDescription';
 import { CoinResources } from '../../Components/CoinResources/CoinResources';
-// import { CoinMarketData } from '../../Components/CoinMarketData/CoinMarketData'
 import { CoinContext } from '../../App';
 import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
@@ -29,7 +28,7 @@ export const CoinProfile = () => {
 
 	// get max # of days ago that API call returns data for (256 days aka ~8 months) and format as API-friendly string
 	const past = new Date()
-	let maxDaysAgo = past.setDate((past.getDate() - numDaysPriceData))
+	past.setDate((past.getDate() - numDaysPriceData))
 	let maxDaysAgoDate = past.getDate()
 	let maxDaysAgoMonth = past.getMonth() + 1
 	let maxDaysAgoYear = past.getUTCFullYear()
