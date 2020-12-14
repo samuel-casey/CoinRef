@@ -6,8 +6,7 @@ import './Header.scss'
 
 export const Header = () => {
 	const location = useLocation();
-	console.log(location.pathname)
-
+	
 	let activeRoute;
 
 	switch(location.pathname) {

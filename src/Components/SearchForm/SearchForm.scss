@@ -1,0 +1,26 @@
+@import '../../variables.scss';
+
+form {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	
+	.coins-list {
+		width: 20px !important;
+		background-color: $logo-secondary;
+		color: $text-primary;
+		border: 1px solid $text-primary;
+	}
+
+	#search-and-list {
+		display: flex;
+		justify-content: space-evenly;
+		align-self: center;
+		width: 20%;
+		max-width: 200px; 
+		align-items: center;
+		padding: 1rem;
+		margin: 0 auto;
+	}
+
+}
