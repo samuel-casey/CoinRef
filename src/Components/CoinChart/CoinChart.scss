@@ -5,7 +5,6 @@
     align-items: center;
     margin: 0 auto;
     justify-content: center;
-    box-shadow: 0px 0px 2px 1px $light-bg;
     width: fit-content;
     padding: 0.2rem;
     border-radius: 5px;
@@ -13,11 +12,6 @@
     .interval-label {
         font-size: 0.9rem;
         margin: 0.3rem
-    }
-
-    #chart {
-        min-width: 400px !important;
-        height: 300px !important;
     }
 }
 
@@ -31,7 +25,7 @@
 }
 
 .selected {
-    box-shadow: 0px 0px 2px 2px $logo-primary;
+    box-shadow: 0px 0px 2px 2px white;
     background-color: $logo-primary-light !important;
 }
 
@@ -43,7 +37,7 @@
     font-style: italic;
     margin: 0;
     padding-top: 0;
-    color: $text-primary-light;
+    color: $logo-primary;
 }
 
 .past-days {

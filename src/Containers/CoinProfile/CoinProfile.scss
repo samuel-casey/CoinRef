@@ -16,14 +16,96 @@
 	a {
 		color: $text-secondary;
 	}
+	
+	.coin-description, .coin-summary, .coin-resources {
+		box-shadow: 2px 2px 5px 0px $logo-primary-light;
+		background-color: #ffffff95;
+		border-radius: 5px;
+	}
+
+	.coin-description {
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		padding: 1rem;
+	}	
+
+	.coin-summary {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		
+		.coin-price {
+			font-size: 1.25rem;
+			display: flex;
+			justify-content: center;
+		}
+		
+		span {
+			padding: 0 0.1rem;
+			justify-self: center;
+		}
+		
+		.pct-chg {
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.pct-chg-label {
+			font-size: 0.75rem;
+		}
+
+		.detail-list {
+			position: relative;
+			overflow: hidden;
+			font-size: 1rem;
+			display: flex;
+			justify-content: center;
+		
+			ul {
+				display: flex;
+				width: fit-content;
+				flex-direction: row;
+				justify-content: space-between;
+				margin-left: -1px;
+				justify-content: center;
+			}
+		
+			li:first-child {
+				border: none;
+			}
+		
+			li {
+				text-align: center;
+				flex-grow: 1;
+				flex-basis: auto;
+				margin: 0.1rem 0;
+				padding: 0 0.5rem;
+				border-left: 1px solid $logo-primary;
+			}
+		}
+	}
+
+	.coin-resources {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		font-size: 1rem;
+		align-self: flex-start;
+		padding: 1rem;
+	}
 }
 
 .price-chart {
 	padding: 3rem 1rem;
-	overflow-x: scroll;
 	min-width: 550px;
 	min-height: 300px;
 }
+
+
+
 
 @media screen and (min-width: 400px) {
 	
