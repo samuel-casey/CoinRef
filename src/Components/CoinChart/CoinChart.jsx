@@ -42,7 +42,6 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
     const createLineChart = (data) => {
         const canvas = document.querySelector('#lineChart');
         let priceChart
-        console.log(priceChart)
         if (window.priceChart != undefined) {
             window.priceChart.destroy();
             window.priceChart = new Chart(canvas, {
@@ -137,11 +136,11 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
                     <button className={`chart-btn ${selectedOption === '90' ? 'selected' : 'not-selected'}`} name='90' onClick={handleChange} value='90'>3 mos</button>
                     <button className={`chart-btn ${selectedOption === '180' ? 'selected' : 'not-selected'}`} name='180'onClick={handleChange} value='180'>6 mos</button>
                     <button className={`chart-btn ${selectedOption === '256' ? 'selected' : 'not-selected'}`} name='256' onClick={handleChange} value='256'>Max</button>
-        </div>
-        <p className='past-days'>past {numDaysPriceData} days</p>
-        <p className='max-days-note'>{numDaysPriceData === 256 ? "CoinRef's current data source only provides a maximum of 256 days of data" : null}</p>
+                </div>
+                <p className='past-days'>past {numDaysPriceData} days</p>
+                <p className='max-days-note'>{numDaysPriceData === 256 ? "CoinRef's current data source only provides a maximum of 256 days of data" : null}</p>
                 <div id="chart">
-                        <canvas id='lineChart' width='300' height='100'></canvas>
+                        <canvas id='lineChart' width='500' height='250'></canvas>
                 </div>
             </div>    
                 ) 

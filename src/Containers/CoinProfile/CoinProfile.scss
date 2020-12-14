@@ -18,7 +18,9 @@
 	.price-chart {
 		padding: 3rem 1rem;
 		border: 5px solid #f5f5f5;
-		background-color: #fdfdfd02
+		background-color: #fdfdfd02;
+		overflow-x: scroll;
+		width: 100%;
 	}
 	
 	a {
