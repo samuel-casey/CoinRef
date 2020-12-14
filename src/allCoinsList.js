@@ -80,10 +80,6 @@ export const allCoins = [
 		name: 'Unus Sed Leo',
 	},
 	{
-		symbol: 'CRO',
-		name: 'Crypto.com Chain',
-	},
-	{
 		symbol: 'FIL',
 		name: 'Filecoin',
 	},
