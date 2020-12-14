@@ -5,7 +5,7 @@ import {allCoins} from '../../allCoinsList';
 import './SearchForm.scss';
 
 export const SearchForm = (props) => {
-	const [searchVal, setSearchVal] = useState('');
+	const [searchVal, setSearchVal] = useState('BTC');
 
 	function handleChange(e) {
 		setSearchVal(e.target.value);
@@ -30,12 +30,12 @@ export const SearchForm = (props) => {
 				/>
 				<div id='search-and-list'>
 				<Button variant='primary' type='submit'>
-					Search
+					<i className="fas fa-search"></i>
 				</Button>
 				<Form.Control as='select' name='coinsList' className='coins-list' value={searchVal} onChange={handleChange}>
 					{options}
 				</Form.Control>
-				<i className="fas fa-list" id='custom-drop'></i>
+				<i className="fas fa-angle-double-down" id='custom-drop'></i>
 				</div>
 			</Form.Group>
 		</Form>
