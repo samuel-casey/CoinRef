@@ -140,7 +140,7 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
                 <p className='past-days'>past {numDaysPriceData} days</p>
                 <p className='max-days-note'>{numDaysPriceData === 256 ? "CoinRef's current data source only provides a maximum of 256 days of data" : null}</p>
                 <div id="chart">
-                        <canvas id='lineChart' width='500' height='250'></canvas>
+                        <canvas id='lineChart'></canvas>
                 </div>
             </div>    
                 ) 
