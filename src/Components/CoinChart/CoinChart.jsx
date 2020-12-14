@@ -22,10 +22,10 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
 			],
         };
 
-		data.forEach((point) => {
-			lineChartData.labels.push(point.date);
-			lineChartData.datasets[0].data.push(point.closePrice);
-		});
+		if (data) data.forEach((point) => {
+                lineChartData.labels.push(point.date);
+                lineChartData.datasets[0].data.push(point.closePrice);
+            });
 
 		return lineChartData;
 	};
@@ -33,7 +33,7 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
     const createLineChart = (data) => {
         const canvas = document.querySelector('#lineChart');
         let priceChart
-        if (window.priceChart != undefined) {
+        if (window.priceChart !== undefined) {
             window.priceChart.destroy();
             window.priceChart = new Chart(canvas, {
                 type: 'line',
@@ -84,13 +84,12 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
             try {
                 const formattedData = await prepareLineData(chartData)
                 createLineChart(formattedData)
-                console.log()
             } catch (err) {
                 console.log(err)
             }
         }
 
-        drawChart()   
+        if (chartData) drawChart();
 
     }, [chartData])
 
