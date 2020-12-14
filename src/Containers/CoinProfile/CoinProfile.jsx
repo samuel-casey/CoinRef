@@ -4,7 +4,6 @@ import { CoinSummary } from '../../Components/CoinSummary/CoinSummary';
 import { CoinImg } from '../../Components/CoinImg/CoinImg';
 import { CoinDescription } from '../../Components/CoinDescription/CoinDescription';
 import { CoinResources } from '../../Components/CoinResources/CoinResources';
-// import { CoinMarketData } from '../../Components/CoinMarketData/CoinMarketData'
 import { CoinContext } from '../../App';
 import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
