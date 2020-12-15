@@ -8,14 +8,18 @@ import { FooterLinks } from './Containers/FooterLinks/FooterLinks';
 import { Search } from './Containers/Search/Search';
 import { News } from './Containers/News/News';
 import { CoinProfile } from './Containers/CoinProfile/CoinProfile';
+import { Cg } from './Components/Cg/Cg';
+import { allCoins } from './allCoinsList';
 
 export const CoinContext = React.createContext();
 
 function App() {
-	const [currentCoin, setCurrentCoin] = useState('btc');
+	const [currentCoin, setCurrentCoin] = useState('eth');
 
-	function handleLearnSubmit(coin) {
+	function handleSearchSubmit(coin) {
 		setCurrentCoin(coin);
+		console.log(coin);
+		console.log(allCoins.filter((obj) => obj.slug === coin.slug));
 	}
 
 	return (
@@ -28,17 +32,18 @@ function App() {
 					<Switch>
 						<Route exact path='/'>
 							<>
-								<Search handleSubmit={handleLearnSubmit} type='coinProfile' />
+								<Search handleSubmit={handleSearchSubmit} type='coinProfile' />
 								<CoinProfile />
 							</>
 						</Route>
 						<Route path='/news'>
 							<>
-								<Search handleSubmit={handleLearnSubmit} type='news' />
+								<Search handleSubmit={handleSearchSubmit} type='news' />
 								<News />
 							</>
 						</Route>
 						<Route path='/about' component={About} />
+						{/* <Route path='/cg' component={Cg} /> */}
 					</Switch>
 				</main>
 			</CoinContext.Provider>

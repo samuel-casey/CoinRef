@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { allCoins, validIds } from "../../allCoinsList";
 import {CoinContext} from '../../App';
-import './CoinImg.scss'
 
-export const CoinImg = () => {
+export const Cg = () => {
 const [cGeckoList, setCGeckoList] = useState([]);
 const [listCount, setListCount] = useState(0);
 const [imgCount, setImgCount] = useState(0);
@@ -47,13 +46,8 @@ useEffect(() => {
                 symbolsToIdMap[coin.symbol] = {
                     id: coin.id
                 }
-			})
-			
-			if (symbolsToIdMap[currentCoin.toLowerCase()]) {
-				currentCoinCGeckoId = symbolsToIdMap[currentCoin.toLowerCase()]['id']
-			} else {
-				setImageUrl(null)
-			}
+            })    
+            currentCoinCGeckoId = symbolsToIdMap[currentCoin.toLowerCase()]['id']
         }
         
         if (currentCoinCGeckoId) {
@@ -66,11 +60,12 @@ useEffect(() => {
         console.log(imageUrl)
     }
     getImages()
-  }, [imgCount, listCount, currentCoin]);
+  }, [imgCount, listCount]);
 
     return (
     <>
-    {imageUrl ? <img className='coin-img' src={imageUrl} alt={currentCoin} /> : <span className='coin-img-symbol'>{currentCoin.toUpperCase()}</span> } 
+    <div>{validIds.length}</div>
+    {imageUrl ? <img src={imageUrl} alt={currentCoin} /> : null } 
     </>
     )
 }

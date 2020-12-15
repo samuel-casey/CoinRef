@@ -37,7 +37,7 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {
 
 	const price = coinMetricsData ? (
 		<>
-			<span>Price: {usdPrice} USD</span>(
+			<span>Price: ${usdPrice}</span>(
 			<span style={{ color: pctChgColor }}>
 				{posNeg}
 				{pctChg}%
