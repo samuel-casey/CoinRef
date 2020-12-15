@@ -104,12 +104,11 @@ export const CoinChart = ({chartData, numDaysPriceData, setNumDaysPriceData, tod
         
         setNumDaysPriceData(newNumDays)
     }
-    
 
     if (chartData && currentCoin) {
         return (
             <div className="price-chart">
-                <h4>{currentCoin ? currentCoin.toUpperCase() : "Loading"} Price in $ as of 4PM EST</h4>
+                <h4>4PM EST Price of {currentCoin ? currentCoin.toUpperCase() : "Loading"} in $</h4>
                 <div className='interval-container'>
                 <span className='interval-label'>Time period</span>
                     <button className={`chart-btn ${selectedOption === '30' ? 'selected' : 'not-selected'}`} name='30' onClick={handleChange} value='30'>1 mo</button>

@@ -63,7 +63,6 @@ useEffect(() => {
             setImageUrl(image)
             if (imgCount === 0) setImgCount(imgCount + 1);
         }
-        console.log(imageUrl)
     }
     getImages()
   }, [imgCount, listCount, currentCoin]);

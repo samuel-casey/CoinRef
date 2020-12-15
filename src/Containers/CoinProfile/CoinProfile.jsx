@@ -142,8 +142,8 @@ export const CoinProfile = () => {
 				// create a new PriceLinePoint instance for each day in the OHLCV array and push it to the daysTimestampClose array
 				daysTimestampClose.push(new PriceLinePoint(day[0], day[4].toFixed(2)));
 			});
-				return setChartData(daysTimestampClose);
-			});
+			return setChartData(daysTimestampClose);
+		});
 		}
 			fetchPriceData();
 	}, [currentCoin, maxInterval]);
