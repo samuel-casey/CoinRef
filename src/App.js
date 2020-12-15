@@ -14,7 +14,7 @@ import { allCoins } from './allCoinsList';
 export const CoinContext = React.createContext();
 
 function App() {
-	const [currentCoin, setCurrentCoin] = useState('eth');
+	const [currentCoin, setCurrentCoin] = useState('btc');
 
 	function handleSearchSubmit(coin) {
 		setCurrentCoin(coin);

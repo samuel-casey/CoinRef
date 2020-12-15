@@ -17,7 +17,7 @@ export const Search = ({ handleSubmit, type }) => {
 	return (
 		<div className='search-container'>
 			<p>
-				Enter the name or symbol of a cryptocurrency to search
+				Enter the symbol of a coin or select from the dropdown to search
 				for {typeOfData}.
 			</p>
 			<SearchForm handleSubmit={handleSubmit} />
