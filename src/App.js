@@ -8,16 +8,19 @@ import { FooterLinks } from './Containers/FooterLinks/FooterLinks';
 import { Search } from './Containers/Search/Search';
 import { News } from './Containers/News/News';
 import { CoinProfile } from './Containers/CoinProfile/CoinProfile';
-import { Cg } from './Components/Cg/Cg';
 import { allCoins } from './allCoinsList';
 
 export const CoinContext = React.createContext();
 
 function App() {
-	const [currentCoin, setCurrentCoin] = useState('btc');
+	// const [currentCoin, setCurrentCoin] = useState('btc');
+	const [gState, setGState] = useState({
+		currentCoin: 'btc',
+		errorMsg: '',
+	});
 
 	function handleSearchSubmit(coin) {
-		setCurrentCoin(coin);
+		setGState({ ...gState, currentCoin: coin });
 		console.log(coin);
 		console.log(allCoins.filter((obj) => obj.slug === coin.slug));
 	}
@@ -27,7 +30,7 @@ function App() {
 			<header>
 				<Header />
 			</header>
-			<CoinContext.Provider value={currentCoin}>
+			<CoinContext.Provider value={{ gState, setGState }}>
 				<main>
 					<Switch>
 						<Route exact path='/'>

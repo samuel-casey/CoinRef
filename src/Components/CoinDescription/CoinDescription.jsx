@@ -4,7 +4,8 @@ import { CoinBackground } from '../CoinBackground/CoinBackground';
 import './CoinDescription.scss';
 
 export const CoinDescription = ({ coinProfileData }) => {
-	let currentCoin = useContext(CoinContext);
+	const {gState} = useContext(CoinContext);
+	const {currentCoin} = gState;
 	let name;
 	let description;
 	let background;

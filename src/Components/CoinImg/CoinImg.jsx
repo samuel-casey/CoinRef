@@ -4,11 +4,12 @@ import {CoinContext} from '../../App';
 import './CoinImg.scss'
 
 export const CoinImg = () => {
+const {gState} = useContext(CoinContext);
+const {currentCoin} = gState;
 const [cGeckoList, setCGeckoList] = useState([]);
 const [listCount, setListCount] = useState(0);
 const [imgCount, setImgCount] = useState(0);
 const [imageUrl, setImageUrl] = useState(null)
-const currentCoin = useContext(CoinContext)
 
 // get lists of slugs and symbols for allCoins for use in filter
 const allCoinSlugs = allCoins.map((coin) => coin.slug)

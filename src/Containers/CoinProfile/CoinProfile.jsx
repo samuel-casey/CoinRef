@@ -12,11 +12,11 @@ import { CoinChart } from '../../Components/CoinChart/CoinChart';
 const {MESSARI_API_KEY} = process.env;
 
 export const CoinProfile = () => {
-	let currentCoin = useContext(CoinContext);
+	const {gState, setGState} = useContext(CoinContext);
+	const {currentCoin, errorMsg} = gState;
 	const [coinProfileData, setCoinProfileData] = useState(null);
 	const [coinMetricsData, setCoinMetricsData] = useState(null);
 	const [chartData, setChartData] = useState();
-	const [errorMsg, setErrorMsg] = useState('');
 	const [numDaysPriceData, setNumDaysPriceData] = useState(30)
 
 	// calculate 1 today's date and 1 year ago today, return them as strings
@@ -86,9 +86,7 @@ export const CoinProfile = () => {
 					return Promise.all(
 						responses.map((response) => {
 							if (response.status === 404) {
-								setErrorMsg(
-									`No data found for ${currentCoin}, please check your input or select an option from the list.`
-								);
+								setGState({...gState, errorMsg: `No data found for ${currentCoin}, please check your input or select an option from the list.`});
 							} else {
 								return response.json();
 							}
@@ -123,11 +121,9 @@ export const CoinProfile = () => {
 		)
 			.then((response) => {
 			if (response.status === 404) {
-				setErrorMsg(
-									`No data found for ${currentCoin}, please check your input or select an option from the list.`
-								);
+				setGState({...gState, errorMsg: `No data found for ${currentCoin}, please check your input or select an option from the list.`});
 			} else {
-				setErrorMsg('')
+				setGState({...gState, errorMsg: ''});
 				return response.json();
 			}
 			})
