@@ -9,7 +9,7 @@ import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
 
 ///////// need to hide this with netlify functions ////////////
-const MESSARI_API_KEY = '9ada99d9-1714-4298-b5b8-3c5330af5498';
+const {MESSARI_API_KEY} = process.env;
 
 export const CoinProfile = () => {
 	let currentCoin = useContext(CoinContext);
