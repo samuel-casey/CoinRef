@@ -9,6 +9,7 @@ import { Search } from './Containers/Search/Search';
 import { News } from './Containers/News/News';
 import { CoinProfile } from './Containers/CoinProfile/CoinProfile';
 import { allCoins } from './allCoinsList';
+import { Videos } from './Components/Videos/Videos';
 
 export const CoinContext = React.createContext();
 
@@ -46,6 +47,7 @@ function App() {
 							</>
 						</Route>
 						<Route path='/about' component={About} />
+						<Route path='/videos' component={Videos} />
 					</Switch>
 				</main>
 			</CoinContext.Provider>

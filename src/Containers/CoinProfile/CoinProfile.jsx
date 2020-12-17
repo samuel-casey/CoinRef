@@ -94,6 +94,7 @@ export const CoinProfile = () => {
 					);
 				})
 				.then((dataObjects) => {
+					console.log(dataObjects[0].data)
 					return (
 						setCoinProfileData(dataObjects[0].data),
 						setCoinMetricsData(dataObjects[1].data)
@@ -160,8 +161,8 @@ export const CoinProfile = () => {
 			<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData}/></>) : <><div>{errorMsg}</div></>
 
 	return (
-		<d>
+		<div>
 		{coinProfile}
-		</d>
+		</div>
 	);
 };
