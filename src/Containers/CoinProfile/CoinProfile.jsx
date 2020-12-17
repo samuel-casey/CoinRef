@@ -16,6 +16,7 @@ export const CoinProfile = () => {
 	const [coinProfileData, setCoinProfileData] = useState(null);
 	const [coinMetricsData, setCoinMetricsData] = useState(null);
 	const [chartData, setChartData] = useState();
+	const [errorMsg, setErrorMsg] = useState('');
 	const [numDaysPriceData, setNumDaysPriceData] = useState(30)
 
 	// calculate 1 today's date and 1 year ago today, return them as strings
@@ -85,10 +86,9 @@ export const CoinProfile = () => {
 					return Promise.all(
 						responses.map((response) => {
 							if (response.status === 404) {
-								alert(
+								setErrorMsg(
 									`No data found for ${currentCoin}, please check your input or select an option from the list.`
 								);
-								return document.location.reload();
 							} else {
 								return response.json();
 							}
@@ -123,34 +123,34 @@ export const CoinProfile = () => {
 		)
 			.then((response) => {
 			if (response.status === 404) {
-				alert(
-				`No data found for ${currentCoin}, please check your input or select an option from the list.`
-				);
-				return document.location.reload();
+				setErrorMsg(
+									`No data found for ${currentCoin}, please check your input or select an option from the list.`
+								);
 			} else {
+				setErrorMsg('')
 				return response.json();
 			}
 			})
 			.then((data) => {
 			// get the array of Open/High/Low/Close/Volume (OHLCV) from Messari for the given dates in the 3rd fetch above
-			const pricesArray = data.data.values;
-			// each item in the array stored at dataObjects[2].data.values is a day's worth of OHLCV data (in form of an array)
-			//the data we're interested in is the timestamp and the close price for each day
-			// timestamp is index 0 of the OHLCV array, the close price is index 4
-			const daysTimestampClose = [];
-			pricesArray.forEach((day, index) => {
-				// create a new PriceLinePoint instance for each day in the OHLCV array and push it to the daysTimestampClose array
-				daysTimestampClose.push(new PriceLinePoint(day[0], day[4].toFixed(2)));
-			});
-			return setChartData(daysTimestampClose);
+			if (data) {
+				const pricesArray = data.data.values;
+				// each item in the array stored at dataObjects[2].data.values is a day's worth of OHLCV data (in form of an array)
+				//the data we're interested in is the timestamp and the close price for each day
+				// timestamp is index 0 of the OHLCV array, the close price is index 4
+				const daysTimestampClose = [];
+				pricesArray.forEach((day, index) => {
+					// create a new PriceLinePoint instance for each day in the OHLCV array and push it to the daysTimestampClose array
+					daysTimestampClose.push(new PriceLinePoint(day[0], day[4].toFixed(2)));
+				});
+				return setChartData(daysTimestampClose);
+			}
 		});
 		}
 		fetchPriceData();
 	}, [currentCoin, maxInterval]);
 
-	return (
-		<>
-		<div className='coin-profile'>
+	const coinProfile = errorMsg === '' ? (<><div className='coin-profile'>
 			<div className='coin-summary-cont'>
 				<CoinImg className='coin-img-comp' coinProfileData={coinProfileData} />
 				<CoinSummary
@@ -161,7 +161,11 @@ export const CoinProfile = () => {
 			<CoinDescription coinProfileData={coinProfileData} />
 			<CoinResources coinProfileData={coinProfileData} />
 		</div>
-			<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData}/>
-		</>
+			<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData}/></>) : <><div>{errorMsg}</div></>
+
+	return (
+		<d>
+		{coinProfile}
+		</d>
 	);
 };
