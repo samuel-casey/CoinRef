@@ -43,7 +43,6 @@ function App() {
 							</>
 						</Route>
 						<Route path='/about' component={About} />
-						{/* <Route path='/cg' component={Cg} /> */}
 					</Switch>
 				</main>
 			</CoinContext.Provider>
