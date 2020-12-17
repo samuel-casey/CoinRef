@@ -145,7 +145,7 @@ export const CoinProfile = () => {
 			return setChartData(daysTimestampClose);
 		});
 		}
-			fetchPriceData();
+		fetchPriceData();
 	}, [currentCoin, maxInterval]);
 
 	return (
