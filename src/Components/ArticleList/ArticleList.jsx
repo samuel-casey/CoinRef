@@ -5,7 +5,8 @@ import './ArticleList.scss';
 const MESSARI_API_KEY = '9ada99d9-1714-4298-b5b8-3c5330af5498';
 
 export const ArticleList = () => {
-	const currentCoin = useContext(CoinContext);
+	const {gState, setGState} = useContext(CoinContext);
+	const {currentCoin, errorMsg} = gState;
 	const [newsArticles, setNewsArticles] = useState([]);
 
 	useEffect(() => {
@@ -20,21 +21,16 @@ export const ArticleList = () => {
 			})
 				.then((response) => {
 					if (response.status === 404) {
-						alert(
-							`No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`
-						);
-						document.location.reload();
+						setGState({...gState, errorMsg: `No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`});
 					} else {
+						setGState({...gState, errorMsg: ''});
 						const body = response.json();
 						return body;
 					}
 				})
 				.then((body) => {
 					if (body.data === null) {
-						alert(
-							`No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`
-						);
-						document.location.reload();
+						setGState({...gState, errorMsg: `No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`});
 					}
 					setNewsArticles(body.data);
 				})
@@ -65,10 +61,9 @@ export const ArticleList = () => {
 			</div>
 		);
 	});
-	return (
-		<div>
-			{currentCoin.toUpperCase()} News & Research
-			<div id='article-list'>{articles}</div>
-		</div>
-	);
+
+	const pageContent = errorMsg === '' ? (<><div>{currentCoin.toUpperCase()} News & Research</div>
+			<div id='article-list'>{articles}</div></>) : (<><div>{errorMsg}</div></>)
+
+	return <div>{pageContent}</div>
 };

@@ -13,10 +13,18 @@
 }
 
 .show-more {
-    font-size: 2rem;
+    font-size: 1.5rem;
     align-self: center;
     font-style: italic;
-    i {
-        color: $text-primary-light;
-    }
+}
+
+#bg-text {
+    font-size: 1rem;
+    color: #00195a;
+    line-height: 2;
+}
+
+.react-slidedown.my-dropdown-slidedown {
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
 }
