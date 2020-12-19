@@ -9,7 +9,7 @@ import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
 
 ///////// need to hide this with netlify functions ////////////
-const {MESSARI_API_KEY} = process.env;
+const {REACT_APP_MESSARI_API_KEY} = process.env;
 
 export const CoinProfile = () => {
 	const {gState, setGState} = useContext(CoinContext);
@@ -66,7 +66,7 @@ export const CoinProfile = () => {
 				method: 'GET',
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
-				'x-messari-api-key': MESSARI_API_KEY,
+				'x-messari-api-key': REACT_APP_MESSARI_API_KEY,
 			},
 		}),
 		fetch(`https://data.messari.io/api/v1/assets/${currentCoin}/metrics`, {
@@ -74,7 +74,7 @@ export const CoinProfile = () => {
 				method: 'GET',
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
-				'x-messari-api-key': MESSARI_API_KEY,
+				'x-messari-api-key': REACT_APP_MESSARI_API_KEY,
 			},
 		})
 	];
@@ -115,7 +115,7 @@ export const CoinProfile = () => {
 				method: "GET",
 				Accept: "application/json",
 				"Content-Type": "application/json",
-				"x-messari-api-key": MESSARI_API_KEY
+				"x-messari-api-key": REACT_APP_MESSARI_API_KEY
 			}
 			}
 		)
@@ -160,8 +160,8 @@ export const CoinProfile = () => {
 			<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData}/></>) : <><div>{errorMsg}</div></>
 
 	return (
-		<d>
+		<div>
 		{coinProfile}
-		</d>
+		</div>
 	);
 };
