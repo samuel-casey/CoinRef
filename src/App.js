@@ -14,7 +14,6 @@ import { Videos } from './Components/Videos/Videos';
 export const CoinContext = React.createContext();
 
 function App() {
-	// const [currentCoin, setCurrentCoin] = useState('btc');
 	const [gState, setGState] = useState({
 		currentCoin: 'btc',
 		errorMsg: '',
