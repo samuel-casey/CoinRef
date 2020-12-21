@@ -10,7 +10,7 @@ const {REACT_APP_YOUTUBE_API_KEY} = process.env;
 export const Videos = () => {
     const [searchResults, setSearchResults] = useState([])
 
-    const ytSearchQuery = 'btc'
+    const ytSearchQuery = 'finematics'
     useEffect(() => {
         const getVideos = async () => {
             const search = await axios.get(`https://cors-anywhere.herokuapp.com/https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${ytSearchQuery}&key=${REACT_APP_YOUTUBE_API_KEY}`);
@@ -18,19 +18,25 @@ export const Videos = () => {
             setSearchResults(search.data.items)
         }
         getVideos()
-
     }, [])
 
     const thumbs = searchResults.length > 0 ? searchResults.map((vid, index) => (
-        <div className='video-thumbnail' key={vid.id.videoId}>
+        <div className='video-thumbnail' key={index}>
             <img src={vid.snippet.thumbnails.high.url} alt='thumb' />
             <a className='button' href={`https://www.youtube.com/watch?v=${vid.id.videoId}`}>
-				<i className="fab fa-youtube"></i>
+				YouTube <i className="fab fa-youtube"></i>
             </a>
         </div>
     )) : null
 
-    return <>
+    return <div className='videos-page'>
+    <nav className='sidebar'>
+        <button>category 1</button>
+        <button>category 2</button>
+        <button>category 3</button>
+    </nav>
+    <article>
     {thumbs}
-</>
+    </article>
+</div>
 }
