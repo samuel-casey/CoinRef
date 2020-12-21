@@ -7,11 +7,11 @@ import './SearchForm.scss';
 export const SearchForm = (props) => {
 	const [searchVal, setSearchVal] = useState('BTC');
 
-	function handleChange(e) {
+	const handleChange = (e) => {
 		setSearchVal(e.target.value);
 	}
 
-	function handleSubmit(e) {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		props.handleSubmit(searchVal);
 	}

@@ -8,7 +8,6 @@ import { CoinContext } from '../../App';
 import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
 
-///////// need to hide this with netlify functions ////////////
 const {REACT_APP_MESSARI_API_KEY} = process.env;
 
 export const CoinProfile = () => {
@@ -33,27 +32,18 @@ export const CoinProfile = () => {
 	let maxDaysAgoDate = past.getDate()
 	let maxDaysAgoMonth = past.getMonth() + 1
 	let maxDaysAgoYear = past.getUTCFullYear()
-	
 
-	if (todayDate < 10) {
-		todayDate = "0" + todayDate.toString()
-	}
+	if (todayDate < 10) todayDate = "0" + todayDate.toString()
 
-	if (todayMonth < 10) {
-		todayMonth = "0" + todayMonth.toString()
-	}
+	if (todayMonth < 10) todayMonth = "0" + todayMonth.toString()
 
-	if (maxDaysAgoDate < 10) {
-		maxDaysAgoDate = "0" + maxDaysAgoDate.toString()
-	} 
+	if (maxDaysAgoDate < 10) maxDaysAgoDate = "0" + maxDaysAgoDate.toString()
 
-	if (maxDaysAgoMonth < 10) {
-		maxDaysAgoMonth = "0" + maxDaysAgoMonth.toString()
-	} else {}
+	if (maxDaysAgoMonth < 10) maxDaysAgoMonth = "0" + maxDaysAgoMonth.toString()
 
 	let today = `${thisYear}-${todayMonth}-${todayDate}` 
 	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
-
+	
 	return [today, maxInterval]
 	}
 	
