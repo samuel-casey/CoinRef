@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { fetchAssetNewsArticles } from '../../apis/messari';
 import { CoinContext } from '../../App';
+import { formatArticleDate } from '../../helpers/dateHelpers';
 import './ArticleList.scss';
 
 const { REACT_APP_MESSARI_API_KEY } = process.env;
@@ -25,13 +26,7 @@ export const ArticleList = () => {
 					<p className='article-title'>{article.title}</p>
 					<p className='article-author'>By: {article.author.name}</p>
 					<p className='article-timestamp'>
-						{new Date(article.published_at).toLocaleString([], {
-							month: 'numeric',
-							day: 'numeric',
-							year: 'numeric',
-							hour: '2-digit',
-							minute: '2-digit',
-						})}
+						{formatArticleDate(article.published_at)}
 					</p>
 				</a>
 			</div>

@@ -58,3 +58,13 @@ export const setChartDataInterval = (numDaysPriceData) => {
 	
 	return [today, maxInterval]
 }
+
+export const formatArticleDate = (articleDate) => {
+	return new Date(articleDate).toLocaleString([], {
+							month: 'numeric',
+							day: 'numeric',
+							year: 'numeric',
+							hour: '2-digit',
+							minute: '2-digit',
+						})
+}
