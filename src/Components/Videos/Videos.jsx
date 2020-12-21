@@ -13,11 +13,7 @@ export const Videos = () => {
     const ytSearchQuery = 'btc'
     useEffect(() => {
         const getVideos = async () => {
-            const search = await axios.get(`https://cors-anywhere.herokuapp.com/https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${ytSearchQuery}&key=${REACT_APP_YOUTUBE_API_KEY}`, {
-                headers: {
-                    'Test-Header': 'test-value'
-                }
-            });
+            const search = await axios.get(`https://cors-anywhere.herokuapp.com/https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${ytSearchQuery}&key=${REACT_APP_YOUTUBE_API_KEY}`);
             console.log(search.data)
             setSearchResults(search.data.items)
         }

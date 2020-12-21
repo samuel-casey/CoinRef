@@ -31,7 +31,7 @@ export const monthEstToAbbr = (monthEst) => {
 }
 
 // calculate 1 today's date and 1 year ago today, return them as strings
-	export const setChartDataInterval = (numDaysPriceData) => {
+export const setChartDataInterval = (numDaysPriceData) => {
 	// get todays date and format as API-friendly string
 	let now = new Date()
 	let todayDate = now.getUTCDate()
@@ -57,4 +57,4 @@ export const monthEstToAbbr = (monthEst) => {
 	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
 	
 	return [today, maxInterval]
-	}
+}
