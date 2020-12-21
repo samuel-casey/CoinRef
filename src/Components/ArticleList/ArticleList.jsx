@@ -10,7 +10,7 @@ export const ArticleList = () => {
 	const [newsArticles, setNewsArticles] = useState([]);
 
 	useEffect(() => {
-		function fetchNewsArticles() {
+		const fetchNewsArticles = () => {
 			fetch(`https://data.messari.io/api/v1/news/${currentCoin}`, {
 				headers: {
 					method: 'GET',

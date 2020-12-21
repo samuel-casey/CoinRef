@@ -1,6 +1,6 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import { monthEstToAbbr } from '../../Utils/dateHelpers';
+import { monthEstToAbbr } from '../../helpers/dateHelpers';
 import './CoinSummary.scss';
 
 export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {

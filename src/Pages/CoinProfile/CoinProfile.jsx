@@ -7,7 +7,7 @@ import { CoinResources } from '../../Components/CoinResources/CoinResources';
 import { CoinContext } from '../../App';
 import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
-import { setChartDataInterval } from '../../Utils/dateHelpers';
+import { setChartDataInterval } from '../../helpers/dateHelpers';
 
 const {REACT_APP_MESSARI_API_KEY} = process.env;
 
