@@ -8,6 +8,7 @@ import { CoinContext } from '../../App';
 import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
 import { setChartDataInterval } from '../../helpers/dateHelpers';
+import { fetchAssetMetricsData, fetchAssetProfileData } from '../../apis/messari';
 
 const {REACT_APP_MESSARI_API_KEY} = process.env;
 
@@ -42,30 +43,15 @@ export const CoinProfile = () => {
 	];
 
 	useEffect(() => {
-		const fetchAssetData = () => {
-			Promise.all(promiseArray)
-				.then((responses) => {
-					return Promise.all(
-						responses.map((response) => {
-							if (response.status === 404) {
-								setGState({...gState, errorMsg: `No data found for ${currentCoin}, please check your input or select an option from the list.`});
-							} else {
-								return response.json();
-							}
-						})
-					);
-				})
-				.then((dataObjects) => {
-					return (
-						setCoinProfileData(dataObjects[0].data),
-						setCoinMetricsData(dataObjects[1].data)
-					);
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+
+		const getCoinData = async () => {
+			const profile = await fetchAssetProfileData(currentCoin);
+			const metrics = await fetchAssetMetricsData(currentCoin);
+			setCoinProfileData(profile)
+			setCoinMetricsData(metrics)
 		}
-		fetchAssetData();
+		
+		getCoinData();
 
 		const fetchPriceData = () => {
 		fetch(

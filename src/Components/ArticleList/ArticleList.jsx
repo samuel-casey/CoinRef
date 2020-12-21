@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CoinContext } from '../../App';
 import './ArticleList.scss';
 
-const MESSARI_API_KEY = '9ada99d9-1714-4298-b5b8-3c5330af5498';
+const { REACT_APP_MESSARI_API_KEY } = process.env;
 
 export const ArticleList = () => {
 	const {gState, setGState} = useContext(CoinContext);
@@ -16,7 +16,7 @@ export const ArticleList = () => {
 					method: 'GET',
 					Accept: 'application/json',
 					'Content-Type': 'application/json',
-					'x-messari-api-key': MESSARI_API_KEY,
+					'x-messari-api-key': REACT_APP_MESSARI_API_KEY,
 				},
 			})
 				.then((response) => {
