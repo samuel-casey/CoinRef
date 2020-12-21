@@ -13,17 +13,17 @@ import { Videos } from './Components/Videos/Videos';
 
 export const CoinContext = React.createContext();
 
-function App() {
+const App = () => {
 	const [gState, setGState] = useState({
 		currentCoin: 'btc',
 		errorMsg: '',
 	});
 
-	function handleSearchSubmit(coin) {
+	const handleSearchSubmit = (coin) => {
 		setGState({ ...gState, currentCoin: coin });
 		console.log(coin);
 		console.log(allCoins.filter((obj) => obj.slug === coin.slug));
-	}
+	};
 
 	return (
 		<div className='App'>
@@ -51,21 +51,23 @@ function App() {
 				</main>
 			</CoinContext.Provider>
 			<footer>
-				<Logo />
-				<FooterLinks />
+				<div id='footer-logo-container'>
+					<Logo />
+				</div>
 				<div id='disclaimer'>
-					All content on this site is intended to be educational and should not
-					be perceived as financial advice. Data from
 					<span>
+						All content on this site is intended to be educational and should
+						not be perceived as financial advice. Data from{' '}
 						<a href='https://messari.io' target='blank'>
 							{' '}
-							messari.io.
+							Messari.io.
 						</a>
 					</span>
+					<FooterLinks />
 				</div>
 			</footer>
 		</div>
 	);
-}
+};
 
 export default App;
