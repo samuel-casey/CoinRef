@@ -11,35 +11,6 @@ export const ArticleList = () => {
 	const [newsArticles, setNewsArticles] = useState([]);
 
 	useEffect(() => {
-		// const fetchNewsArticles = () => {
-		// 	fetch(`https://data.messari.io/api/v1/news/${currentCoin}`, {
-		// 		headers: {
-		// 			method: 'GET',
-		// 			Accept: 'application/json',
-		// 			'Content-Type': 'application/json',
-		// 			'x-messari-api-key': REACT_APP_MESSARI_API_KEY,
-		// 		},
-		// 	})
-		// 		.then((response) => {
-		// 			if (response.status === 404) {
-		// 				setGState({...gState, errorMsg: `No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`});
-		// 			} else {
-		// 				setGState({...gState, errorMsg: ''});
-		// 				const body = response.json();
-		// 				return body;
-		// 			}
-		// 		})
-		// 		.then((body) => {
-		// 			if (body.data === null) {
-		// 				setGState({...gState, errorMsg: `No articles found for ${currentCoin}. Please double check your input or select a coin from the list.`});
-		// 			}
-		// 			setNewsArticles(body.data);
-		// 		})
-		// 		.catch((error) => {
-		// 			console.log(error);
-		// 		});
-		// }
-
 		const getArticles = async () => {
 			const newsData = await fetchAssetNewsArticles(currentCoin, gState, setGState);
 			if (newsData) setNewsArticles(newsData)
