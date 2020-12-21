@@ -21,8 +21,6 @@ const App = () => {
 
 	const handleSearchSubmit = (coin) => {
 		setGState({ ...gState, currentCoin: coin });
-		console.log(coin);
-		console.log(allCoins.filter((obj) => obj.slug === coin.slug));
 	};
 
 	return (
