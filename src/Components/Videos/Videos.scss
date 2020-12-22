@@ -6,9 +6,13 @@
     .sidebar {
         display: flex;
         flex-direction: column;
+        width: 250px;
+        height: 90vh;
+        // background-color: red;
         
         button { 
-            color: white;
+            width: 100%;
+            background-color: #ffffff00;
         }
     }
     
@@ -46,5 +50,9 @@
             margin: 0 5px;
             color: #F72831;
         }
+    }
+
+    .spinner-container {
+        margin: 0 auto;
     }
 }

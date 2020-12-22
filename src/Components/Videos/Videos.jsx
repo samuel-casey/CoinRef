@@ -1,23 +1,22 @@
-import Axios from 'axios';
 import React, {useState, useEffect, useContext} from 'react';
 import {CoinContext} from '../../App';
-import axios from 'axios';
+import {fetchVideos} from '../../apis/youtube';
 import './Videos.scss'
-import Button from 'react-bootstrap/Button';
-
-const {REACT_APP_YOUTUBE_API_KEY} = process.env;
+import Spinner from 'react-bootstrap/Spinner';
 
 export const Videos = () => {
+    const {gState, setGState} = useContext(CoinContext)
     const [searchResults, setSearchResults] = useState([])
+    const [ytSearchQuery, setYtSearchQuery ]= useState('eth')
 
-    const ytSearchQuery = 'finematics'
     useEffect(() => {
+
         const getVideos = async () => {
-            const search = await axios.get(`https://cors-anywhere.herokuapp.com/https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${ytSearchQuery}&key=${REACT_APP_YOUTUBE_API_KEY}`);
-            console.log(search.data)
-            setSearchResults(search.data.items)
+            const ytSearchResults = await fetchVideos(gState, setGState, ytSearchQuery)
+            setSearchResults(ytSearchResults.items)
         }
-        getVideos()
+        getVideos();
+
     }, [])
 
     const thumbs = searchResults.length > 0 ? searchResults.map((vid, index) => (
@@ -31,12 +30,12 @@ export const Videos = () => {
 
     return <div className='videos-page'>
     <nav className='sidebar'>
-        <button>category 1</button>
-        <button>category 2</button>
-        <button>category 3</button>
+        <button>Custody</button>
+        <button>Security</button>
+        <button>Exchanges</button>
     </nav>
-    <article>
-    {thumbs}
-    </article>
+    <section>
+    {searchResults.length > 10 ? thumbs : <div className='spinner-container'><Spinner animation='border' variant='info' /></div>}
+    </section>
 </div>
 }

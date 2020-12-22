@@ -5,7 +5,6 @@ import { CoinImg } from '../../Components/CoinImg/CoinImg';
 import { CoinDescription } from '../../Components/CoinDescription/CoinDescription';
 import { CoinResources } from '../../Components/CoinResources/CoinResources';
 import { CoinContext } from '../../App';
-import PriceLinePoint from '../../PriceLinePoint';
 import { CoinChart } from '../../Components/CoinChart/CoinChart';
 import { setChartDataInterval } from '../../helpers/dateHelpers';
 import { fetchAssetMetricsData, fetchAssetPriceData, fetchAssetProfileData } from '../../apis/messari';
