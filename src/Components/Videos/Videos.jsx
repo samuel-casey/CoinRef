@@ -34,8 +34,8 @@ export const Videos = () => {
         <button>Security</button>
         <button>Exchanges</button>
     </nav>
-    <section>
-    {searchResults.length > 10 ? thumbs : <div className='spinner-container'><Spinner animation='border' variant='info' /></div>}
+    <section className='videos-container'>
+    {searchResults.length > 0 ? thumbs : <div className='spinner-container'><Spinner animation='border' variant='info' /></div>}
     </section>
 </div>
 }
