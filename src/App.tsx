@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
 import { Header } from './Pages/Header/Header';
@@ -8,15 +8,17 @@ import { FooterLinks } from './Pages/FooterLinks/FooterLinks';
 import { Search } from './Pages/Search/Search';
 import { News } from './Pages/News/News';
 import { CoinProfile } from './Pages/CoinProfile/CoinProfile';
-import { allCoins } from './allCoinsList';
 import { Videos } from './Components/Videos/Videos';
+import GStateInterface from './interfaces/GStateInterface';
+import CoinContextInterface from './interfaces/GStateInterface';
 
-export const CoinContext = React.createContext();
+
+export const CoinContext = createContext<CoinContextInterface | null>(null)
 
 const App = () => {
 	const [gState, setGState] = useState({
-		currentCoin: 'btc',
-		errorMsg: '',
+		currentCoin: 'btc', 
+		errorMsg: ''
 	});
 
 	const handleSearchSubmit = (coin) => {

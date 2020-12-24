@@ -1,8 +1,10 @@
 import axios from 'axios';
 import PriceLinePoint from '../PriceLinePoint';
+import GStateInterface from '../interfaces/GStateInterface';
+import { ToastBody } from 'react-bootstrap';
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
-export const fetchAssetProfileData = async (currentCoin, gState, setGState) => {
+export const fetchAssetProfileData = async (currentCoin: string, gState: GStateInterface, setGState: Function) => {
 	try {
 		setGState({
 			...gState,
@@ -28,7 +30,7 @@ export const fetchAssetProfileData = async (currentCoin, gState, setGState) => {
 	}
 };
 
-export const fetchAssetMetricsData = async (currentCoin, gState, setGState) => {
+export const fetchAssetMetricsData = async (currentCoin: string, gState: GStateInterface, setGState: Function) => {
 	try {
 		setGState({
 			...gState,
@@ -55,11 +57,9 @@ export const fetchAssetMetricsData = async (currentCoin, gState, setGState) => {
 };
 
 export const fetchAssetPriceData = async (
-	currentCoin,
-	today,
-	maxInterval,
-	gState,
-	setGState
+	currentCoin: string, gState: GStateInterface, setGState: Function,
+	today: string,
+	maxInterval: string
 ) => {
 	try {
 		setGState({
@@ -79,10 +79,11 @@ export const fetchAssetPriceData = async (
 
 		const pricesArray = res.data.data.values;
 
-		const daysTimestampClose = [];
+		const daysTimestampClose: PriceLinePoint[] = [];
 		pricesArray.forEach((day, index) => {
 			// create a new PriceLinePoint instance for each day in the OHLCV array and push it to the daysTimestampClose array
-			daysTimestampClose.push(new PriceLinePoint(day[0], day[4].toFixed(2)));
+			const pricePoint = new PriceLinePoint(day[0], day[4].toFixed(2))
+			daysTimestampClose.push(pricePoint);
 		});
 		return daysTimestampClose;
 	} catch (error) {
