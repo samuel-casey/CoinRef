@@ -15,14 +15,13 @@ import { Store } from './Store'
 
 
 const App = () => {
-	const store = React.useContext(Store)
-	const [gState, setGState] = useState({
-		currentCoin: 'btc',
-		errorMsg: '' 
-	});
+	const { state, dispatch } = React.useContext(Store)
 
 	const handleSearchSubmit = (coin) => {
-		setGState({ ...gState, currentCoin: coin });
+		dispatch({
+			type: 'UPDATE_CURRENT_COIN',
+			payload: coin
+		})
 	};
 
 	return (
@@ -30,7 +29,6 @@ const App = () => {
 			<header>
 				<Header />
 			</header>
-			{/* <CoinContext.Provider value={{ gState, setGState }}> */}
 			<main>
 				<Switch>
 
@@ -40,7 +38,6 @@ const App = () => {
 							<CoinProfile />
 						</>
 					</Route>
-					<Route path='/store'>{console.log(store)}</Route>
 					<Route path='/news'>
 						<>
 							<Search handleSubmit={handleSearchSubmit} type='news' />
@@ -48,10 +45,9 @@ const App = () => {
 						</>
 					</Route>
 					<Route path='/about' component={About} />
-					<Route path='/videos' component={Videos} />
+					{/* <Route path='/videos' component={Videos} /> */}
 				</Switch>
 			</main>
-			{/* </CoinContext.Provider> */}
 			<footer>
 				<div id='footer-logo-container'>
 					<Logo />

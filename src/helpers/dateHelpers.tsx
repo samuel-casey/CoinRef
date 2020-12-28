@@ -45,26 +45,26 @@ export const setChartDataInterval = (numDaysPriceData) => {
 	let maxDaysAgoMonth = past.getMonth() + 1
 	let maxDaysAgoYear = past.getUTCFullYear()
 
-	if (todayDate < 10) todayDate = "0" + todayDate.toString()
+	if (todayDate < 10) todayDate = 0 + todayDate
 
-	if (todayMonth < 10) todayMonth = "0" + todayMonth.toString()
+	if (todayMonth < 10) todayMonth = 0 + todayMonth
 
-	if (maxDaysAgoDate < 10) maxDaysAgoDate = "0" + maxDaysAgoDate.toString()
+	if (maxDaysAgoDate < 10) maxDaysAgoDate = 0 + maxDaysAgoDate
 
-	if (maxDaysAgoMonth < 10) maxDaysAgoMonth = "0" + maxDaysAgoMonth.toString()
+	if (maxDaysAgoMonth < 10) maxDaysAgoMonth = 0 + maxDaysAgoMonth
 
-	let today = `${thisYear}-${todayMonth}-${todayDate}` 
-	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}` 
-	
+	let today = `${thisYear}-${todayMonth}-${todayDate}`
+	let maxInterval = `${maxDaysAgoYear}-${maxDaysAgoMonth}-${maxDaysAgoDate}`
+
 	return [today, maxInterval]
 }
 
 export const formatArticleDate = (articleDate) => {
 	return new Date(articleDate).toLocaleString([], {
-							month: 'numeric',
-							day: 'numeric',
-							year: 'numeric',
-							hour: '2-digit',
-							minute: '2-digit',
-						})
+		month: 'numeric',
+		day: 'numeric',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+	})
 }

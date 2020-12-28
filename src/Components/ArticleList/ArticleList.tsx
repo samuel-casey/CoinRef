@@ -1,22 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { fetchAssetNewsArticles } from '../../apis/messari';
-import { CoinContext } from '../../App';
+import { Store } from '../../Store';
 import { formatArticleDate } from '../../helpers/dateHelpers';
 import './ArticleList.scss';
 
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
 export const ArticleList = () => {
-	const {gState, setGState} = useContext(CoinContext);
-	const {currentCoin, errorMsg} = gState;
+	const { gState, dispatch } = useContext(Store);
+	const { currentCoin, errorMsg } = gState;
 	const [newsArticles, setNewsArticles] = useState([]);
 
 	useEffect(() => {
-		const getArticles = async () => {
-			const newsData = await fetchAssetNewsArticles(currentCoin, gState, setGState);
-			if (newsData) setNewsArticles(newsData)
-		}
-		getArticles();
+		// const getArticles = async () => {
+		// 	const newsData = await fetchAssetNewsArticles(currentCoin, gState, setGState);
+		// 	if (newsData) setNewsArticles(newsData)
+		// }
+		// getArticles();
 	}, [currentCoin]);
 
 	const articles = newsArticles.length > 0 ? newsArticles.map((article, index) => {
@@ -31,10 +31,10 @@ export const ArticleList = () => {
 				</a>
 			</div>
 		);
-	}): null ;
+	}) : null;
 
 	const pageContent = errorMsg === '' ? (<><div>{currentCoin.toUpperCase()} News & Research</div>
-			<div id='article-list'>{articles}</div></>) : (<><div>{errorMsg}</div></>)
+		<div id='article-list'>{articles}</div></>) : (<><div>{errorMsg}</div></>)
 
 	return <div>{pageContent}</div>
 };

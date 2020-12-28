@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { CoinContext } from '../../App';
+import { Store } from '../../Store';
 import { CoinBackground } from '../CoinBackground/CoinBackground';
 import './CoinDescription.scss';
 
 export const CoinDescription = ({ coinProfileData }) => {
-	const {gState} = useContext(CoinContext);
-	const {currentCoin} = gState;
+	const { gState } = useContext(Store);
+	const { currentCoin } = gState;
 	let name;
 	let description;
 	let background;
@@ -45,8 +45,8 @@ export const CoinDescription = ({ coinProfileData }) => {
 			<h5>{name} overview</h5>
 			<p>{description}</p>
 			<div className={`coin-background ${coinBgToggle}`}>
-			<h5>{name} background</h5>
-			<CoinBackground coinBgVisible={coinBgVisible} background={background}/>
+				<h5>{name} background</h5>
+				<CoinBackground coinBgVisible={coinBgVisible} background={background} />
 			</div>
 			<div className='show-more' onClick={handleToggleClick}>{coinBgVisible ? less : more}</div>
 		</div>

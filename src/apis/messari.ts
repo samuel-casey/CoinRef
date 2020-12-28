@@ -1,15 +1,14 @@
 import axios from 'axios';
 import PriceLinePoint from '../PriceLinePoint';
-import GStateInterface from '../interfaces/IGState';
-import { ToastBody } from 'react-bootstrap';
+import IGState from '../interfaces/IGState';
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
-export const fetchAssetProfileData = async (currentCoin: string, gState: GStateInterface, setGState: Function) => {
+export const fetchAssetProfileData = async (currentCoin: string, gState: IGState, dispatch: Function) => {
 	try {
-		setGState({
-			...gState,
-			errorMsg: '',
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: '',
+		// });
 		const profile = await axios.get(
 			`https://data.messari.io/api/v2/assets/${currentCoin}/profile`,
 			{
@@ -23,19 +22,20 @@ export const fetchAssetProfileData = async (currentCoin: string, gState: GStateI
 		return profile.data.data;
 	} catch (error) {
 		console.log(error);
-		setGState({
-			...gState,
-			errorMsg: `No profile data found for ${currentCoin}, please check your input or select an option from the list.`,
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: `No profile data found for ${currentCoin}, please check your input or select an option from the list.`,
+		// });
+		dispatch({ type: "ERROR", payload: `No profile data found for ${currentCoin}, please check your input or select an option from the list.` })
 	}
 };
 
-export const fetchAssetMetricsData = async (currentCoin: string, gState: GStateInterface, setGState: Function) => {
+export const fetchAssetMetricsData = async (currentCoin: string, gState: IGState, dispatch: Function) => {
 	try {
-		setGState({
-			...gState,
-			errorMsg: '',
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: '',
+		// });
 		const metrics = await axios.get(
 			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics`,
 			{
@@ -49,23 +49,24 @@ export const fetchAssetMetricsData = async (currentCoin: string, gState: GStateI
 		return metrics.data.data;
 	} catch (error) {
 		console.log(error);
-		setGState({
-			...gState,
-			errorMsg: `No metrics data found for ${currentCoin}, please check your input or select an option from the list.`,
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: `No metrics data found for ${currentCoin}, please check your input or select an option from the list.`,
+		// });
+		dispatch({ type: "ERROR", payload: `No metrics data found for ${currentCoin}, please check your input or select an option from the list.` })
 	}
 };
 
 export const fetchAssetPriceData = async (
-	currentCoin: string, gState: GStateInterface, setGState: Function,
+	currentCoin: string, gState: IGState, dispatch: Function,
 	today: string,
 	maxInterval: string
 ) => {
 	try {
-		setGState({
-			...gState,
-			errorMsg: '',
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: '',
+		// });
 		const res = await axios.get(
 			`https://data.messari.io/api/v1/assets/${currentCoin}/metrics/price/time-series?start=${maxInterval}&${today}&interval=1d`,
 			{
@@ -88,23 +89,24 @@ export const fetchAssetPriceData = async (
 		return daysTimestampClose;
 	} catch (error) {
 		console.log(error);
-		setGState({
-			...gState,
-			errorMsg: `No price data found for ${currentCoin}, please check your input or select an option from the list.`,
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: `No price data found for ${currentCoin}, please check your input or select an option from the list.`,
+		// });
+		dispatch({ type: "ERROR", payload: `No price data found for ${currentCoin}, please check your input or select an option from the list.` })
 	}
 };
 
 export const fetchAssetNewsArticles = async (
 	currentCoin,
 	gState,
-	setGState
+	dispatch
 ) => {
 	try {
-		setGState({
-			...gState,
-			errorMsg: '',
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: '',
+		// });
 		const res = await axios.get(
 			`https://data.messari.io/api/v1/news/${currentCoin}`,
 			{
@@ -118,9 +120,10 @@ export const fetchAssetNewsArticles = async (
 		return res.data.data;
 	} catch (error) {
 		console.log(error);
-		setGState({
-			...gState,
-			errorMsg: `No price news articles found for ${currentCoin}, please check your input or select an option from the list.`,
-		});
+		// dispatch({
+		// 	...gState,
+		// 	errorMsg: `No price news articles found for ${currentCoin}, please check your input or select an option from the list.`,
+		// });
+		dispatch({ type: "ERROR", payload: `No price news articles found for ${currentCoin}, please check your input or select an option from the list.` })
 	}
 };

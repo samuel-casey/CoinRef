@@ -1,4 +1,7 @@
 export default class PriceLinePoint {
+	timestamp: string;
+	date: string
+	closePrice: number;
 	constructor(timestamp, closePrice) {
 		this.timestamp = timestamp;
 		this.date = `${new Date(timestamp).getMonth() + 1}/${new Date(
