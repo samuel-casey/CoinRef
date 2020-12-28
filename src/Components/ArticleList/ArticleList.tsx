@@ -3,6 +3,7 @@ import { fetchAssetNewsArticles } from '../../apis/messari';
 import { Store } from '../../Store';
 import { formatArticleDate } from '../../helpers/dateHelpers';
 import './ArticleList.scss';
+import INewsArticle from '../../interfaces/INewsArticle';
 
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
@@ -12,14 +13,14 @@ export const ArticleList = () => {
 	const [newsArticles, setNewsArticles] = useState([]);
 
 	useEffect(() => {
-		// const getArticles = async () => {
-		// 	const newsData = await fetchAssetNewsArticles(currentCoin, gState, setGState);
-		// 	if (newsData) setNewsArticles(newsData)
-		// }
-		// getArticles();
+		const getArticles = async () => {
+			const newsData = await fetchAssetNewsArticles(currentCoin, gState, dispatch);
+			if (newsData) setNewsArticles(newsData)
+		}
+		getArticles();
 	}, [currentCoin]);
 
-	const articles = newsArticles.length > 0 ? newsArticles.map((article, index) => {
+	const articles = newsArticles.length > 0 ? newsArticles.map((article: INewsArticle, index: number) => {
 		return (
 			<div className='article' key={`article-${index}`}>
 				<a href={article.url} target='blank'>
