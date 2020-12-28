@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.scss';
 
-export const About = () => {
+export const About = (): JSX.Element => {
 	return (
 		<div className='about-page'>
 			<h1>About CoinRef</h1>

@@ -3,7 +3,7 @@ import { NewsProviderList } from '../../Components/NewsProviderList/NewsProvider
 import { ArticleList } from '../../Components/ArticleList/ArticleList';
 import './News.scss';
 
-export const News = () => {
+export const News = (): JSX.Element => {
 	return (
 		<div className='news-container'>
 			<ArticleList />

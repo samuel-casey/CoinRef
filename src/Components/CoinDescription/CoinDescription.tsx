@@ -3,7 +3,7 @@ import { Store } from '../../Store';
 import { CoinBackground } from '../CoinBackground/CoinBackground';
 import './CoinDescription.scss';
 
-export const CoinDescription = ({ coinProfileData }) => {
+export const CoinDescription = ({ coinProfileData }): JSX.Element => {
 	const { gState } = useContext(Store);
 	const { currentCoin } = gState;
 	let name;

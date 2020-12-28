@@ -2,7 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import './Logo.scss';
 
-export const Logo = () => {
+export const Logo = (): JSX.Element => {
 	return (
 		<div id='logo'>
 			<h1>CoinRef</h1>

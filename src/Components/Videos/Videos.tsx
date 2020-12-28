@@ -4,7 +4,7 @@ import { fetchVideos } from '../../apis/youtube';
 import './Videos.scss'
 import Spinner from 'react-bootstrap/Spinner';
 
-export const Videos = () => {
+export const Videos = (): JSX.Element => {
     const { gState, dispatch } = useContext(Store)
     const [searchResults, setSearchResults] = useState([])
     const [ytSearchQuery, setYtSearchQuery] = useState('eth')

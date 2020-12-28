@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import './Nav.scss';
 
-export const Nav = () => {
+export const Nav = (): JSX.Element => {
 	return (
 		<nav>
 			<Dropdown>

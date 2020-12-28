@@ -1,15 +1,15 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap';
-import {Logo} from '../../Components/Logo/Logo'
-import {useLocation} from 'react-router-dom'
+import { Logo } from '../../Components/Logo/Logo'
+import { useLocation } from 'react-router-dom'
 import './Header.scss'
 
-export const Header = () => {
+export const Header = (): JSX.Element => {
 	const location = useLocation();
-	
+
 	let activeRoute;
 
-	switch(location.pathname) {
+	switch (location.pathname) {
 		case '/':
 			activeRoute = 'learn'
 			break;
@@ -24,8 +24,8 @@ export const Header = () => {
 			break;
 	}
 
-    return (
-    		<>
+	return (
+		<>
 			<Navbar expand='md'>
 				<Navbar.Brand href='/'>
 					<Logo />

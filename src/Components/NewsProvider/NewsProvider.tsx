@@ -1,7 +1,7 @@
 import React from 'react';
 import './NewsProvider.scss';
 
-export const NewsProvider = ({ name, image, url }) => {
+export const NewsProvider = ({ name, image, url }): JSX.Element => {
 	return (
 		<div className='news-provider'>
 			<a href={url} target='blank'>

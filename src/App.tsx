@@ -14,7 +14,7 @@ import ICoinContext from './interfaces/IGState';
 import { Store } from './Store'
 
 
-const App = () => {
+const App = (): JSX.Element => {
 	const { state, dispatch } = React.useContext(Store)
 
 	const handleSearchSubmit = (coin) => {

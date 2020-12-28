@@ -3,7 +3,7 @@ import { newsProviders } from '../../newsProviders';
 import { NewsProvider } from '../NewsProvider/NewsProvider';
 import './NewsProviderList.scss';
 
-export const NewsProviderList = () => {
+export const NewsProviderList = (): JSX.Element => {
 	const providers = newsProviders.map((provider, index) => {
 		return (
 			<NewsProvider

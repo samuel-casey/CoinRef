@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchForm } from '../../Components/SearchForm/SearchForm';
 import './Search.scss';
 
-export const Search = ({ handleSubmit, type }) => {
+export const Search = ({ handleSubmit, type }): JSX.Element => {
 	const typeOfData =
 		type === 'news' ? (
 			<>
@@ -12,8 +12,8 @@ export const Search = ({ handleSubmit, type }) => {
 				</a>
 			</>
 		) : (
-			'an asset overview'
-		);
+				'an asset overview'
+			);
 	return (
 		<div className='search-container'>
 			<p>

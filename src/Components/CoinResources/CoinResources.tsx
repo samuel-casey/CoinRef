@@ -1,7 +1,7 @@
 import React from 'react';
 import './CoinResources.scss';
 
-export const CoinResources = ({ coinProfileData }) => {
+export const CoinResources = ({ coinProfileData }): JSX.Element => {
 	let resources;
 
 	if (coinProfileData) {

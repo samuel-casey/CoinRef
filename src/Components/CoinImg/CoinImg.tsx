@@ -4,7 +4,7 @@ import ICGCoins from '../../interfaces/ICGCoin';
 import { Store } from '../../Store';
 import './CoinImg.scss'
 
-export const CoinImg = () => {
+export const CoinImg = (): JSX.Element => {
     const { gState } = useContext(Store);
     const { currentCoin } = gState;
     const [cGeckoList, setCGeckoList] = useState<Array<ICGCoins>>([]);

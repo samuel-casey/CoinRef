@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { allCoins } from '../../allCoinsList';
 import './SearchForm.scss';
 
-export const SearchForm = (props) => {
+export const SearchForm = (props): JSX.Element => {
 	const [searchVal, setSearchVal] = useState('BTC');
 
 	const handleChange = (e) => {

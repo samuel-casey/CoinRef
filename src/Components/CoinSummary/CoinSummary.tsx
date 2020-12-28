@@ -3,7 +3,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { monthEstToAbbr } from '../../helpers/dateHelpers';
 import './CoinSummary.scss';
 
-export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {
+export const CoinSummary = ({ coinMetricsData, coinProfileData }): JSX.Element => {
 	let usdPrice;
 	let pctChg;
 	let posNeg;
@@ -14,8 +14,8 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {
 	let name = coinProfileData ? (
 		coinProfileData.name
 	) : (
-		<Spinner animation='border' variant='info' />
-	);
+			<Spinner animation='border' variant='info' />
+		);
 
 	if (coinMetricsData) {
 		usdPrice = coinMetricsData.market_data.price_usd;
@@ -46,8 +46,8 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {
 			<span>24hr)</span>
 		</>
 	) : (
-		'loading...'
-	);
+			'loading...'
+		);
 
 	if (coinProfileData) {
 		// CHECK THAT THE COIN HAS A SECTOR, IF NOT, SET TO 'N/A'
@@ -62,15 +62,15 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }) => {
 		let yearEst = coinProfileData.profile.economics.launch.initial_distribution
 			.genesis_block_date
 			? new Date(
-					coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
-			  ).getFullYear()
+				coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
+			).getFullYear()
 			: '';
 		// CHECK THAT THE COIN HAS AN INITIAL DISTRIBUTION DATE AND GET MONTH
 		let monthEst = coinProfileData.profile.economics.launch.initial_distribution
 			.genesis_block_date
 			? new Date(
-					coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
-			  ).getMonth()
+				coinProfileData.profile.economics.launch.initial_distribution.genesis_block_date
+			).getMonth()
 			: '';
 		let monthEstAbbreviation = monthEstToAbbr(monthEst);
 		dateEst = `${monthEstAbbreviation} ${yearEst}`;

@@ -7,7 +7,7 @@ import INewsArticle from '../../interfaces/INewsArticle';
 
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
-export const ArticleList = () => {
+export const ArticleList = (): JSX.Element => {
 	const { gState, dispatch } = useContext(Store);
 	const { currentCoin, errorMsg } = gState;
 	const [newsArticles, setNewsArticles] = useState([]);
