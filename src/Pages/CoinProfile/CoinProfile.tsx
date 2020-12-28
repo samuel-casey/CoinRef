@@ -11,7 +11,7 @@ import { fetchAssetMetricsData, fetchAssetPriceData, fetchAssetProfileData } fro
 
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
-export const CoinProfile = () => {
+export const CoinProfile = (): JSX.Element => {
 	const { gState, dispatch } = useContext(Store);
 	const { currentCoin, errorMsg } = gState;
 	const [coinProfileData, setCoinProfileData] = useState(null);
@@ -47,9 +47,9 @@ export const CoinProfile = () => {
 		</div>
 		<CoinDescription coinProfileData={coinProfileData} />
 		<CoinResources coinProfileData={coinProfileData} />
-	</div></>) : null
+		<CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData} />
+	</div></>) : <div>{errorMsg}</div>
 
-	{/* <CoinChart chartData={chartData} today={today} numDaysPriceData={numDaysPriceData} setNumDaysPriceData={setNumDaysPriceData} /></>) : <><div>{errorMsg}</div></> */ }
 	return (
 		<div>
 			{coinProfile}
