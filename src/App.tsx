@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
 import { Header } from './Pages/Header/Header';
@@ -11,14 +11,14 @@ import { CoinProfile } from './Pages/CoinProfile/CoinProfile';
 import { Videos } from './Components/Videos/Videos';
 import IGState from './interfaces/IGState';
 import ICoinContext from './interfaces/IGState';
+import { Store } from './Store'
 
-
-export const CoinContext = createContext<ICoinContext | null>(null)
 
 const App = () => {
+	const store = React.useContext(Store)
 	const [gState, setGState] = useState({
-		currentCoin: 'btc', 
-		errorMsg: ''
+		currentCoin: 'btc',
+		errorMsg: '' 
 	});
 
 	const handleSearchSubmit = (coin) => {
@@ -30,26 +30,28 @@ const App = () => {
 			<header>
 				<Header />
 			</header>
-			<CoinContext.Provider value={{ gState, setGState }}>
-				<main>
-					<Switch>
-						<Route exact path='/'>
-							<>
-								<Search handleSubmit={handleSearchSubmit} type='coinProfile' />
-								<CoinProfile />
-							</>
-						</Route>
-						<Route path='/news'>
-							<>
-								<Search handleSubmit={handleSearchSubmit} type='news' />
-								<News />
-							</>
-						</Route>
-						<Route path='/about' component={About} />
-						<Route path='/videos' component={Videos} />
-					</Switch>
-				</main>
-			</CoinContext.Provider>
+			{/* <CoinContext.Provider value={{ gState, setGState }}> */}
+			<main>
+				<Switch>
+
+					<Route exact path='/'>
+						<>
+							<Search handleSubmit={handleSearchSubmit} type='coinProfile' />
+							<CoinProfile />
+						</>
+					</Route>
+					<Route path='/store'>{console.log(store)}</Route>
+					<Route path='/news'>
+						<>
+							<Search handleSubmit={handleSearchSubmit} type='news' />
+							<News />
+						</>
+					</Route>
+					<Route path='/about' component={About} />
+					<Route path='/videos' component={Videos} />
+				</Switch>
+			</main>
+			{/* </CoinContext.Provider> */}
 			<footer>
 				<div id='footer-logo-container'>
 					<Logo />
