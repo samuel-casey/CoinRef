@@ -45,7 +45,7 @@ const App = () => {
 						</>
 					</Route>
 					<Route path='/about' component={About} />
-					{/* <Route path='/videos' component={Videos} /> */}
+					<Route path='/videos' component={Videos} />
 				</Switch>
 			</main>
 			<footer>
