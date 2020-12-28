@@ -13,7 +13,7 @@ import { Store } from './Store'
 
 
 const App = (): JSX.Element => {
-	const { state, dispatch } = React.useContext(Store)
+	const { dispatch } = React.useContext(Store)
 
 	const handleSearchSubmit = (coin: string) => {
 		dispatch({

@@ -5,8 +5,6 @@ import { formatArticleDate } from '../../helpers/dateHelpers';
 import './ArticleList.scss';
 import INewsArticle from '../../interfaces/INewsArticle';
 
-const { REACT_APP_MESSARI_API_KEY } = process.env;
-
 export const ArticleList = (): JSX.Element => {
 	const { gState, dispatch } = useContext(Store);
 	const { currentCoin, errorMsg } = gState;
@@ -18,7 +16,7 @@ export const ArticleList = (): JSX.Element => {
 			if (newsData) setNewsArticles(newsData)
 		}
 		getArticles();
-	}, [currentCoin]);
+	}, [currentCoin, dispatch]);
 
 	const articles = newsArticles.length > 0 ? newsArticles.map((article: INewsArticle, index: number) => {
 		return (

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import PriceLinePoint from '../PriceLinePoint';
-import IGState from '../interfaces/IGState';
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
 export const fetchAssetProfileData = async (currentCoin: string, dispatch: Function) => {

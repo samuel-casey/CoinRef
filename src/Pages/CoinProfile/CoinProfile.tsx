@@ -34,7 +34,7 @@ export const CoinProfile = (): JSX.Element => {
 
 		getCoinData();
 
-	}, [currentCoin, maxInterval]);
+	}, [currentCoin, maxInterval, dispatch, today]);
 
 	const coinProfile = errorMsg === '' ? (<><div className='coin-profile'>
 		<div className='coin-summary-cont'>

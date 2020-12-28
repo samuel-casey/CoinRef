@@ -4,7 +4,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import Chart, { ChartData } from 'chart.js'
 import "./CoinChart.scss"
 import ICoinChartProps from "../../interfaces/props/ICoinChartProps";
-import PriceLinePoint from "../../PriceLinePoint";
 
 // add priceChart to global namespace for use in createLineChart fn
 declare global {

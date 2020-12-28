@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { allCoins, validIds } from "../../allCoinsList";
+import { allCoins } from "../../allCoinsList";
 import ICGCoins from '../../interfaces/ICGCoin';
 import { Store } from '../../Store';
 import { fetchCoinGeckoAssetList } from '../../apis/coinGecko';
@@ -13,19 +13,15 @@ export const CoinImg = (): JSX.Element => {
     const [imgCount, setImgCount] = useState(0);
     const [imageUrl, setImageUrl] = useState()
 
-    // get lists of slugs and symbols for allCoins for use in filter
-    const allCoinSlugs = allCoins.map((coin) => coin.slug)
-    const allCoinSymbols = allCoins.map((coin) => coin.symbol)
-
     // map to hold symbols and ids of coins that are in allCoins AND have a valid coinGeckoId (359 coins total)
     type TSymbolsToIdMap = {
         [key: string]: { id: string; };
     }
 
-    const symbolsToIdMap: TSymbolsToIdMap = {}
-
-
     useEffect(() => {
+        const symbolsToIdMap: TSymbolsToIdMap = {}
+        const allCoinSlugs = allCoins.map((coin) => coin.slug)
+        const allCoinSymbols = allCoins.map((coin) => coin.symbol)
 
         const getCGeckoCoins = async () => {
             const cGCoins: ICGCoins[] = await fetchCoinGeckoAssetList(dispatch);
@@ -71,7 +67,7 @@ export const CoinImg = (): JSX.Element => {
             }
         }
         getImages()
-    }, [imgCount, listCount, currentCoin]);
+    }, [imgCount, listCount, currentCoin, dispatch, cGeckoList]);
 
     return (
         <>
