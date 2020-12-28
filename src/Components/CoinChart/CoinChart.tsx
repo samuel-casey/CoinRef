@@ -37,7 +37,7 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
     };
 
     const createLineChart = (data) => {
-        const canvas = document.querySelector('#lineChart');
+        const canvas = document.querySelector('#line-chart');
         let priceChart
         if (window.priceChart !== undefined) {
             window.priceChart.destroy();
@@ -125,7 +125,7 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
                 <p className='past-days'>past {numDaysPriceData} days</p>
                 <p className='max-days-note'>{numDaysPriceData === 256 ? "CoinRef's current data source only provides a maximum of 256 days of data" : null}</p>
                 <div id="chart">
-                    <canvas id='lineChart'></canvas>
+                    <canvas id='line-chart'></canvas>
                 </div>
             </div>
         )
