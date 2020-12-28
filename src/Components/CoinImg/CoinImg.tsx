@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { allCoins, validIds } from "../../allCoinsList";
+import ICGCoins from '../../interfaces/ICGCoin';
 import { Store } from '../../Store';
 import './CoinImg.scss'
 
 export const CoinImg = () => {
     const { gState } = useContext(Store);
     const { currentCoin } = gState;
-    const [cGeckoList, setCGeckoList] = useState([]);
+    const [cGeckoList, setCGeckoList] = useState<Array<ICGCoins>>([]);
     const [listCount, setListCount] = useState(0);
     const [imgCount, setImgCount] = useState(0);
-    const [imageUrl, setImageUrl] = useState(null)
+    const [imageUrl, setImageUrl] = useState()
 
     // get lists of slugs and symbols for allCoins for use in filter
     const allCoinSlugs = allCoins.map((coin) => coin.slug)
@@ -23,7 +24,7 @@ export const CoinImg = () => {
 
         const getCGeckoCoins = async () => {
             const res = await fetch("https://api.coingecko.com/api/v3/coins/list");
-            const list = await res.json();
+            const list: ICGCoins[] = await res.json();
             setCGeckoList(list);
             if (listCount === 0) setListCount(listCount + 1);
         };
@@ -53,7 +54,7 @@ export const CoinImg = () => {
                 if (symbolsToIdMap[currentCoin.toLowerCase()]) {
                     currentCoinCGeckoId = symbolsToIdMap[currentCoin.toLowerCase()]['id']
                 } else {
-                    setImageUrl(null)
+                    setImageUrl(undefined)
                 }
             }
 
