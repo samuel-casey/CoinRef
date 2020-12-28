@@ -1,8 +1,9 @@
 import React from 'react';
 import { SearchForm } from '../../Components/SearchForm/SearchForm';
+import ISearchProps from '../../interfaces/props/ISearchProps';
 import './Search.scss';
 
-export const Search = ({ handleSubmit, type }): JSX.Element => {
+export const Search = ({ handleSubmit, type }: ISearchProps): JSX.Element => {
 	const typeOfData =
 		type === 'news' ? (
 			<>

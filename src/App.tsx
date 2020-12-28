@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
 import { Header } from './Pages/Header/Header';
@@ -9,15 +9,13 @@ import { Search } from './Pages/Search/Search';
 import { News } from './Pages/News/News';
 import { CoinProfile } from './Pages/CoinProfile/CoinProfile';
 import { Videos } from './Components/Videos/Videos';
-import IGState from './interfaces/IGState';
-import ICoinContext from './interfaces/IGState';
 import { Store } from './Store'
 
 
 const App = (): JSX.Element => {
 	const { state, dispatch } = React.useContext(Store)
 
-	const handleSearchSubmit = (coin) => {
+	const handleSearchSubmit = (coin: string) => {
 		dispatch({
 			type: 'UPDATE_CURRENT_COIN',
 			payload: coin

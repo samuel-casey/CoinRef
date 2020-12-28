@@ -3,23 +3,24 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { allCoins } from '../../allCoinsList';
 import './SearchForm.scss';
+import ISearchFormProps from '../../interfaces/props/ISearchFormProps';
 
-export const SearchForm = (props): JSX.Element => {
+export const SearchForm = ({ handleSubmit }: ISearchFormProps): JSX.Element => {
 	const [searchVal, setSearchVal] = useState('BTC');
 
-	const handleChange = (e) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchVal(e.target.value);
 	}
 
-	const handleSubmit = (e) => {
+	const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		props.handleSubmit(searchVal);
+		handleSubmit(searchVal);
 	}
 
 	const options = allCoins.map((coin: any, index: number) => <option value={coin.symbol} key={index + "-" + coin.symbol}>{coin.name}</option>)
 
 	return (
-		<Form onSubmit={handleSubmit}>
+		<Form onSubmit={handleSearchSubmit}>
 			<Form.Group controlId='formBasic'>
 				<Form.Control
 					type='text'

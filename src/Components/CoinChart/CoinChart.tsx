@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Store } from '../../Store'
 import Spinner from 'react-bootstrap/Spinner';
-import Chart from 'chart.js'
+import Chart, { ChartData } from 'chart.js'
 import "./CoinChart.scss"
+import ICoinChartProps from "../../interfaces/props/ICoinChartProps";
+import PriceLinePoint from "../../PriceLinePoint";
 
 // add priceChart to global namespace for use in createLineChart fn
 declare global {
     interface Window { priceChart: any; }
 }
 
-export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, today }): JSX.Element => {
+export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, today }: ICoinChartProps): JSX.Element => {
     const { gState } = useContext(Store);
     const { currentCoin } = gState;
 
@@ -28,6 +30,7 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
             ],
         };
 
+        // POINT SHOULD NOT = ANY !!!!!!!
         if (data) data.forEach((point: any) => {
             lineChartData.labels.push(point.date);
             lineChartData.datasets[0].data.push(point.closePrice);
@@ -36,12 +39,12 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
         return lineChartData;
     };
 
-    const createLineChart = (data) => {
+    const createLineChart = (data: ChartData) => {
         const canvas = document.querySelector('#line-chart');
         let priceChart
         if (window.priceChart !== undefined) {
             window.priceChart.destroy();
-            window.priceChart = new Chart(canvas, {
+            window.priceChart = new Chart(canvas as any, {
                 type: 'line',
                 data: data,
                 options: {
@@ -49,9 +52,9 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
                         yAxes: [{
                             ticks: {
                                 // Include a dollar sign in the ticks
-                                callback: function (value, index, values) {
-                                    value = value > 100 ? value.toFixed(0) : value.toFixed(2)
-                                    value = value.toString();
+                                callback: function (value: number) {
+                                    value = +value > 100 ? +value.toFixed(0) : +value.toFixed(2)
+                                    value = +value.toString();
                                     return '$' + value;
                                 }
                             }
@@ -61,7 +64,7 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
 
             });
         } else {
-            window.priceChart = new Chart(canvas, {
+            window.priceChart = new Chart(canvas as any, {
                 type: 'line',
                 data: data,
                 options: {
@@ -69,9 +72,9 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
                         yAxes: [{
                             ticks: {
                                 // Include a dollar sign in the ticks
-                                callback: function (value, index, values) {
-                                    value = value > 100 ? value.toFixed(0) : value.toFixed(2)
-                                    value = value.toString();
+                                callback: function (value: number) {
+                                    value = +value > 100 ? +value.toFixed(0) : +value.toFixed(2)
+                                    value = +value.toString();
                                     return '$' + value;
                                 }
                             }
@@ -101,13 +104,12 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
 
     const loading = <><p>Loading price data...</p><Spinner animation='border' variant='info' /></>
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        setSelectedOption(e.target.name)
+        setSelectedOption(e.currentTarget.name)
 
         // coerce e.target.name's type to number
-        const newNumDays = e.target.name * 1
-
+        const newNumDays = +e.currentTarget.name
         setNumDaysPriceData(newNumDays)
     }
 

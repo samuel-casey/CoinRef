@@ -1,7 +1,7 @@
 import axios from 'axios';
 const { REACT_APP_YOUTUBE_API_KEY } = process.env;
 
-export const fetchVideos = async (gState, dispatch, ytSearchQuery) => {
+export const fetchVideos = async (dispatch: Function, ytSearchQuery: string) => {
 	try {
 		dispatch({ type: "SET_ERROR_MSG", payload: '' })
 		const search = await axios.get(

@@ -12,15 +12,15 @@ export const Videos = (): JSX.Element => {
     useEffect(() => {
 
         const getVideos = async () => {
-            const ytSearchResults = await fetchVideos(gState, dispatch, ytSearchQuery)
+            const ytSearchResults = await fetchVideos(dispatch, ytSearchQuery)
             setSearchResults(ytSearchResults.items)
         }
         getVideos();
 
     }, [ytSearchQuery])
 
-    const handleSearchClick = (e) => {
-        setYtSearchQuery(e.target.value)
+    const handleSearchClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setYtSearchQuery(e.currentTarget.value)
     }
 
     const thumbs = searchResults.length > 0 ? searchResults.

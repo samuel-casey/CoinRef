@@ -14,7 +14,7 @@ export const ArticleList = (): JSX.Element => {
 
 	useEffect(() => {
 		const getArticles = async () => {
-			const newsData = await fetchAssetNewsArticles(currentCoin, gState, dispatch);
+			const newsData = await fetchAssetNewsArticles(currentCoin, dispatch);
 			if (newsData) setNewsArticles(newsData)
 		}
 		getArticles();

@@ -18,7 +18,11 @@ export const CoinImg = (): JSX.Element => {
     const allCoinSymbols = allCoins.map((coin) => coin.symbol)
 
     // map to hold symbols and ids of coins that are in allCoins AND have a valid coinGeckoId (359 coins total)
-    const symbolsToIdMap = {}
+    type TSymbolsToIdMap = {
+        [key: string]: { id: string; };
+    }
+
+    const symbolsToIdMap: TSymbolsToIdMap = {}
 
 
     useEffect(() => {
@@ -32,7 +36,7 @@ export const CoinImg = (): JSX.Element => {
         const getImages = async () => {
             await getCGeckoCoins();
 
-            const isInSlugsOrSymbols = (coin) => {
+            const isInSlugsOrSymbols = (coin: ICGCoins) => {
                 return allCoinSlugs.includes(coin.id) || allCoinSymbols.includes(coin.symbol)
             }
 
@@ -43,7 +47,7 @@ export const CoinImg = (): JSX.Element => {
 
             let currentCoinCGeckoId
 
-            if (cGCoins) {
+            if (cGCoins && symbolsToIdMap !== {}) {
                 // add each coin to a map that has their coinGeckoId
                 cGCoins.forEach((coin) => {
                     symbolsToIdMap[coin.symbol] = {

@@ -3,7 +3,7 @@ import PriceLinePoint from '../PriceLinePoint';
 import IGState from '../interfaces/IGState';
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
-export const fetchAssetProfileData = async (currentCoin: string, gState: IGState, dispatch: Function) => {
+export const fetchAssetProfileData = async (currentCoin: string, dispatch: Function) => {
 	try {
 		dispatch({ type: "SET_ERROR_MSG", payload: '' })
 		const profile = await axios.get(
@@ -23,7 +23,7 @@ export const fetchAssetProfileData = async (currentCoin: string, gState: IGState
 	}
 };
 
-export const fetchAssetMetricsData = async (currentCoin: string, gState: IGState, dispatch: Function) => {
+export const fetchAssetMetricsData = async (currentCoin: string, dispatch: Function) => {
 	try {
 		dispatch({ type: "SET_ERROR_MSG", payload: '' })
 		const metrics = await axios.get(
@@ -39,16 +39,12 @@ export const fetchAssetMetricsData = async (currentCoin: string, gState: IGState
 		return metrics.data.data;
 	} catch (error) {
 		console.log(error);
-		// dispatch({
-		// 	...gState,
-		// 	errorMsg: `No metrics data found for ${currentCoin}, please check your input or select an option from the list.`,
-		// });
 		dispatch({ type: "SET_ERROR_MSG", payload: `No metrics data found for ${currentCoin}, please check your input or select an option from the list.` })
 	}
 };
 
 export const fetchAssetPriceData = async (
-	currentCoin: string, gState: IGState, dispatch: Function,
+	currentCoin: string, dispatch: Function,
 	today: string,
 	maxInterval: string
 ) => {
@@ -68,7 +64,7 @@ export const fetchAssetPriceData = async (
 		const pricesArray = res.data.data.values;
 
 		const daysTimestampClose: PriceLinePoint[] = [];
-		pricesArray.forEach((day, index) => {
+		pricesArray.forEach((day: any, index: number) => {
 			// create a new PriceLinePoint instance for each day in the OHLCV array and push it to the daysTimestampClose array
 			const pricePoint = new PriceLinePoint(day[0], day[4].toFixed(2))
 			daysTimestampClose.push(pricePoint);
@@ -81,15 +77,11 @@ export const fetchAssetPriceData = async (
 };
 
 export const fetchAssetNewsArticles = async (
-	currentCoin,
-	gState,
-	dispatch
+	currentCoin: string,
+	dispatch: Function
 ) => {
 	try {
-		// dispatch({
-		// 	...gState,
-		// 	errorMsg: '',
-		// });
+		dispatch({ type: "SET_ERROR_MSG", payload: '' })
 		const res = await axios.get(
 			`https://data.messari.io/api/v1/news/${currentCoin}`,
 			{
@@ -103,10 +95,6 @@ export const fetchAssetNewsArticles = async (
 		return res.data.data;
 	} catch (error) {
 		console.log(error);
-		// dispatch({
-		// 	...gState,
-		// 	errorMsg: `No price news articles found for ${currentCoin}, please check your input or select an option from the list.`,
-		// });
 		dispatch({ type: "SET_ERROR_MSG", payload: `No price news articles found for ${currentCoin}, please check your input or select an option from the list.` })
 	}
 };
