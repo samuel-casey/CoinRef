@@ -9,11 +9,11 @@ import { Search } from './Pages/Search/Search';
 import { News } from './Pages/News/News';
 import { CoinProfile } from './Pages/CoinProfile/CoinProfile';
 import { Videos } from './Components/Videos/Videos';
-import GStateInterface from './interfaces/GStateInterface';
-import CoinContextInterface from './interfaces/GStateInterface';
+import IGState from './interfaces/IGState';
+import ICoinContext from './interfaces/IGState';
 
 
-export const CoinContext = createContext<CoinContextInterface | null>(null)
+export const CoinContext = createContext<ICoinContext | null>(null)
 
 const App = () => {
 	const [gState, setGState] = useState({

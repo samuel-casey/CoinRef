@@ -1,4 +1,4 @@
-export default interface GStateInterface {
+export default interface IGState {
     currentCoin: string;
     errorMsg: string;
 }

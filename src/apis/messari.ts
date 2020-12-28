@@ -1,6 +1,6 @@
 import axios from 'axios';
 import PriceLinePoint from '../PriceLinePoint';
-import GStateInterface from '../interfaces/GStateInterface';
+import GStateInterface from '../interfaces/IGState';
 import { ToastBody } from 'react-bootstrap';
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
