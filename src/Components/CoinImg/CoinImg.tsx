@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import { allCoins, validIds } from "../../allCoinsList";
 import ICGCoins from '../../interfaces/ICGCoin';
 import { Store } from '../../Store';
+import { fetchCoinGeckoAssetList } from '../../apis/coinGecko';
 import './CoinImg.scss'
 
 export const CoinImg = (): JSX.Element => {
-    const { gState } = useContext(Store);
+    const { gState, dispatch } = useContext(Store);
     const { currentCoin } = gState;
     const [cGeckoList, setCGeckoList] = useState<Array<ICGCoins>>([]);
     const [listCount, setListCount] = useState(0);
@@ -23,9 +24,8 @@ export const CoinImg = (): JSX.Element => {
     useEffect(() => {
 
         const getCGeckoCoins = async () => {
-            const res = await fetch("https://api.coingecko.com/api/v3/coins/list");
-            const list: ICGCoins[] = await res.json();
-            setCGeckoList(list);
+            const cGCoins: ICGCoins[] = await fetchCoinGeckoAssetList(dispatch);
+            setCGeckoList(cGCoins);
             if (listCount === 0) setListCount(listCount + 1);
         };
 

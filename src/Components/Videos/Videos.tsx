@@ -17,7 +17,11 @@ export const Videos = (): JSX.Element => {
         }
         getVideos();
 
-    }, [])
+    }, [ytSearchQuery])
+
+    const handleSearchClick = (e) => {
+        setYtSearchQuery(e.target.value)
+    }
 
     const thumbs = searchResults.length > 0 ? searchResults.
         map((vid: any, index: number) => (
@@ -32,9 +36,9 @@ export const Videos = (): JSX.Element => {
 
     return <div className='videos-page'>
         <nav className='sidebar'>
-            <button>Custody</button>
-            <button>Security</button>
-            <button>Exchanges</button>
+            <button onClick={handleSearchClick} value="Custody">Custody</button>
+            <button onClick={handleSearchClick} value="Security">Security</button>
+            <button onClick={handleSearchClick} value="Exchanges">Exchanges</button>
         </nav>
         <section className='videos-container'>
             {searchResults.length > 0 ? thumbs : <div className='spinner-container'><Spinner animation='border' variant='info' /></div>}

@@ -11,7 +11,7 @@ const reducer = (gState: IGState, action: IAction): IGState => {
     switch (action.type) {
         case 'UPDATE_CURRENT_COIN':
             return { ...gState, currentCoin: action.payload }
-        case 'ERROR':
+        case 'SET_ERROR_MSG':
             return { ...gState, errorMsg: action.payload }
         default:
             return gState
