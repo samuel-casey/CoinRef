@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Store } from '../../Store'
+import Spinner from 'react-bootstrap/Spinner';
 import Chart from 'chart.js'
 import "./CoinChart.scss"
 
@@ -98,7 +99,7 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
 
     }, [chartData])
 
-    const loading: string = "Loading price data..."
+    const loading = <><p>Loading price data...</p><Spinner animation='border' variant='info' /></>
 
     const handleChange = (e) => {
         e.preventDefault()

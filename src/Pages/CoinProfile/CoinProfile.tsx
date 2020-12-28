@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import './CoinProfile.scss';
 import { CoinSummary } from '../../Components/CoinSummary/CoinSummary';
 import { CoinImg } from '../../Components/CoinImg/CoinImg';
 import { CoinDescription } from '../../Components/CoinDescription/CoinDescription';
@@ -9,8 +8,7 @@ import { CoinChart } from '../../Components/CoinChart/CoinChart';
 import { setChartDataInterval } from '../../helpers/dateHelpers';
 import { fetchAssetMetricsData, fetchAssetPriceData, fetchAssetProfileData } from '../../apis/messari';
 import PriceLinePoint from '../../PriceLinePoint';
-
-const { REACT_APP_MESSARI_API_KEY } = process.env;
+import './CoinProfile.scss';
 
 export const CoinProfile = (): JSX.Element => {
 	const { gState, dispatch } = useContext(Store);
