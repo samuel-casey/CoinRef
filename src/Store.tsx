@@ -2,7 +2,7 @@ import React from 'react';
 import { TGState } from './types/TGState'
 import { TAction } from './types/TAction'
 
-const initialState: TGState = { currentCoin: 'btc', errorMsg: '' }
+const initialState: TGState = { currentCoin: 'BTC', errorMsg: '' }
 
 export const Store = React.createContext<TGState | any>(initialState)
 
