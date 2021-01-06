@@ -26,17 +26,33 @@ export const CoinProfile = (): JSX.Element => {
 	useEffect(() => {
 
 		const getCoinData = async () => {
+			setCoinProfileData(undefined)
+			setCoinMetricsData(undefined)
+
 			const profile = await fetchAssetProfileData(currentCoin, dispatch);
 			const metrics = await fetchAssetMetricsData(currentCoin, dispatch);
-			const priceData = await fetchAssetPriceData(currentCoin, dispatch, today, maxInterval)
+
 			setCoinProfileData(profile)
 			setCoinMetricsData(metrics)
-			setChartData(priceData)
 		}
 
 		getCoinData();
 
-	}, [currentCoin, maxInterval, dispatch, today]);
+	}, [currentCoin, dispatch]);
+
+	useEffect(() => {
+		const getPriceData = async () => {
+
+			setChartData(undefined)
+			const priceData = await fetchAssetPriceData(currentCoin, dispatch, today, maxInterval)
+
+			setChartData(priceData)
+		}
+
+		getPriceData();
+
+	}, [currentCoin, maxInterval, dispatch, today])
+
 
 	const coinProfile = errorMsg === '' ? (<><div className='coin-profile'>
 		<div className='coin-summary-cont'>
