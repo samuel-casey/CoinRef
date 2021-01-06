@@ -26,6 +26,9 @@ export const CoinProfile = (): JSX.Element => {
 	useEffect(() => {
 
 		const getCoinData = async () => {
+			setCoinProfileData(undefined)
+			setCoinMetricsData(undefined)
+			setChartData(undefined)
 			const profile = await fetchAssetProfileData(currentCoin, dispatch);
 			const metrics = await fetchAssetMetricsData(currentCoin, dispatch);
 			const priceData = await fetchAssetPriceData(currentCoin, dispatch, today, maxInterval)
