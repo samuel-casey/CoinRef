@@ -1,8 +1,8 @@
 # CoinRef
 
-A cryptocurrency reference site to help educate crypto novices on various cryptocurrencies. Leverages data from the Messari OnChainFX API and sources material from other market-leading crypto news/research outlets.
+A cryptocurrency reference site to help educate crypto novices on various cryptocurrencies. Leverages data from the Messari OnChainFX API, the CoinGecko API and sources material from other market-leading crypto news/research outlets.
 
-Built with React Hooks, React-Bootstrap, and Scss
+Built with TypeScript, React Hooks, React-Bootstrap, and Scss
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
