@@ -1,4 +1,4 @@
-# CoinRef
+# [CoinRef](https://coinref.org)
 
 A cryptocurrency reference site to help educate crypto novices on various cryptocurrencies. Leverages data from the Messari OnChainFX API, the CoinGecko API and sources material from other market-leading crypto news/research outlets.
 
