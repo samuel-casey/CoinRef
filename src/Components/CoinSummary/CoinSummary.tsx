@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from 'react-bootstrap/Spinner';
+import Loader from 'react-loader-spinner';
 import { monthEstToAbbr } from '../../helpers/dateHelpers';
 import { TCoinSummaryProps } from '../../types/props/TCoinSummaryProps';
 import './CoinSummary.scss';
@@ -12,11 +12,14 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }: TCoinSummaryPr
 	let sector;
 	let category;
 	let dateEst;
-	
+
 	let name = coinProfileData ? (
 		coinProfileData.name
 	) : (
-			<Spinner animation='border' variant='info' />
+			<Loader type="ThreeDots"
+				color="#136fbb"
+				height={50}
+				width={50} />
 		);
 
 	if (coinMetricsData) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Store } from '../../Store'
-import Spinner from 'react-bootstrap/Spinner';
+import Loader from 'react-loader-spinner';
 import Chart, { ChartData } from 'chart.js'
 import "./CoinChart.scss"
 import { TCoinChartProps } from "../../types/props/TCoinChartProps";
@@ -101,7 +101,10 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
 
     }, [chartData])
 
-    const loading = <><p>Loading price data...</p><Spinner animation='border' variant='info' /></>
+    const loading = <><p>Loading price data...</p><Loader type="Audio"
+        color="#bfd8ecbb"
+        height={100}
+        width={100} /></>
 
     const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
