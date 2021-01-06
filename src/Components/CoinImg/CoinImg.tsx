@@ -67,7 +67,7 @@ export const CoinImg = (): JSX.Element => {
             }
         }
         getImages()
-    }, [imgCount, listCount, currentCoin, dispatch, cGeckoList]);
+    }, [imgCount, listCount, currentCoin, dispatch]);
 
     return (
         <>
