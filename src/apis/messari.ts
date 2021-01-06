@@ -15,6 +15,7 @@ export const fetchAssetProfileData = async (currentCoin: string, dispatch: Funct
 				},
 			}
 		);
+		console.log(profile.data.data)
 		return profile.data.data;
 	} catch (error) {
 		console.log(error);
