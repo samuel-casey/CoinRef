@@ -1,6 +1,6 @@
 import PriceLinePoint from "../../PriceLinePoint";
 
-export default interface ICoinChartProps {
+export type TCoinChartProps = {
     chartData: PriceLinePoint[] | undefined;
     numDaysPriceData: number;
     setNumDaysPriceData: Function;

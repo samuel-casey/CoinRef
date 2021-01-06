@@ -1,4 +1,4 @@
-export default interface ICoinBackgroundProps {
+export type TCoinBackgroundProps = {
     coinBgVisible: boolean;
     background: string | undefined;
 }

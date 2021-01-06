@@ -1,9 +1,9 @@
 import axios from 'axios';
-import ICoinProfileData from '../interfaces/ICoinProfileData';
+import { TCoinProfileData } from '../types/TCoinProfileData';
 import PriceLinePoint from '../PriceLinePoint';
 const { REACT_APP_MESSARI_API_KEY } = process.env;
 
-export const fetchAssetProfileData = async (currentCoin: string, dispatch: Function): Promise<ICoinProfileData | undefined> => {
+export const fetchAssetProfileData = async (currentCoin: string, dispatch: Function): Promise<TCoinProfileData | undefined> => {
 	try {
 		dispatch({ type: "SET_ERROR_MSG", payload: '' })
 		const profile = await axios.get(
@@ -15,7 +15,7 @@ export const fetchAssetProfileData = async (currentCoin: string, dispatch: Funct
 					'x-messari-api-key': REACT_APP_MESSARI_API_KEY,
 				},
 			}
-		);g
+		)
 		return profile.data.data;
 	} catch (error) {
 		console.log(error);

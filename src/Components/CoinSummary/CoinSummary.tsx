@@ -1,10 +1,10 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { monthEstToAbbr } from '../../helpers/dateHelpers';
-import ICoinSummaryProps from '../../interfaces/props/ICoinSummaryProps';
+import { TCoinSummaryProps } from '../../types/props/TCoinSummaryProps';
 import './CoinSummary.scss';
 
-export const CoinSummary = ({ coinMetricsData, coinProfileData }: ICoinSummaryProps): JSX.Element => {
+export const CoinSummary = ({ coinMetricsData, coinProfileData }: TCoinSummaryProps): JSX.Element => {
 	let usdPrice;
 	let pctChg;
 	let posNeg;

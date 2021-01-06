@@ -1,14 +1,14 @@
-interface IOfficialLinks {
+type TOfficialLinks = {
     name: string;
     link: string;
 }
 
-export default interface ICoinProfileData {
+export type TCoinProfileData = {
     id: string;
     profile: {
         general: {
             overview: {
-                official_links: IOfficialLinks[];
+                official_links: TOfficialLinks[];
                 project_details: string;
             },
             background: {

@@ -1,13 +1,13 @@
 import React from 'react';
-import IGState from './interfaces/IGState'
-import IAction from './interfaces/IAction'
+import { TGState } from './types/TGState'
+import { TAction } from './types/TAction'
 
-const initialState: IGState = { currentCoin: 'btc', errorMsg: '' }
+const initialState: TGState = { currentCoin: 'btc', errorMsg: '' }
 
-export const Store = React.createContext<IGState | any>(initialState)
+export const Store = React.createContext<TGState | any>(initialState)
 
 
-const reducer = (gState: IGState, action: IAction): IGState => {
+const reducer = (gState: TGState, action: TAction): TGState => {
     switch (action.type) {
         case 'UPDATE_CURRENT_COIN':
             return { ...gState, currentCoin: action.payload }

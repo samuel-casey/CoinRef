@@ -3,14 +3,14 @@ import { Store } from '../../Store'
 import Spinner from 'react-bootstrap/Spinner';
 import Chart, { ChartData } from 'chart.js'
 import "./CoinChart.scss"
-import ICoinChartProps from "../../interfaces/props/ICoinChartProps";
+import { TCoinChartProps } from "../../types/props/TCoinChartProps";
 
 // add priceChart to global namespace for use in createLineChart fn
 declare global {
     interface Window { priceChart: any; }
 }
 
-export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, today }: ICoinChartProps): JSX.Element => {
+export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, today }: TCoinChartProps): JSX.Element => {
     const { gState } = useContext(Store);
     const { currentCoin } = gState;
 

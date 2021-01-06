@@ -1,4 +1,4 @@
-export default interface ICoinSummaryProps {
+export type TCoinSummaryProps = {
     coinProfileData: any;
     coinMetricsData: any;
 }

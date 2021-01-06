@@ -1,4 +1,4 @@
-export default interface ISearchProps {
+export type TSearchProps = {
     handleSubmit: Function;
     type: string;
 }

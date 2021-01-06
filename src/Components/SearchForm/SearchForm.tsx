@@ -3,9 +3,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { allCoins } from '../../allCoinsList';
 import './SearchForm.scss';
-import ISearchFormProps from '../../interfaces/props/ISearchFormProps';
+import { TSearchFormProps } from '../../types/props/TSearchFormProps';
 
-export const SearchForm = ({ handleSubmit }: ISearchFormProps): JSX.Element => {
+export const SearchForm = ({ handleSubmit }: TSearchFormProps): JSX.Element => {
 	const [searchVal, setSearchVal] = useState('BTC');
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
