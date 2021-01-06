@@ -9,12 +9,12 @@ import { setChartDataInterval } from '../../helpers/dateHelpers';
 import { fetchAssetMetricsData, fetchAssetPriceData, fetchAssetProfileData } from '../../apis/messari';
 import PriceLinePoint from '../../PriceLinePoint';
 import './CoinProfile.scss';
-import ICoinProfileDataProps from '../../interfaces/props/ICoinProfileDataProps';
+import ICoinProfileData from '../../interfaces/ICoinProfileData';
 
 export const CoinProfile = (): JSX.Element => {
 	const { gState, dispatch } = useContext(Store);
 	const { currentCoin, errorMsg } = gState;
-	const [coinProfileData, setCoinProfileData] = useState<ICoinProfileDataProps | null>(null);
+	const [coinProfileData, setCoinProfileData] = useState<ICoinProfileData | undefined>();
 	const [coinMetricsData, setCoinMetricsData] = useState(null);
 	const [chartData, setChartData] = useState<Array<PriceLinePoint>>();
 	const [numDaysPriceData, setNumDaysPriceData] = useState(30)
