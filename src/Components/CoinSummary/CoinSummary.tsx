@@ -12,6 +12,7 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }: TCoinSummaryPr
 	let sector;
 	let category;
 	let dateEst;
+	
 	let name = coinProfileData ? (
 		coinProfileData.name
 	) : (
