@@ -29,7 +29,7 @@ export const CoinChart = ({ chartData, numDaysPriceData, setNumDaysPriceData, to
             ],
         };
 
-        // POINT SHOULD NOT = ANY !!!!!!!
+        /// @dev point should !== any
         if (data) data.forEach((point: any) => {
             lineChartData.labels.push(point.date);
             lineChartData.datasets[0].data.push(point.closePrice);

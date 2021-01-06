@@ -1,4 +1,5 @@
+import { TCoinMetricsData } from "../TCoinMetricsData";
+
 export type TCoinMetricsDataProps = {
-    /// @dev TBU
-    coinMetricsData: any;
+    coinMetricsData: TCoinMetricsData | undefined;
 }

@@ -28,7 +28,7 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }: TCoinSummaryPr
 		pctChg = coinMetricsData.market_data.percent_change_usd_last_24_hours;
 		pctChg = pctChg.toFixed(2);
 
-		if (pctChg > 0) {
+		if (Number(pctChg) > 0) {
 			posNeg = '+';
 			pctChgColor = 'green';
 		} else {

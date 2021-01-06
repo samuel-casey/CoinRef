@@ -1,4 +1,7 @@
+import { TCoinMetricsData } from "../TCoinMetricsData";
+import { TCoinProfileData } from "../TCoinProfileData";
+
 export type TCoinSummaryProps = {
-    coinProfileData: any;
-    coinMetricsData: any;
+    coinProfileData: TCoinProfileData | undefined;
+    coinMetricsData: TCoinMetricsData | undefined;
 }
