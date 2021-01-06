@@ -1,10 +1,10 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { monthEstToAbbr } from '../../helpers/dateHelpers';
-import ICoinSummaryProps from '../../interfaces/props/ICoinSummaryProps';
+import { TCoinSummaryProps } from '../../types/props/TCoinSummaryProps';
 import './CoinSummary.scss';
 
-export const CoinSummary = ({ coinMetricsData, coinProfileData }: ICoinSummaryProps): JSX.Element => {
+export const CoinSummary = ({ coinMetricsData, coinProfileData }: TCoinSummaryProps): JSX.Element => {
 	let usdPrice;
 	let pctChg;
 	let posNeg;
@@ -12,6 +12,7 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }: ICoinSummaryPr
 	let sector;
 	let category;
 	let dateEst;
+	
 	let name = coinProfileData ? (
 		coinProfileData.name
 	) : (
@@ -28,7 +29,7 @@ export const CoinSummary = ({ coinMetricsData, coinProfileData }: ICoinSummaryPr
 		pctChg = coinMetricsData.market_data.percent_change_usd_last_24_hours;
 		pctChg = pctChg.toFixed(2);
 
-		if (pctChg > 0) {
+		if (Number(pctChg) > 0) {
 			posNeg = '+';
 			pctChgColor = 'green';
 		} else {

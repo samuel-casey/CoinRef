@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { allCoins } from "../../allCoinsList";
-import ICGCoins from '../../interfaces/ICGCoin';
+import { TCoinGeckoCoins } from '../../types/TCoinGeckoCoin';
 import { Store } from '../../Store';
 import { fetchCoinGeckoAssetList } from '../../apis/coinGecko';
 import './CoinImg.scss'
@@ -8,7 +8,7 @@ import './CoinImg.scss'
 export const CoinImg = (): JSX.Element => {
     const { gState, dispatch } = useContext(Store);
     const { currentCoin } = gState;
-    const [cGeckoList, setCGeckoList] = useState<Array<ICGCoins>>([]);
+    const [cGeckoList, setCGeckoList] = useState<Array<TCoinGeckoCoins>>([]);
     const [listCount, setListCount] = useState(0);
     const [imgCount, setImgCount] = useState(0);
     const [imageUrl, setImageUrl] = useState()
@@ -24,7 +24,7 @@ export const CoinImg = (): JSX.Element => {
         const allCoinSymbols = allCoins.map((coin) => coin.symbol)
 
         const getCGeckoCoins = async () => {
-            const cGCoins: ICGCoins[] = await fetchCoinGeckoAssetList(dispatch);
+            const cGCoins: TCoinGeckoCoins[] = await fetchCoinGeckoAssetList(dispatch);
             setCGeckoList(cGCoins);
             if (listCount === 0) setListCount(listCount + 1);
         };
@@ -32,7 +32,7 @@ export const CoinImg = (): JSX.Element => {
         const getImages = async () => {
             await getCGeckoCoins();
 
-            const isInSlugsOrSymbols = (coin: ICGCoins) => {
+            const isInSlugsOrSymbols = (coin: TCoinGeckoCoins) => {
                 return allCoinSlugs.includes(coin.id) || allCoinSymbols.includes(coin.symbol)
             }
 

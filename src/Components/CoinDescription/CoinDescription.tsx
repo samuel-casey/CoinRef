@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import ICoinDescriptionProps from '../../interfaces/props/ICoinProfileDataProps';
+import { TCoinProfileDataProps } from '../../types/props/TCoinProfileDataProps';
 import { Store } from '../../Store';
 import { CoinBackground } from '../CoinBackground/CoinBackground';
 import './CoinDescription.scss';
 
 /// @dev ICoinDescriptionProps is currently of type any
-export const CoinDescription = ({ coinProfileData }: ICoinDescriptionProps): JSX.Element => {
+export const CoinDescription = ({ coinProfileData }: TCoinProfileDataProps): JSX.Element => {
 	const { gState } = useContext(Store);
 	const { currentCoin } = gState;
 	let name;

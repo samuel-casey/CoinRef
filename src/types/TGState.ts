@@ -1,4 +1,4 @@
-export default interface IGState {
+export type TGState = {
     currentCoin: string;
     errorMsg: string;
 }

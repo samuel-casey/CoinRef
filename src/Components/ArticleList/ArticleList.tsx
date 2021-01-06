@@ -3,7 +3,7 @@ import { fetchAssetNewsArticles } from '../../apis/messari';
 import { Store } from '../../Store';
 import { formatArticleDate } from '../../helpers/dateHelpers';
 import './ArticleList.scss';
-import INewsArticle from '../../interfaces/INewsArticle';
+import { TNewsArticle } from '../../types/TNewsArticle';
 
 export const ArticleList = (): JSX.Element => {
 	const { gState, dispatch } = useContext(Store);
@@ -18,7 +18,7 @@ export const ArticleList = (): JSX.Element => {
 		getArticles();
 	}, [currentCoin, dispatch]);
 
-	const articles = newsArticles.length > 0 ? newsArticles.map((article: INewsArticle, index: number) => {
+	const articles = newsArticles.length > 0 ? newsArticles.map((article: TNewsArticle, index: number) => {
 		return (
 			<div className='article' key={`article-${index}`}>
 				<a href={article.url} target='blank'>

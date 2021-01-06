@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
-import { Header } from './Pages/Header/Header';
+import { Header } from './Containers/Header/Header';
 import { Logo } from './Components/Logo/Logo';
-import { About } from './Pages/About/About';
-import { FooterLinks } from './Pages/FooterLinks/FooterLinks';
-import { Search } from './Pages/Search/Search';
-import { News } from './Pages/News/News';
-import { CoinProfile } from './Pages/CoinProfile/CoinProfile';
+import { About } from './Containers/About/About';
+import { FooterLinks } from './Containers/FooterLinks/FooterLinks';
+import { Search } from './Containers/Search/Search';
+import { News } from './Containers/News/News';
+import { CoinProfile } from './Containers/CoinProfile/CoinProfile';
 import { Videos } from './Components/Videos/Videos';
 import { Store } from './Store'
 

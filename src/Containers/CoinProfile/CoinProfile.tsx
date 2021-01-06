@@ -9,12 +9,14 @@ import { setChartDataInterval } from '../../helpers/dateHelpers';
 import { fetchAssetMetricsData, fetchAssetPriceData, fetchAssetProfileData } from '../../apis/messari';
 import PriceLinePoint from '../../PriceLinePoint';
 import './CoinProfile.scss';
+import { TCoinProfileData } from '../../types/TCoinProfileData';
+import { TCoinMetricsData } from '../../types/TCoinMetricsData';
 
 export const CoinProfile = (): JSX.Element => {
 	const { gState, dispatch } = useContext(Store);
 	const { currentCoin, errorMsg } = gState;
-	const [coinProfileData, setCoinProfileData] = useState(null);
-	const [coinMetricsData, setCoinMetricsData] = useState(null);
+	const [coinProfileData, setCoinProfileData] = useState<TCoinProfileData | undefined>();
+	const [coinMetricsData, setCoinMetricsData] = useState<TCoinMetricsData | undefined>();
 	const [chartData, setChartData] = useState<Array<PriceLinePoint>>();
 	const [numDaysPriceData, setNumDaysPriceData] = useState(30)
 

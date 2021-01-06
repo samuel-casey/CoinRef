@@ -1,8 +1,8 @@
 import React from 'react';
-import ICoinProfileDataProps from '../../interfaces/props/ICoinProfileDataProps';
+import { TCoinProfileDataProps } from '../../types/props/TCoinProfileDataProps';
 import './CoinResources.scss';
 
-export const CoinResources = ({ coinProfileData }: ICoinProfileDataProps): JSX.Element => {
+export const CoinResources = ({ coinProfileData }: TCoinProfileDataProps): JSX.Element => {
 	let resources;
 
 	if (coinProfileData) {

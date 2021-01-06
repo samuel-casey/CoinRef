@@ -1,8 +1,8 @@
 import React from 'react';
-import INewsProviderProps from '../../interfaces/props/INewsProviderProps'
+import { TNewsProviderProps } from '../../types/props/TNewsProviderProps'
 import './NewsProvider.scss';
 
-export const NewsProvider = ({ name, image, url }: INewsProviderProps): JSX.Element => {
+export const NewsProvider = ({ name, image, url }: TNewsProviderProps): JSX.Element => {
 	return (
 		<div className='news-provider'>
 			<a href={url} target='blank'>
